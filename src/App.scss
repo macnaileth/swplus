@@ -1,0 +1,34 @@
+//add dependencies
+
+//setup bootstrap colors
+$primary: #CCAE00;
+$secondary: #9C9E9F;
+$cyan: #14C7CC;
+$info: $cyan;
+$dark: #4b4a4d;
+$body-bg: #4b4a4d;
+//setup other styles
+$card-border-radius: 0; //card border radius
+$nav-tabs-link-active-border-color: $cyan;
+$nav-tabs-link-active-bg: $cyan; //nav tab link active bg
+$nav-tabs-link-active-color: #fff; //nav tab link active color
+
+//bootstrap scss ready for compilation
+@import "./scss/bootstrap/bootstrap";
+
+//css classes
+.navbar-toggler-icon:hover, .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    background-color: var(--bs-primary);
+    border-radius: .25rem;
+    padding: .25rem;
+}
+.navbar-toggler-icon:hover {
+    opacity: 0.75;
+    background-color: transparent;
+}
+.nav-tabs .nav-link:not(.active) {
+    color: var(--bs-gray) !important;
+}
+.nav-tabs .nav-link:not(.active):hover {
+    color: var(--bs-info) !important;
+}
