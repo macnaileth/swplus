@@ -19,6 +19,7 @@ export class SWCodeSearch extends React.Component {
         this.state = {code: '', msg: '', submit: 'disabled', icd10: false, icf: false};
         this.handleCodeInput = this.handleCodeInput.bind(this);
         this.matchICDBooks = this.matchICDBooks.bind(this);
+        this.handleSubmitCode = this.handleSubmitCode.bind(this);
     }
     
     matchICDBooks(string) {
@@ -42,6 +43,11 @@ export class SWCodeSearch extends React.Component {
         });
     }
     
+    handleSubmitCode() {
+        const queryString = '?Code=' + this.state.code + '&icd10=' + this.state.icd10 + '&icf=' + this.state.icf;
+        console.log('API Query:  ' + queryString);
+    }
+    
     render() {
         return (
             <div>
@@ -58,7 +64,7 @@ export class SWCodeSearch extends React.Component {
                         variant="primary" 
                         id="sw_icd_icf_button" 
                         className={ this.state.submit }
-                        onClick={ (event) => { console.log('Submitted!'); }}>
+                        onClick={ () => { this.handleSubmitCode(); } }>
                       { this.props.buttonText === undefined ? 'Go!' : this.props.buttonText }
                     </Button>
                 </InputGroup> 
