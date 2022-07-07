@@ -12,6 +12,7 @@ $card-border-radius: 0; //card border radius
 $nav-tabs-link-active-border-color: $cyan;
 $nav-tabs-link-active-bg: $cyan; //nav tab link active bg
 $nav-tabs-link-active-color: #fff; //nav tab link active color
+$nav-tabs-border-radius: 0; //nav tab border radius
 
 //bootstrap scss ready for compilation
 @import "./scss/bootstrap/bootstrap";
@@ -31,4 +32,7 @@ $nav-tabs-link-active-color: #fff; //nav tab link active color
 }
 .nav-tabs .nav-link:not(.active):hover {
     color: var(--bs-info) !important;
+}
+.badge + .badge {
+    margin-left: 0.5rem;
 }

@@ -3,26 +3,25 @@
  */
 
 //external ressources
+//react-bootatstrap components
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
-import React from 'react'; //TODO: remove later when class externalized
-
-//custom react classes
-class SWCodeSearch extends React.Component {
-    
-};
+//internal ressources
+import SWCodeSearch from '../components/SWCodeSearch.jsx';
 
 export default function Toolbox() {
   return (
-    <div className="py-3">       
+    <div className="py-5">       
         <Tabs defaultActiveKey="codesearch" id="sw_toolbox_tabs" className="mb-3">
             <Tab eventKey="codesearch" title="Code">
-                <h1 className="display-6 text-secondary">ICD|ICF Codesuche</h1>
-                Bla
+                <h1 className="display-6 text-secondary">ICD10 - ICF Codesuche</h1>
+                <SWCodeSearch 
+                    buttonText ="Suchen!"
+                />
             </Tab>
-            <Tab eventKey="browseICD" title="ICD">
-                <h1 className="display-6 text-secondary">ICD durchsuchen</h1>
+            <Tab eventKey="browseICD" title="ICD10">
+                <h1 className="display-6 text-secondary">ICD10 durchsuchen</h1>
                 Blabla
             </Tab>
             <Tab eventKey="browseICF" title="ICF">
