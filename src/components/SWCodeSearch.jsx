@@ -25,7 +25,11 @@ export class SWCodeSearch extends React.Component {
         //check regex patterns
         const regexPat = { icd: /^[A-TV-Z]{1}[0-9]{2}\.?[0-9]{0,2}[GVAZRLB]{0,2}$/gmi,
                            icf: /^[bsde][1-9][0-9]{0,4}$/gmi };
-        regexPat.icd.test(string) ? this.setState({icd10: true}) : this.setState({icd10: false}); 
+        if( string.length > 3 && !string.includes('.') ) { 
+            this.setState({icd10: false}); 
+        } else {
+            regexPat.icd.test(string) ? this.setState({icd10: true}) : this.setState({icd10: false}); 
+        } 
         regexPat.icf.test(string) ? this.setState({icf: true}) : this.setState({icf: false}); 
     }
     
