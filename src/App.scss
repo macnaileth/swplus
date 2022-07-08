@@ -36,3 +36,10 @@ $nav-tabs-border-radius: 0; //nav tab border radius
 .badge + .badge {
     margin-left: 0.5rem;
 }
+.sw-hanging-info {
+    margin-top: -4px;
+}
+.sw-hanging-info .badge {
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}

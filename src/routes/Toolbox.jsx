@@ -15,7 +15,7 @@ export default function Toolbox() {
     <div className="py-5">       
         <Tabs defaultActiveKey="codesearch" id="sw_toolbox_tabs" className="mb-3">
             <Tab eventKey="codesearch" title="Code">
-                <h1 className="display-6 text-secondary">ICD-10 - ICF Codesuche</h1>
+                <h1 className="display-6 text-secondary text-center">ICD-10 - ICF Codesuche</h1>
                 <SWCodeSearch 
                     buttonText ="Suchen!"
                 />

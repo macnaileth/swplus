@@ -12,6 +12,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 //internal
 import StatusBadge from '../components/StatusBadge';
 import ManParse from '../lib/ManParse';
+import SwCSElement from '../components/SWCSElement';
 
 //json manuals
 import manualsWHO from '../lib/manuals';
@@ -27,7 +28,8 @@ export class SWCodeSearch extends React.Component {
                         msg: '',  
                         icd10: false, 
                         icf: false,
-                        codetitle: ''
+                        codetitle: '',
+                        codeobj: {}
                      };
         this.handleCodeInput = this.handleCodeInput.bind(this);
         this.matchICDBooks = this.matchICDBooks.bind(this);
@@ -64,44 +66,57 @@ export class SWCodeSearch extends React.Component {
         });
     }
     //supports API for querying and API or LOCAL for using local data files (xml/json)
-    handleSubmitCode(process = 'API') {
+    async handleSubmitCode(process = 'API') {
         if (process === 'API') {
             const queryString = '?Code=' + this.state.code + '&icd10=' + this.state.icd10 + '&icf=' + this.state.icf;
         } else if (process === 'LOCAL') {
             //process full code information
             if (this.state.icf) {
-                console.log('It is a ICF Code!');
+                await this.setState({ codeobj: this.parser.icfElement(this.state.code) });
+            } else {
+                this.setState({ codeobj: {} });
             }
-            console.log('We do it Local:  ', manualsWHO.icf);
         }
         
     }
     
     render() {
         return (
-            <div>
-                <InputGroup className="my-3">
-                    <Form.Control
-                      placeholder="ICD-10 oder ICF Code"
-                      aria-label="ICD-10 oder ICF Code"
-                      aria-describedby="sw_icd_icf_input"
-                      maxLength="7"
-                      value={ this.state.code }
-                      onChange={ (event) => { this.handleCodeInput(event); } }
-                    />
-                    <Button 
-                        variant="primary" 
-                        id="sw_icd_icf_button" 
-                        className={ this.state.icd10 || this.state.icf ? '' : 'disabled' }
-                        onClick={ () => { this.handleSubmitCode('LOCAL'); } }>
-                      { this.props.buttonText === undefined ? 'Go!' : this.props.buttonText }
-                    </Button>
-                </InputGroup> 
-                { this.state.icd10 && <StatusBadge BadgeData="ICD-10"/> }
-                { this.state.icf && <StatusBadge BadgeData="ICF"/> }
-                { this.state.msg && <StatusBadge BadgeData={ "dark:" + this.state.msg }/> }
-                { this.state.codetitle && <StatusBadge BadgeData={ "info:" + this.state.codetitle }/> }
-            </div>
+                <React.Fragment>
+                    <div className="row justify-content-center mt-3"> 
+                        <div className="col-12 col-md-9">
+                            <InputGroup className="shadow-sm">                  
+                                <Form.Control        
+                                    id="sw-codesearch"
+                                    placeholder="ICD-10 oder ICF Code"
+                                    aria-label="ICD-10 oder ICF Code"
+                                    aria-describedby="sw_icd_icf_input"
+                                    maxLength="7"
+                                    value={ this.state.code }
+                                    onChange={ (event) => { this.handleCodeInput(event); } }
+                                />
+                                <Button 
+                                    variant="primary" 
+                                    id="sw_icd_icf_button" 
+                                    className={ this.state.icd10 || this.state.icf ? '' : 'disabled' }
+                                    onClick={ () => { this.handleSubmitCode('LOCAL'); } }>
+                                  { this.props.buttonText === undefined ? 'Go!' : this.props.buttonText }
+                                </Button>
+                            </InputGroup> 
+                            <div className="sw-hanging-info text-center">
+                                { this.state.icd10 && <StatusBadge BadgeData="ICD-10"/> }
+                                { this.state.icf && <StatusBadge BadgeData="ICF"/> }
+                                { this.state.msg && <StatusBadge BadgeData={ "dark:" + this.state.msg }/> }
+                                { this.state.codetitle && <StatusBadge BadgeData={ "info:" + this.state.codetitle }/> }
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col mt-5">
+                            { Object.keys(this.state.codeobj).length !== 0 && <SwCSElement data={ this.state.codeobj } /> }
+                        </div>
+                    </div>
+                </React.Fragment>
                );
     }    
 };
