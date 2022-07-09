@@ -46,7 +46,9 @@ class App extends React.Component {
                             <Routes>                
                                 <Route path="/" element={ < Toolbox / > } />
                                 <Route path="toolbox" element={ < Toolbox / > } />
+                                <Route path="toolbox/:code" element={ < Toolbox / > } />
                                 <Route path="updates" element={ < Updates / > } />
+                                <Route path="*" element={ < Updates / > } />                                 
                             </Routes>                   
                     </div>
                 </main>

@@ -1,5 +1,33 @@
 //add dependencies
 
+//font face setup
+@font-face {
+    font-family: 'Alegreya Sans';
+    src: url('./font/AlegreyaSans-Regular.woff2') format('woff2'),
+        url('./font/AlegreyaSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    src: url('./font/AlegreyaSans-Bold.woff2') format('woff2'),
+        url('./font/AlegreyaSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    src: url('./font/AlegreyaSans-Thin.woff2') format('woff2'),
+        url('./font/AlegreyaSans-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
 //setup bootstrap colors
 $primary: #CCAE00;
 $secondary: #9C9E9F;
@@ -7,6 +35,8 @@ $cyan: #14C7CC;
 $info: $cyan;
 $dark: #4b4a4d;
 $body-bg: #4b4a4d;
+//font & typography
+$font-family-base: 'Alegreya Sans';
 //setup other styles
 $card-border-radius: 0; //card border radius
 $nav-tabs-link-active-border-color: $cyan;
@@ -33,7 +63,7 @@ $nav-tabs-border-radius: 0; //nav tab border radius
 .nav-tabs .nav-link:not(.active):hover {
     color: var(--bs-info) !important;
 }
-.badge + .badge {
+.badge + .badge, .sw-code-button + .sw-code-button {
     margin-left: 0.5rem;
 }
 .sw-hanging-info {
