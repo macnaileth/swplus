@@ -49,7 +49,7 @@ class App extends React.Component {
                                 <Route path="/" element={ < Toolbox / > } />
                                 <Route path="toolbox/*" element={ < Toolbox / > } /> 
                                 <Route path="updates" element={ < Updates / > } />
-                                <Route path="*" element={ < Updates / > } />                                 
+                                <Route path="*" element={ < Toolbox / > } />                                 
                             </Routes>                   
                     </div>
                 </main>
