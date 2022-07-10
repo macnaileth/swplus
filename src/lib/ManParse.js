@@ -24,6 +24,13 @@ class ManParse {
         const Code = this.manual.icf.Class.find(element => element.code === string);
         return Code ? Code : undefined;
     };
+    getSubCodes = (array) => {
+                const SubCodes = [];
+                array.map( (element, index) => {  
+                            SubCodes[index] = {code: element.code, title: this.icfTitle(element.code)};
+                        });
+                return SubCodes;
+            };    
     icfTitle(string) {       
         const pData  = this.parseCode(string) ? this.parseCode(string) : '';
         const pRubric = this.codeRubric(pData, 'preferred');
@@ -33,7 +40,9 @@ class ManParse {
     }
     icfElement(string) {
         const Element = {};
-        const eData  = this.parseCode(string) ? this.parseCode(string) : '';
+        const eData  = string && this.parseCode(string) ? this.parseCode(string) : '';
+        //debug
+        //console.log('Code ' + string + ' data:', eData);
         //collect data
         if(eData) {
             Element.ctitle = this.codeRubric(eData, 'preferred').Label['#text'];      
@@ -42,15 +51,24 @@ class ManParse {
             Element.cname = eData.code;
             //superclass prevention
             if (string.length > 1) {
-                Element.csuper = eData.SuperClass.code;
+                if (eData.SuperClass) {
+                    Element.csuper = eData.SuperClass.code;
+                    Element.csuptxt = this.icfTitle(eData.SuperClass.code);
+                }
                 Element.chint = this.codeRubric(eData, 'coding-hint').Label['#text'];
             }
             if (string.length < 2) {
                 Element.cdef = this.codeMultiRubric(eData, 'definition');
             }
-            Element.csub = eData.SubClass;
+            Element.csub = [];
+            if (eData.SubClass) {
+                //Build Buttons
+                console.log('Subcodes: ', this.getSubCodes(eData.SubClass));
+                Element.csub = this.getSubCodes(eData.SubClass);
+            }
             Element.ckind = eData.kind;
         } else {
+            Element.cerrstr = string === undefined ? 'VOID' : '';
             Element.cerror = string + ' ist kein gültiges Element der ICF.';
         }
         return Element;

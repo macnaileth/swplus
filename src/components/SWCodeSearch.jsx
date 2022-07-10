@@ -7,7 +7,8 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-
+//Lodash
+import _ from "lodash";
 //internal
 import StatusBadge from '../components/StatusBadge';
 import ManParse from '../lib/ManParse';
@@ -27,12 +28,15 @@ export class SWCodeSearch extends React.Component {
                         icd10: false, 
                         icf: false,
                         codetitle: '',
-                        codeobj: {}
+                        codeobj: {},
+                        cupdate: false
                      };
         this.handleCodeInput = this.handleCodeInput.bind(this);
         this.matchICDBooks = this.matchICDBooks.bind(this);
         this.handleSubmitCode = this.handleSubmitCode.bind(this);
         this.matchQURI = this.matchQURI.bind(this);
+        this.didURLchange = this.didURLchange.bind(this);
+        this.ChildUpdateHandler = this.ChildUpdateHandler.bind(this);
         //declare icd/icf parser for use
         this.parser = new ManParse(manualsWHO);
         //get URL path
@@ -40,6 +44,17 @@ export class SWCodeSearch extends React.Component {
         //get query string
         this.queryStr = new URLSearchParams(document.location.search);
         
+    }
+    ChildUpdateHandler = () => {
+        this.setState({
+           cupdate: true
+         }, () => {
+                if (!this.queryStr.get("icf")) {
+                    //update query string
+                    this.queryStr = new URLSearchParams(document.location.search);
+                }
+                console.log('Updated from Child - state: ' + this.state.cupdate + ', query str: ' + this.queryStr.get("icf"));
+            });     
     }
     matchQURI(basepath = 'toolbox') {
         //match routes and set codes accordingly
@@ -63,24 +78,26 @@ export class SWCodeSearch extends React.Component {
         //check regex patterns
         const regexPat = { icd: /^[A-TV-Z]{1}[0-9]{2}\.?[0-9]{0,2}[GVAZRLB]{0,2}$/gmi,
                            icf: /^[bsde]{1}[1-9]{0,1}[0-9]{0,4}$/gmi };
-        if( string.length > 3 && !string.includes('.') ) { 
-            this.setState({icd10: false}); 
-        } else {
-            regexPat.icd.test(string) ? this.setState({icd10: true}) : this.setState({icd10: false}); 
-        } 
-        if( string.length !== 3 ){
-            regexPat.icf.test(string) ? this.setState({icf: true}, () => {
-                this.setState({ msg: this.icfElemType(string) });
-                this.setState({ codetitle: this.parser.icfTitle(string) });    
-            }) : this.setState({icf: false, msg: '', codetitle: ''}); 
-        } else {
-            this.setState({ icf: false, msg: '', codetitle: '' });
+        if (string) {               
+            if( string.length > 3 && !string.includes('.') ) { 
+                this.setState({icd10: false}); 
+            } else {
+                regexPat.icd.test(string) ? this.setState({icd10: true}) : this.setState({icd10: false}); 
+            } 
+            if( string.length !== 3 ){
+                regexPat.icf.test(string) ? this.setState({icf: true}, () => {
+                    this.setState({ msg: this.icfElemType(string) });
+                    this.setState({ codetitle: this.parser.icfTitle(string) });    
+                }) : this.setState({icf: false, msg: '', codetitle: ''}); 
+            } else {
+                this.setState({ icf: false, msg: '', codetitle: '' });
+            }
         }
     }
     icfElemType = (string) => {
-        return string.length === 1 ? 'ICF-Komponente' : 
-                string.length === 2 ? 'ICF-Kapitel' : 
-                string.length > 3 ? 'ICF-Code' : '';
+        return string && string.length === 1 ? 'ICF-Komponente' : 
+               string && string.length === 2 ? 'ICF-Kapitel' : 
+               string && string.length > 3 ? 'ICF-Code' : '';
     }
     handleCodeInput(event) {
         //if we have a valid code, unlock the button for submission
@@ -99,12 +116,28 @@ export class SWCodeSearch extends React.Component {
             if (this.state.icf) {
                 await this.setState({ codeobj: this.parser.icfElement(this.state.code) }); 
                 await window.history.replaceState(null, "New Page Title", '/toolbox/' + this.state.code + '?icf=true' );
+                //update query string
+                this.queryStr = new URLSearchParams(document.location.search);
             } else {
                 this.setState({ codeobj: {} });
             }
         }
         
     }
+    didURLchange = () => {
+        const curURLpath = window.location.pathname;
+        if (curURLpath === this.pathURL) {
+            return false;
+        } else {
+            this.pathURL = window.location.pathname;
+            return true;
+        }
+    }
+    componentDidUpdate() {
+        this.didURLchange() === true && this.matchQURI();
+        //console.log('URL changed: '+URIChange);
+        //this.matchQURI();
+    }    
     componentDidMount() {
         this.matchQURI();
     }
@@ -144,7 +177,7 @@ export class SWCodeSearch extends React.Component {
                     </Form>
                     <div className="row">
                         <div className="col mt-5">
-                            { Object.keys(this.state.codeobj).length !== 0 && <SwCSElement data={ this.state.codeobj } /> }
+                            { !_.isEmpty( this.state.codeobj ) && <SwCSElement handler = {this.ChildUpdateHandler} data = { this.state.codeobj } /> }
                         </div>
                     </div>                
                 </React.Fragment>

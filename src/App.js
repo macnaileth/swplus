@@ -15,6 +15,8 @@ import swSmallLogo from './img/logo/logo_sw_small.png';
 import Toolbox from "./routes/Toolbox";
 import Updates from "./routes/Updates";
 
+import SWCodeSearch from './components/SWCodeSearch.jsx';
+
 class App extends React.Component {
     
     constructor(props) {
@@ -45,8 +47,7 @@ class App extends React.Component {
                     <div className="container">
                             <Routes>                
                                 <Route path="/" element={ < Toolbox / > } />
-                                <Route path="toolbox" element={ < Toolbox / > } />
-                                <Route path="toolbox/:code" element={ < Toolbox / > } />
+                                <Route path="toolbox/*" element={ < Toolbox / > } /> 
                                 <Route path="updates" element={ < Updates / > } />
                                 <Route path="*" element={ < Updates / > } />                                 
                             </Routes>                   

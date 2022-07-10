@@ -1,10 +1,10 @@
-[
+[    
     {
-        "id": 1,
-        "category": "Info",
-        "date": "2022-06-16",
-        "title": "Start der Web-Application",
-        "content": "Ursprünglich größer gedacht via php und Co. beginnt nun der Relaunch des SocialWerks-Projekts als Webanwendung. Am Ende soll damit eine einfaches Toolset für die ICD/ICF-basierte Hilfeplanung entstehen.",
+        "id": 3,
+        "category": "Update",
+        "date": "2022-07-10",
+        "title": "ICF Parser implementiert",
+        "content": "ICF Parser ist jetzt voll funktionsfähig. ICD-10 Parser fehlt noch. ICD-10 JSON ist bereits da und wartet auf Einbau und Überbau ;-)",
         "author": "Marco",
         "img": ""
     }, 
@@ -16,6 +16,15 @@
         "content": "Damit die Entwicklungen verfolgt werden können, ist jetzt ein kleines Nachrichtensystem für Updatemeldungen am laufen. Kein Blog, sondern - nur - kurze Updatemeldungen.",
         "author": "Marco",
         "img": ""
-    }        
+    },       
+    {
+        "id": 1,
+        "category": "Info",
+        "date": "2022-06-16",
+        "title": "Start der Web-Application",
+        "content": "Ursprünglich größer gedacht via php und Co. beginnt nun der Relaunch des SocialWerks-Projekts als Webanwendung. Am Ende soll damit eine einfaches Toolset für die ICD/ICF-basierte Hilfeplanung entstehen.",
+        "author": "Marco",
+        "img": ""
+    }          
 ]
 
