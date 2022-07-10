@@ -101,8 +101,8 @@ export class SWCodeSearch extends React.Component {
     }
     handleCodeInput(event) {
         //if we have a valid code, unlock the button for submission
-        this.setState({code: event.target.value}, () => {
-            this.matchICDBooks(event.target.value);
+        this.setState({code: event.target.value.toLowerCase()}, () => {
+            this.matchICDBooks(event.target.value.toLowerCase());
         });
     }
     //supports API for querying and API or LOCAL for using local data files (xml/json)
