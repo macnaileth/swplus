@@ -170,7 +170,9 @@ export class SWCodeSearch extends React.Component {
                                     { this.state.icd10 && <StatusBadge BadgeData="ICD-10"/> }
                                     { this.state.icf && <StatusBadge BadgeData="ICF"/> }
                                     { this.state.msg && <StatusBadge BadgeData={ "dark:" + this.state.msg }/> }
-                                    { this.state.codetitle && <StatusBadge BadgeData={ "info:" + this.state.codetitle }/> }
+                                    <span className="d-none d-md-inline ms-2">
+                                        { this.state.codetitle && <StatusBadge BadgeData={ "info:" + this.state.codetitle }/> }
+                                    </span>
                                 </div>
                             </div>
                         </div>

@@ -33,7 +33,7 @@ class SWCSElement extends React.Component {
                                 <div>
                                     <h2>{ !this.props.data.cerror ? this.props.data.cname : 'Fehler' }</h2>
                                 </div>
-                                <div>
+                                <div className="d-none d-sm-block">
                                     { !this.props.data.cerror ? this.props.data.ckind : '???' }
                                 </div>
                             </div> 
