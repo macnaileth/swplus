@@ -9,7 +9,7 @@ import icdJSON from "../data/json/icd.json";
 const manualsWHO = {};
 
 manualsWHO.icf = icfJSON.ClaML;
-manualsWHO.icd = icdJSON;
+manualsWHO.icd = icdJSON.concept; //-> start at node concept parsing
 
 
 export default manualsWHO;

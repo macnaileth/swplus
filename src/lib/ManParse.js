@@ -19,12 +19,17 @@ class ManParse {
                 return _.includes(item.kind, string);
         });       
     };    
-    parseCode = (string) => {
+    parseicfCode = (string) => {
         //find Code in Manual
         const Code = this.manual.icf.Class.find(element => element.code === string);
         return Code ? Code : undefined;
     };
-    getSubCodes = (array) => {
+    parseicdCode = (string) => {
+        console.log('String: ' + string);
+        const Code = this.manual.icd.find(element => element.code === string.toUpperCase());
+        return Code ? Code : undefined;
+    }
+    geticfSubCodes = (array) => {
                 const SubCodes = [];
                 array.map( (element, index) => {  
                             SubCodes[index] = {code: element.code, title: this.icfTitle(element.code)};
@@ -32,15 +37,20 @@ class ManParse {
                 return SubCodes;
             };    
     icfTitle(string) {       
-        const pData  = this.parseCode(string) ? this.parseCode(string) : '';
+        const pData  = this.parseicfCode(string) ? this.parseicfCode(string) : '';
         const pRubric = this.codeRubric(pData, 'preferred');
         const pTitle = pRubric ? pRubric.Label['#text'] : '';
         //return title
         return pTitle ? pTitle : '';
     }
+    icdTitle = (string) => {
+        //TODO: add cropping to prevent overflowing with long titles
+        const pData = this.parseicdCode(string) ? this.parseicdCode(string) : '';
+        return pData ? pData.definition : '';
+    }
     icfElement(string) {
         const Element = {};
-        const eData  = string && this.parseCode(string) ? this.parseCode(string) : '';
+        const eData  = string && this.parseicfCode(string) ? this.parseicfCode(string) : '';
         //debug
         //console.log('Code ' + string + ' data:', eData);
         //collect data
@@ -63,8 +73,7 @@ class ManParse {
             Element.csub = [];
             if (eData.SubClass) {
                 //Build Buttons
-                console.log('Subcodes: ', this.getSubCodes(eData.SubClass));
-                Element.csub = this.getSubCodes(eData.SubClass);
+                Element.csub = this.geticfSubCodes(eData.SubClass);
             }
             Element.ckind = eData.kind;
         } else {

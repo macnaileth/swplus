@@ -37,6 +37,8 @@ export class SWCodeSearch extends React.Component {
         this.matchQURI = this.matchQURI.bind(this);
         this.didURLchange = this.didURLchange.bind(this);
         this.ChildUpdateHandler = this.ChildUpdateHandler.bind(this);
+        this.icdElemType = this.icdElemType.bind(this);
+        this.icfElemType = this.icfElemType.bind(this);
         //declare icd/icf parser for use
         this.parser = new ManParse(manualsWHO);
         //get URL path
@@ -82,7 +84,10 @@ export class SWCodeSearch extends React.Component {
             if( string.length > 3 && !string.includes('.') ) { 
                 this.setState({icd10: false}); 
             } else {
-                regexPat.icd.test(string) ? this.setState({icd10: true}) : this.setState({icd10: false}); 
+                regexPat.icd.test(string) ? this.setState({icd10: true}, () => {
+                    this.setState({ msg: this.icdElemType(string) });
+                    this.setState({ codetitle: this.parser.icdTitle(string) })
+                }) : this.setState({icd10: false, msg: '', codetitle: ''}); 
             } 
             if( string.length !== 3 ){
                 regexPat.icf.test(string) ? this.setState({icf: true}, () => {
@@ -99,6 +104,11 @@ export class SWCodeSearch extends React.Component {
                string && string.length === 2 ? 'ICF-Kapitel' : 
                string && string.length > 3 ? 'ICF-Code' : '';
     }
+    icdElemType = (string) => {
+        return string && string.length >= 3 && string && string.length < 5 ? 'Dreisteller' : 
+               string && string.length === 5 ? 'Viersteller' : 
+               string && string.length >= 6 ? 'Fünfsteller' : '';
+    }    
     handleCodeInput(event) {
         //if we have a valid code, unlock the button for submission
         this.setState({code: event.target.value.toLowerCase()}, () => {
