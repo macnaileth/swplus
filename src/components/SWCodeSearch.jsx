@@ -86,7 +86,7 @@ export class SWCodeSearch extends React.Component {
             } else {
                 regexPat.icd.test(string) ? this.setState({icd10: true}, () => {
                     this.setState({ msg: this.icdElemType(string) });
-                    this.setState({ codetitle: this.parser.icdTitle(string) })
+                    this.setState({ codetitle: this.parser.icdTitle(string) });
                 }) : this.setState({icd10: false, msg: '', codetitle: ''}); 
             } 
             if( string.length !== 3 ){
@@ -123,12 +123,19 @@ export class SWCodeSearch extends React.Component {
             const queryString = '?Code=' + this.state.code + '&icd10=' + this.state.icd10 + '&icf=' + this.state.icf;
         } else if (process === 'LOCAL') {
             //process full code information
-            if (this.state.icf) {
+            if (this.state.icf === true) {
+                //handle icf
                 await this.setState({ codeobj: this.parser.icfElement(this.state.code) }); 
-                await window.history.replaceState(null, "New Page Title", '/toolbox/' + this.state.code + '?icf=true' );
+                await window.history.replaceState(null, "ICF Codesuche: " + this.state.code, '/toolbox/' + this.state.code + '?icf=true' );
                 //update query string
                 this.queryStr = new URLSearchParams(document.location.search);
-            } else {
+            } else if(this.state.icd10 === true) {
+                //handle icd10 - TODO: add parser function
+                await this.setState({ codeobj: this.parser.icdElement(this.state.code) });
+                await window.history.replaceState(null, "ICD-10 Codesuche: " + this.state.code, '/toolbox/' + this.state.code + '?icd=true' );
+                //update query string
+                this.queryStr = new URLSearchParams(document.location.search);                
+            }else {
                 this.setState({ codeobj: {} });
             }
         }

@@ -66,7 +66,7 @@ export class SWMainNav extends React.Component {
     
     navbarSimple () {
         return (
-                <div className={ 'bg-' + this.navBG + this.props.className }>
+                <div className={ 'bg-' + this.navBG + (this.props.className ? ' ' + this.props.className : '') }>
                     { this.navlinks() }
                 </div>
                );

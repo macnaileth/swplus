@@ -55,6 +55,7 @@ class App extends React.Component {
                 </main>
                 <SWMainNav 
                   id="sw_foot_navigation"
+                  className="sw-footer"
                   justify='center'
                   links={ this.state.footnav }
                   background="dark"
