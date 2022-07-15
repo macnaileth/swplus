@@ -51,11 +51,11 @@ export class SWCodeSearch extends React.Component {
         this.setState({
            cupdate: true
          }, () => {
-                if (!this.queryStr.get("icf")) {
+                if (!this.queryStr.get("icf") || !this.queryStr.get("icd")) {
                     //update query string
                     this.queryStr = new URLSearchParams(document.location.search);
                 }
-                console.log('Updated from Child - state: ' + this.state.cupdate + ', query str: ' + this.queryStr.get("icf"));
+                console.log('Updated from Child - state: ' + this.state.cupdate + ', query str icf: ' + this.queryStr.get("icf") + ', query str icd10: ' + this.queryStr.get("icd"));
             });     
     }
     matchQURI(basepath = 'toolbox') {
@@ -64,16 +64,21 @@ export class SWCodeSearch extends React.Component {
         const segArray = this.pathURL.substring(1).split("/");
         
         if ( segArray[0] === basepath ) {
-            //is it icf?
-            if ( this.queryStr.get("icf") === "true" ) {
+            //is it icf or icd?
+            if ( this.queryStr.get("icf") === "true" || this.queryStr.get("icd") === "true") {
                 //set for icf
-                this.setState({ codeobj: this.parser.icfElement(segArray[1]), 
-                                icf: true,
-                                codetitle: this.parser.icfTitle(segArray[1]),
-                                msg: this.icfElemType(segArray[1])});
+                this.setState({ codeobj: this.queryStr.get("icf") === "true" ? this.parser.icfElement(segArray[1]) : 
+                                         this.queryStr.get("icd") === "true" ? this.parser.icdElement(segArray[1]) : '', 
+                                icf: this.queryStr.get("icf") === "true" ? true : false,
+                                icd10: this.queryStr.get("icd") === "true" ? true : false,
+                                codetitle: this.queryStr.get("icf") === "true" ? this.parser.icfTitle(segArray[1]) :
+                                           this.queryStr.get("icd") === "true" ? this.parser.icdTitle(segArray[1]) : '',
+                                msg: this.queryStr.get("icf") === "true" ? this.icfElemType(segArray[1]) : 
+                                     this.queryStr.get("icd") === "true" ? this.icdElemType(segArray[1]) : '',
+                            });
             }
         } 
-        console.log('URL path: ' + this.pathURL, ' Query String: ', this.queryStr.get("icf"));
+        console.log('URL path: ' + this.pathURL, ' Query String: ICF: ' + this.queryStr.get("icf") + ' ICD-10: ' + this.queryStr.get("icd"));
         console.log('URL segments: ', segArray);
     }   
     matchICDBooks(string) {
@@ -102,12 +107,12 @@ export class SWCodeSearch extends React.Component {
     icfElemType = (string) => {
         return string && string.length === 1 ? 'ICF-Komponente' : 
                string && string.length === 2 ? 'ICF-Kapitel' : 
-               string && string.length > 3 ? 'ICF-Code' : '';
+               string && string.length > 3 ? !string.includes('-') ? 'ICF-Code' : 'Block' : '';
     }
     icdElemType = (string) => {
         return string && string.length >= 3 && string && string.length < 5 ? 'Dreisteller' : 
                string && string.length === 5 ? 'Viersteller' : 
-               string && string.length >= 6 ? 'Fünfsteller' : '';
+               string && string.length >= 6 ? !string.includes('-') ? 'Fünfsteller' : 'Block' : '';
     }    
     handleCodeInput(event) {
         //if we have a valid code, unlock the button for submission
@@ -120,7 +125,7 @@ export class SWCodeSearch extends React.Component {
         event.preventDefault();
         
         if (process === 'API') {
-            const queryString = '?Code=' + this.state.code + '&icd10=' + this.state.icd10 + '&icf=' + this.state.icf;
+            const queryString = '?Code=' + this.state.code + '&icd=' + this.state.icd10 + '&icf=' + this.state.icf;
         } else if (process === 'LOCAL') {
             //process full code information
             if (this.state.icf === true) {

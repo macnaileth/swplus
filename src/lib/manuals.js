@@ -1,6 +1,7 @@
 /* 
  * Objects containing needed manuals for JSON processing
  */
+
 //icf JSON - claml exported
 import icfJSON from "../data/json/icf.json";
 //icd10 JSON - HL7 FHIR version of ICD-10-GM 2020 DE

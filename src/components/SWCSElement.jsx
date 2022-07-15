@@ -29,12 +29,12 @@ class SWCSElement extends React.Component {
                 <React.Fragment>
                     { this.props.data.cerrstr !== 'VOID' &&
                         <div className="row me-2">                     
-                            <div className={ "col-3 " + (!this.props.data.cerror ? 'bg-dark' : 'bg-warning') + " text-light p-2 d-flex" }>
+                            <div className={ "col-3 " + (!this.props.data.cerror ? 'bg-dark' : 'bg-warning') + " text-light p-2 d-flex justify-content-start justify-content-md-between" }>
                                 <div>
                                     <h2>{ !this.props.data.cerror ? this.props.data.cname : 'Fehler' }</h2>
                                 </div>
                                 <div className="d-none d-sm-block">
-                                    { !this.props.data.cerror ? this.props.data.ckind : '???' }
+                                { !this.props.data.cerror ? <span><Badge pill bg="light" text="dark">{ this.props.data.ctype.toUpperCase() }<span className="d-none d-md-inline">{ ' | ' + this.props.data.ckind } </span></Badge></span> : '???' }
                                 </div>
                             </div> 
                             <div className="col-9 p-2">
@@ -53,27 +53,42 @@ class SWCSElement extends React.Component {
                                             </p>
                                         </React.Fragment>
                                 }
-                                { this.props.data.cdef && 
-                                        this.props.data.cdef.map((element, index) => ( <p key={ index }>{ element.Label['#text'] }</p> ))
+                                { this.props.data.cdef && this.props.data.ctype === 'icf' ?
+                                        this.props.data.cdef.map((element, index) => ( <p key={ index }>{ element.Label['#text'] }</p> )) : 
+                                        this.props.data.cdef && this.props.data.ctype === 'icd-10' ? <p>{ this.props.data.cdef }</p> : ''
                                 }
                                 { this.props.data.chint && <p>{ this.props.data.chint }</p> }
-                                { this.props.data.cinc &&
+                                { this.props.data.cinc  && this.props.data.ctype === 'icf' ?
                                     <p>
                                         <span className="text-info"><b>Beeinhaltet: </b></span><br />
                                         <span className="text-secondary">{ this.props.data.cinc.Label['#text'] }</span>
-                                    </p>
+                                    </p> : 
+                                    !_.isEmpty(this.props.data.cinc) && this.props.data.ctype === 'icd-10' ? 
+                                    <p>
+                                        <span className="text-info"><b>Beeinhaltet: </b></span><br />
+                                        <span className="text-secondary">{ 
+                                            this.props.data.cinc.map((element, index, array) => ( <span key={ index }>{ element.valueString + (index === array.length - 1 ? '' : ', ') 
+                                        }</span> )) }</span>
+                                    </p> : ''
                                 }
-                                { this.props.data.cexc &&
+                                { this.props.data.cexc  && this.props.data.ctype === 'icf' ?
                                     <p>
                                         <span className="text-info"><b>Exklusive: </b></span><br />
                                         <span className="text-secondary">{ this.props.data.cexc.Label['#text'] }</span>
-                                    </p>
+                                    </p> :
+                                    !_.isEmpty(this.props.data.cexc) && this.props.data.ctype === 'icd-10' ? 
+                                    <p>
+                                        <span className="text-info"><b>Exklusive: </b></span><br />
+                                        <span className="text-secondary">{ 
+                                            this.props.data.cexc.map((element, index, array) => ( <span key={ index }>{ element.valueString + (index === array.length - 1 ? '' : ', ') 
+                                        }</span> )) }</span>
+                                    </p> : ''
                                 }  
                                 { this.props.data.csuper &&
                                     <p>
                                         <span className="text-info"><b>Übergeordnet: </b></span><br />
                                         <span className="text-secondary">
-                                            <Link to={ '/toolbox/' + this.props.data.csuper + '?icf=true' }
+                                            <Link to={ '/toolbox/' + this.props.data.csuper + (this.props.data.ctype === 'icf' ? '?icf=true' : this.props.data.ctype === 'icd-10' ? '?icd=true' : '') }
                                                   className="sw-code-button btn btn-outline-secondary btn-sm" 
                                                   onClick={ this.props.handler }
                                                   role="button">{ this.props.data.csuper }</Link>

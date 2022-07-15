@@ -24,8 +24,7 @@ class ManParse {
         const ReturnArray = _.filter(data, function(item) {
                 return _.includes(item.code, string);
         });   
-        //TODO: Remove special chars here
-        return cleanUpComChars === true ? ReturnArray : ReturnArray;
+        return ReturnArray;
     };    
     strRemoveCtrlChars = (string) => {
         return string.replace(/[\n\t\r]/g,"");
@@ -62,22 +61,29 @@ class ManParse {
     }
     icdElement(string) {
         const Element = {};
-        const cData = this.parseicdCode(string);
+        const cData = string && this.parseicdCode(string) ? this.parseicdCode(string) : '';
         
         if(cData) {
-            Element.ccode = cData.code;
+            Element.ctype = 'icd-10';
+            Element.cname = cData.code;
             Element.ctitle = cData.display;
-            Element.cdefinition = this.strRemoveCtrlChars(cData.definition);
+            Element.cdef = cData.definition;
             Element.ckind = _.find(cData.property, ['code', 'kind']).valueCode;
-            Element.cparent = _.find(cData.property, ['code', 'parent']).valueCode;
+            
+            if(cData.property.find(element => element.code === 'parent')) {
+                Element.csuper = _.find(cData.property, ['code', 'parent']).valueCode;
+                Element.csuptxt = this.icdTitle(Element.csuper, 300);
+            }
+            //TODO: Handle children
             Element.cchild = this.codeMultiProp(cData.property, 'child');
             Element.cinc = this.codeMultiProp(cData.property, 'inclusion');
             Element.cexc = this.codeMultiProp(cData.property, 'exclusion');
-            Element.cmodLink = this.strRemoveCtrlChars(_.find(cData.property, ['code', 'modifierlink']).valueString);
+            Element.cmodLink = cData.property.find(element => element.code === 'modifierlink') ? _.find(cData.property, ['code', 'modifierlink']).valueString : '';
         }
         
         console.log('ICD-10 Data: ', cData);
         console.log('ICD-10 Element: ', Element);
+        return Element;
     }
     icfElement(string) {
         const Element = {};
@@ -86,6 +92,7 @@ class ManParse {
         //console.log('Code ' + string + ' data:', eData);
         //collect data
         if(eData) {
+            Element.ctype = 'icf';
             Element.ctitle = this.codeRubric(eData, 'preferred').Label['#text'];      
             Element.cinc = this.codeRubric(eData, 'inclusion') !== this.codeRubric(eData, 'preferred') ? this.codeRubric(eData, 'inclusion') : '';  
             Element.cexc = this.codeRubric(eData, 'exclusion')  !== this.codeRubric(eData, 'preferred') ? this.codeRubric(eData, 'exclusion') : '';
