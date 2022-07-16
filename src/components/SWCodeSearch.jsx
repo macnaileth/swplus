@@ -75,6 +75,7 @@ export class SWCodeSearch extends React.Component {
                                            this.queryStr.get("icd") === "true" ? this.parser.icdTitle(segArray[1]) : '',
                                 msg: this.queryStr.get("icf") === "true" ? this.icfElemType(segArray[1]) : 
                                      this.queryStr.get("icd") === "true" ? this.icdElemType(segArray[1]) : '',
+                                code: segArray[1]
                             });
             }
         } 
@@ -82,7 +83,7 @@ export class SWCodeSearch extends React.Component {
         console.log('URL segments: ', segArray);
     }   
     matchICDBooks(string) {
-        //check regex patterns
+        //check regex patterns - TODO: add patterns for ICD-10 chapter and icf and icd10 blocks
         const regexPat = { icd: /^[A-TV-Z]{1}[0-9]{2}\.?[0-9]{0,2}[GVAZRLB]{0,2}$/gmi,
                            icf: /^[bsde]{1}[1-9]{0,1}[0-9]{0,4}$/gmi };
         if (string) {               
@@ -102,6 +103,12 @@ export class SWCodeSearch extends React.Component {
             } else {
                 this.setState({ icf: false, msg: '', codetitle: '' });
             }
+            if( string.length === 9 && string.includes('-') ) { 
+                //TODO: Insert code for icf-block
+            }
+            if( string.length === 7 && string.includes('-') ) { 
+                //TODO: Insert code for icd10-block
+            }                    
         }
     }
     icfElemType = (string) => {
@@ -110,7 +117,8 @@ export class SWCodeSearch extends React.Component {
                string && string.length > 3 ? !string.includes('-') ? 'ICF-Code' : 'Block' : '';
     }
     icdElemType = (string) => {
-        return string && string.length >= 3 && string && string.length < 5 ? 'Dreisteller' : 
+        return string && string.length === 1 ? 'ICD-10 Kapitel' : 
+               string && string.length >= 3 && string && string.length < 5 ? 'Dreisteller' : 
                string && string.length === 5 ? 'Viersteller' : 
                string && string.length >= 6 ? !string.includes('-') ? 'Fünfsteller' : 'Block' : '';
     }    
@@ -175,7 +183,7 @@ export class SWCodeSearch extends React.Component {
                                         placeholder="ICD-10 oder ICF Code"
                                         aria-label="ICD-10 oder ICF Code"
                                         aria-describedby="sw_icd_icf_input"
-                                        maxLength="7"
+                                        maxLength="9"
                                         value={ this.state.code }
                                         onChange={ (event) => { this.handleCodeInput(event); } }
                                     />

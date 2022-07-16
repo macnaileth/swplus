@@ -20,11 +20,10 @@ class ManParse {
         });       
     }; 
     //for FHIR ICD-10 Code Property retrieval like include, exclude or parent
-    codeMultiProp = (data, string, cleanUpComChars = true) => { 
-        const ReturnArray = _.filter(data, function(item) {
+    codeMultiProp = (data, string) => { 
+        return _.filter(data, function(item) {
                 return _.includes(item.code, string);
         });   
-        return ReturnArray;
     };    
     strRemoveCtrlChars = (string) => {
         return string.replace(/[\n\t\r]/g,"");
@@ -44,7 +43,14 @@ class ManParse {
                             SubCodes[index] = {code: element.code, title: this.icfTitle(element.code, 300)};
                         });
                 return SubCodes;
-            };    
+            };   
+    geticdSubCodes = (array) => {
+                const SubCodes = [];
+                array.map( (element, index) => {  
+                            SubCodes[index] = {code: element, title: this.icdTitle(element, 300)};
+                        });
+                return SubCodes;
+            };             
     icfTitle = (string, charLimit = 40, elipsis = '...') => {       
         const pData  = this.parseicfCode(string) ? this.parseicfCode(string) : '';
         const pRubric = this.codeRubric(pData, 'preferred');
@@ -74,8 +80,14 @@ class ManParse {
                 Element.csuper = _.find(cData.property, ['code', 'parent']).valueCode;
                 Element.csuptxt = this.icdTitle(Element.csuper, 300);
             }
-            //TODO: Handle children
-            Element.cchild = this.codeMultiProp(cData.property, 'child');
+            //Handle children
+            Element.csub = [];
+            if(cData.property.find(element => element.code === 'child')) {
+                const childArray = this.codeMultiProp(cData.property, 'child');
+                childArray.csub = [];
+                childArray.map(element => childArray.csub.push(element.valueCode));
+                Element.csub = this.geticdSubCodes(childArray.csub);
+            }           
             Element.cinc = this.codeMultiProp(cData.property, 'inclusion');
             Element.cexc = this.codeMultiProp(cData.property, 'exclusion');
             Element.cmodLink = cData.property.find(element => element.code === 'modifierlink') ? _.find(cData.property, ['code', 'modifierlink']).valueString : '';

@@ -101,7 +101,7 @@ class SWCSElement extends React.Component {
                                         <span className="text-info"><b>Nachgeordnet: </b></span><br />
                                         {this.props.data.csub.map((element, index, array) => ( 
                                                 <span className="text-secondary" key={index}>
-                                                    <Link   to={ '/toolbox/' + element.code + '?icf=true' }
+                                                    <Link   to={ '/toolbox/' + element.code + (this.props.data.ctype === 'icf' ? '?icf=true' : this.props.data.ctype === 'icd-10' ? '?icd=true' : '') }
                                                             className="sw-code-button btn btn-outline-secondary btn-sm" 
                                                             onClick={ this.props.handler }
                                                             role="button" key={element.code} >{ element.code }</Link>
