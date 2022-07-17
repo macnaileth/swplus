@@ -65,6 +65,41 @@ class ManParse {
                 pData.display.substring(0, charLimit) + elipsis : 
                 pData.display : '';
     }
+    icdModDigits = (string) => {
+        const digits = {};
+        string.includes('4.') !== undefined ? digits.four = true : digits.four = false;
+        string.includes('5.') !== undefined ? digits.five = true : digits.five = false;
+        return digits;
+    }
+    icdModifiers = (string) => {
+        const Modifiers = this.manual.icdMod.find( element => element.code.includes(string));
+        const ModElement = {};
+        //build modifier element
+        ModElement.label = Modifiers.Rubric.Label.Para; //Label text
+        ModElement.kind = Modifiers.Rubric.kind;
+        ModElement.code = Modifiers.code;
+        //TODO: resolve subcodes of modifiers
+        ModElement.sub = Modifiers.SubClass;
+        
+        return ModElement;
+    }
+    //stringMod = modLink string, stringSuper = Super Class block, for ex. E10-E14, stringCode = ICD-10 Code 
+    icdModGroup = (stringMod, stringSuper, stringCode) => {
+        const digits = this.icdModDigits(stringMod);
+        const superFirst = stringSuper.substr(0,3);
+        const modifierElement = {};
+        
+        if ( digits.four === true ){
+            //string for modifier retrieval
+            const needle = this.icdModifiers( superFirst + '_4' );
+            console.log('Digits to check (' + superFirst + '_4'+ '): Four:' + digits.four + ', Result:', needle);
+        }
+        if ( digits.five === true ){
+            const needle = this.icdModifiers( superFirst + '_5' );
+            console.log('Digits to check (' + superFirst + '): Five:' + digits.five + ', Result:', needle);
+        }
+    
+    }
     icdElement(string) {
         const Element = {};
         const cData = string && this.parseicdCode(string) ? this.parseicdCode(string) : '';
@@ -90,7 +125,17 @@ class ManParse {
             }           
             Element.cinc = this.codeMultiProp(cData.property, 'inclusion');
             Element.cexc = this.codeMultiProp(cData.property, 'exclusion');
+            Element.chint = cData.property.find(element => element.code === 'coding-hint') ? _.find(cData.property, ['code', 'coding-hint']).valueString : '';
             Element.cmodLink = cData.property.find(element => element.code === 'modifierlink') ? _.find(cData.property, ['code', 'modifierlink']).valueString : '';
+            //handle 4. 5. digit e.g. .xx of the code if needed
+            if(Element.cmodLink) {
+                //we have a modifier link, so we have to get the digit where we should put the modifier to
+                const digits = this.icdModGroup(Element.cmodLink, Element.csuper, Element.cname);                
+            }
+            
+        } else {
+            Element.cerrstr = string === undefined ? 'VOID' : '';
+            Element.cerror = string ? string + ' ist kein gültiges Element der ICD-10.' : 'Kein Element gefunden.';
         }
         
         console.log('ICD-10 Data: ', cData);

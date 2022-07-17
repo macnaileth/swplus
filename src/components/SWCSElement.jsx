@@ -27,7 +27,7 @@ class SWCSElement extends React.Component {
     render() {
         return (
                 <React.Fragment>
-                    { this.props.data.cerrstr !== 'VOID' &&
+                    { this.props.data.cerrstr !== 'VOID' &&                       
                         <div className="row me-2">                     
                             <div className={ "col-3 " + (!this.props.data.cerror ? 'bg-dark' : 'bg-warning') + " text-light p-2 d-flex justify-content-start justify-content-md-between" }>
                                 <div>

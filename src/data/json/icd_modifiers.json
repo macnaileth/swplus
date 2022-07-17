@@ -1,0 +1,6761 @@
+{
+  "Modifier": [
+    {
+      "code": "S11K41_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie K41.- zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S10J80_5",
+      "SubClass": [
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie J80.0- zu benutzen, um den Schweregrad des ARDS anzugeben:"
+        }
+      }
+    },
+    {
+      "code": "S14N17_5",
+      "SubClass": [
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "9"}
+      ],
+      "Rubric": [
+        {
+          "kind": "text",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Nach den KDIGO-Leitlinien (Kidney Disease: Improving Global Outcomes, abgedruckt in Kidney International Supplements (2012) 2, 8-12) liegt ein akutes Nierenversagen vor, wenn mindestens eines der folgenden Kriterien erfüllt ist:"
+          }
+        },
+        {
+          "kind": "text",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {"type": "list"},
+              {
+                "type": "list",
+                "#text": "Anstieg des Serum-Kreatinins über einen gemessenen Ausgangswert um mindestens 0,3 mg/dl innerhalb von 48 Stunden"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {"type": "list"},
+              {
+                "type": "list",
+                "#text": "Anstieg des Serum-Kreatinins von einem gemessenen Ausgangswert oder anzunehmenden Grundwert des Patienten um mindestens 50 % innerhalb der vorangehenden 7 Tage"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {"type": "list"},
+              {
+                "type": "list",
+                "#text": "Abfall der Urinausscheidung auf weniger als 0,5 ml/kg/h über mindestens 6 Stunden"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Die o.g. Kriterien entsprechen mindestens dem Stadium 1 des akuten Nierenversagens, bei dem ein adäquater, dem klinischen Zustand angepasster Hydratationszustand zum Zeitpunkt der Messungen vorausgesetzt wird."
+          }
+        },
+        {
+          "kind": "text",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Bei histologisch gesicherter Diagnose sind die o.g. Kriterien als optional anzusehen, wenn eine Kodierung nur auf der vierten Stelle verpflichtend ist."
+          }
+        },
+        {
+          "kind": "coding-hint",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": [
+              "Die folgenden fünften Stellen sind bei den Kategorien N17.0-N17.9 zu benutzen, um das Stadium des akuten Nierenversagens anzugeben:",
+              "Für die Anwendung der Kriterien bei Stadium 1 ist ein adäquater, dem klinischen Zustand angepasster Hydratationszustand zum Zeitpunkt der Messungen Voraussetzung, bei Stadium 2 und 3 gilt diese Voraussetzung nicht.",
+              "Die fünfte Stelle 9 ist bei den Kategorien N17.0-N17.8 nur zu verwenden, wenn das Stadium des akuten Nierenversagens bei histologisch gesicherter Diagnose nicht bestimmt werden kann."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "S10J96_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei den Subkategorien J96.0-J96.9 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S02C88_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie C88 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S02C90_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie C90 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S02C91_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie C91 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S02C92_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie C92 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S02C93_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie C93 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S02C94_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie C94 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S02C95_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei den Subkategorien C95.0 bis C95.7 und C95.9 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S02D180_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "8"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Subkategorie D18.0 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S02D181_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "8"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Subkategorie D18.1 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S04E66_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "7"},
+        {"code": "8"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": [
+            "Die folgenden fünften Stellen sind zu benutzen, um das Ausmaß der Adipositas anzugeben. Dabei sind die fünften Stellen 0, 1, 6, 7, 8 und 9 für Patienten von 18 Jahren und älter anzugeben. Die fünften Stellen 4, 5 und 9 sind für Patienten von 3 Jahren bis unter 18 Jahren anzugeben. Für Patienten von 0 bis unter 3 Jahren ist immer die fünfte Stelle 9 anzugeben.",
+            "Die für die fünften Stellen 4 und 5 angegebenen Body-Mass-Index [BMI]-Grenzwerte beziehen sich auf die für Deutschland empfohlenen Referenzperzentile zur Feststellung von Adipositas und extremer Adipositas bei Kindern und Jugendlichen unter Berücksichtigung des BMI, des Lebensalters und des Geschlechts. Die entsprechende Tabelle ist im Anhang zur ICD-10-GM zu finden."
+          ]
+        }
+      }
+    },
+    {
+      "code": "S04E10_4",
+      "SubClass": [
+        {"code": ".0"},
+        {"code": ".1"},
+        {"code": ".2"},
+        {"code": ".3"},
+        {"code": ".4"},
+        {"code": ".5"},
+        {"code": ".6"},
+        {"code": ".7"},
+        {"code": ".8"},
+        {"code": ".9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "Para": "Die folgenden vierten Stellen sind bei den Kategorien E10-E14 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S04E10_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "Para": [
+            "Die folgenden fünften Stellen 0 und 1 sind mit den Subkategorien .2-.6 sowie .8 und .9 bei den Kategorien E10-E14 zu benutzen.",
+            "Die folgenden fünften Stellen 2-5 sind ausschließlich mit der Subkategorie .7 bei den Kategorien E10-E14 zu benutzen.",
+            "Die Subkategorien .0 (Koma) und .1 (Ketoazidose) gelten grundsätzlich als entgleist und werden stets mit der fünften Stelle 1 kodiert."
+          ]
+        }
+      }
+    },
+    {
+      "code": "S05F10_4",
+      "SubClass": [
+        {"code": ".0"},
+        {"code": ".1"},
+        {"code": ".2"},
+        {"code": ".3"},
+        {"code": ".4"},
+        {"code": ".5"},
+        {"code": ".6"},
+        {"code": ".7"},
+        {"code": ".8"},
+        {"code": ".9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden vierten Stellen sind bei den Kategorien F10-F19 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S05F70_4",
+      "SubClass": [
+        {"code": ".0"},
+        {"code": ".1"},
+        {"code": ".8"},
+        {"code": ".9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden vierten Stellen sind bei den Kategorien F70-F79 zu benutzen, wenn das Ausmaß der Verhaltensstörung angegeben werden soll:"
+        }
+      }
+    },
+    {
+      "code": "S06G20_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie G20 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S06G35_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei den Subkategorien G35.1-G35.3 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S06G45_5",
+      "SubClass": [
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie G45 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S06G82_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei den Subkategorien G82.0-G82.5 zu verwenden:"
+        }
+      }
+    },
+    {
+      "code": "S09I10_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei den Kategorien I10-I15 zu benutzen, um das Vorliegen einer hypertensiven Krise anzuzeigen:"
+        }
+      }
+    },
+    {
+      "code": "S10J44_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei J44 zu benutzen, um den Grad der Obstruktion anzugeben:"
+        }
+      }
+    },
+    {
+      "code": "S11K25_4",
+      "SubClass": [
+        {"code": ".0"},
+        {"code": ".1"},
+        {"code": ".2"},
+        {"code": ".3"},
+        {"code": ".4"},
+        {"code": ".5"},
+        {"code": ".6"},
+        {"code": ".7"},
+        {"code": ".9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Bei den Schlüsselnummern K25-K28 sind die folgenden vierten Stellen zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S11K40_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie K40.- zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S11K80_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie K80.- zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S11K85_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie K85.- zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S12L89_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "7"},
+        {"code": "8"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie L89.- zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S13M00_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "7"},
+        {"code": "8"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": [
+            {
+              "class": "termList1",
+              "Term": {
+                "class": "bold",
+                "#text": "Lokalisation der Muskel-Skelett-Beteiligung"
+              }
+            },
+            "Die folgenden fünften Stellen zur Angabe des Beteiligungsortes sind mit den passenden Schlüsselnummern des Kapitels XIII zu benutzen. Hiervon abweichende fünfte Stellen für Kniegelenkschäden, Rückenleiden und anderenorts nicht klassifizierte biomechanische Funktionsstörungen finden sich unter M23, unter der Krankheitsgruppe M40-M54 und unter M99."
+          ]
+        }
+      }
+    },
+    {
+      "code": "S13M40_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "7"},
+        {"code": "8"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen zur Angabe des Beteiligungsortes sind mit den passenden Kategorien dieser Gruppe zu benutzen - ausgenommen sind die Kategorien M50 und M51; siehe auch Hinweis am Anfang dieses Kapitels."
+        }
+      }
+    },
+    {
+      "code": "S13M99_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "7"},
+        {"code": "8"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen zur Angabe des Störungsortes sind mit den passenden Subkategorien von M99.- zu benutzen; siehe auch Hinweis am Anfang dieses Kapitels."
+        }
+      }
+    },
+    {
+      "code": "S14N00_4",
+      "SubClass": [
+        {"code": ".0"},
+        {"code": ".1"},
+        {"code": ".2"},
+        {"code": ".3"},
+        {"code": ".4"},
+        {"code": ".5"},
+        {"code": ".6"},
+        {"code": ".7"},
+        {"code": ".8"},
+        {"code": ".9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden vierten Stellen dienen zur Verschlüsselung morphologischer Veränderungen und finden bei den Kategorien N00-N07 Verwendung. Die vierten Stellen .0-.8 sollten normalerweise nur dann benutzt werden, wenn die entsprechenden Veränderungen speziell nachgewiesen wurden (z.B. durch Nierenbiopsie oder Autopsie). Die dreistelligen Kategorien beziehen sich auf klinische Syndrome."
+        }
+      }
+    },
+    {
+      "code": "S15O03_4",
+      "SubClass": [
+        {"code": ".0"},
+        {"code": ".1"},
+        {"code": ".2"},
+        {"code": ".3"},
+        {"code": ".4"},
+        {"code": ".5"},
+        {"code": ".6"},
+        {"code": ".7"},
+        {"code": ".8"},
+        {"code": ".9"}
+      ],
+      "Rubric": [
+        {
+          "kind": "text",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Die folgenden vierten Stellen sind bei den Kategorien O03-O06 zu benutzen:"
+          }
+        },
+        {
+          "kind": "note",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Inkompletter Abort schließt Retention von Konzeptionsprodukten nach Abort ein."
+          }
+        }
+      ]
+    },
+    {
+      "code": "S15O91_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie O91 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S15O92_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie O92 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S18R83_4",
+      "SubClass": [
+        {"code": ".0"},
+        {"code": ".1"},
+        {"code": ".2"},
+        {"code": ".3"},
+        {"code": ".4"},
+        {"code": ".5"},
+        {"code": ".6"},
+        {"code": ".7"},
+        {"code": ".8"},
+        {"code": ".9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden vierten Stellen sind bei den Kategorien R83-R89 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S19S00_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "8"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie S00 zu benutzen, um die Art der oberflächlichen Verletzung anzugeben:"
+        }
+      }
+    },
+    {
+      "code": "S19S10_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "8"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie S10 zu benutzen, um die Art der oberflächlichen Verletzung anzugeben:"
+        }
+      }
+    },
+    {
+      "code": "S19S20_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "8"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie S20.- zu benutzen, um die Art der oberflächlichen Verletzung anzugeben:"
+        }
+      }
+    },
+    {
+      "code": "S19T02_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie T02 zu benutzen. Eine Fraktur, die nicht als geschlossen oder offen gekennzeichnet ist, sollte als geschlossene Fraktur klassifiziert werden."
+        }
+      }
+    },
+    {
+      "code": "S19T08_4",
+      "SubClass": [
+        {"code": ".0"},
+        {"code": ".1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden vierten Stellen sind bei der Kategorie T08 zu benutzen. Eine Fraktur, die nicht als geschlossen oder offen gekennzeichnet ist, sollte als geschlossene Fraktur klassifiziert werden."
+        }
+      }
+    },
+    {
+      "code": "S19T10_4",
+      "SubClass": [
+        {"code": ".0"},
+        {"code": ".1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden vierten Stellen sind bei der Kategorie T10 zu benutzen. Eine Fraktur, die nicht als geschlossen oder offen gekennzeichnet ist, sollte als geschlossene Fraktur klassifiziert werden."
+        }
+      }
+    },
+    {
+      "code": "S19T12_4",
+      "SubClass": [
+        {"code": ".0"},
+        {"code": ".1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden vierten Stellen sind bei der Kategorie T12 zu benutzen. Eine Fraktur, die nicht als geschlossen oder offen gekennzeichnet ist, sollte als geschlossene Fraktur klassifiziert werden."
+        }
+      }
+    },
+    {
+      "code": "S19T142_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Subkategorie T14.2 zu benutzen. Eine Fraktur, die nicht als geschlossen oder offen gekennzeichnet ist, sollte als geschlossene Fraktur klassifiziert werden."
+        }
+      }
+    },
+    {
+      "code": "S19T21_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie T21 zu benutzen:"
+        }
+      }
+    },
+    {
+      "code": "S19T22_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie T22 zu benutzen, um die Lokalisation anzugeben:"
+        }
+      }
+    },
+    {
+      "code": "S19T31_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "7"},
+        {"code": "8"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie T31.-! zu benutzen, um den Anteil der Gesamtkörperoberfläche anzugeben, der von Verbrennungen dritten Grades betroffen ist:"
+        }
+      }
+    },
+    {
+      "code": "S19T32_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "1"},
+        {"code": "2"},
+        {"code": "3"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "7"},
+        {"code": "8"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei der Kategorie T32.-! zu benutzen, um den Anteil der Gesamtkörperoberfläche anzugeben, der von Verätzungen dritten Grades betroffen ist:"
+        }
+      }
+    },
+    {
+      "code": "S21Z75_5",
+      "SubClass": [
+        {"code": "0"},
+        {"code": "4"},
+        {"code": "5"},
+        {"code": "6"},
+        {"code": "7"},
+        {"code": "8"},
+        {"code": "9"}
+      ],
+      "Rubric": {
+        "kind": "text",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "Para": "Die folgenden fünften Stellen sind bei den Subkategorien Z75.6 und Z75.7 zu benutzen:"
+        }
+      }
+    }
+  ],
+  "ModifierClass": [
+    {
+      "code": "0",
+      "modifier": "S11K41_5",
+      "SuperClass": {"code": "S11K41_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Nicht als Rezidivhernie bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S11K41_5",
+      "SuperClass": {"code": "S11K41_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Rezidivhernie"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S10J80_5",
+      "SuperClass": {"code": "S10J80_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Mildes Atemnotsyndrom des Erwachsenen [ARDS]"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": {
+              "#text": "Quotient von arteriellem Sauerstoffpartialdruck (PaO",
+              "Term": {
+                "class": "subscript",
+                "#text": "2"
+              },
+              "#text1": ") und inspiratorischer Sauerstoffkonzentration (FIO",
+              "Term#1": {
+                "class": "subscript",
+                "#text": "2"
+              },
+              "#text2": ") beträgt mehr als 200 mmHg und höchstens 300 mmHg bei einem positiven endexpiratorischen Druck (PEEP) von mindestens 5 cm H",
+              "Term#2": {
+                "class": "subscript",
+                "#text": "2"
+              },
+              "#text3": "O"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "modifier": "S10J80_5",
+      "SuperClass": {"code": "S10J80_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Moderates Atemnotsyndrom des Erwachsenen [ARDS]"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": {
+              "#text": "Quotient von arteriellem Sauerstoffpartialdruck (PaO",
+              "Term": {
+                "class": "subscript",
+                "#text": "2"
+              },
+              "#text1": ") und inspiratorischer Sauerstoffkonzentration (FIO",
+              "Term#1": {
+                "class": "subscript",
+                "#text": "2"
+              },
+              "#text2": ") beträgt mehr als 100 mmHg und höchstens 200 mmHg bei einem positiven endexpiratorischen Druck (PEEP) von mindestens 5 cm H",
+              "Term#2": {
+                "class": "subscript",
+                "#text": "2"
+              },
+              "#text3": "O"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "modifier": "S10J80_5",
+      "SuperClass": {"code": "S10J80_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Schweres Atemnotsyndrom des Erwachsenen [ARDS]"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": {
+              "#text": "Quotient von arteriellem Sauerstoffpartialdruck (PaO",
+              "Term": {
+                "class": "subscript",
+                "#text": "2"
+              },
+              "#text1": ") und inspiratorischer Sauerstoffkonzentration (FIO",
+              "Term#1": {
+                "class": "subscript",
+                "#text": "2"
+              },
+              "#text2": ") beträgt höchstens 100 mmHg bei einem positiven endexpiratorischen Druck (PEEP) von mindestens 5 cm H",
+              "Term#2": {
+                "class": "subscript",
+                "#text": "2"
+              },
+              "#text3": "O"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "9",
+      "modifier": "S10J80_5",
+      "SuperClass": {"code": "S10J80_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Atemnotsyndrom des Erwachsenen [ARDS], Schweregrad nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S14N17_5",
+      "SuperClass": {"code": "S14N17_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Stadium 1"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Anstieg des Serum-Kreatinins um mindestens 50 % bis unter 100 % gegenüber dem gemessenen Ausgangswert oder anzunehmenden Grundwert innerhalb von 7 Tagen oder um mindestens 0,3 mg/dl gegenüber dem gemessenen Ausgangswert innerhalb von 48 Stunden oder Abfall der Diurese auf unter 0,5 ml/kg/h über 6 bis unter 12 Stunden"
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "modifier": "S14N17_5",
+      "SuperClass": {"code": "S14N17_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Stadium 2"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Anstieg des Serum-Kreatinins um mindestens 100 % bis unter 200 % gegenüber dem gemessenen Ausgangswert oder anzunehmenden Grundwert innerhalb von 7 Tagen oder Abfall der Diurese auf unter 0,5 ml/kg/h über mindestens 12 Stunden"
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "modifier": "S14N17_5",
+      "SuperClass": {"code": "S14N17_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Stadium 3"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Anstieg des Serum-Kreatinins um mindestens 200 % gegenüber dem gemessenen Ausgangswert oder anzunehmenden Grundwert innerhalb von 7 Tagen oder Anstieg des Serum-Kreatinins auf mindestens 4,0 mg/dl oder Einleitung einer Nierenersatztherapie oder Abfall der glomerulären Filtrationsrate auf unter 35 ml/min/1,73 m² Körperoberfläche bei Patienten bis zur Vollendung des 18. Lebensjahres oder Abfall der Diurese auf unter 0,3 ml/kg/h über mindestens 24 Stunden oder Vorliegen einer Anurie über mindestens 12 Stunden"
+          }
+        }
+      ]
+    },
+    {
+      "code": "9",
+      "modifier": "S14N17_5",
+      "SuperClass": {"code": "S14N17_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Stadium nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S10J96_5",
+      "SuperClass": {"code": "S10J96_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Typ I [hypoxisch]"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S10J96_5",
+      "SuperClass": {"code": "S10J96_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Typ II [hyperkapnisch]"
+        }
+      }
+    },
+    {
+      "code": "9",
+      "modifier": "S10J96_5",
+      "SuperClass": {"code": "S10J96_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Typ nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S02C88_5",
+      "SuperClass": {"code": "S02C88_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer kompletten Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "In partieller Remission"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S02C88_5",
+      "SuperClass": {"code": "S02C88_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "In kompletter Remission"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S02C90_5",
+      "SuperClass": {"code": "S02C90_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer kompletten Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "In partieller Remission"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S02C90_5",
+      "SuperClass": {"code": "S02C90_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "In kompletter Remission"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S02C91_5",
+      "SuperClass": {"code": "S02C91_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer kompletten Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "In partieller Remission"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S02C91_5",
+      "SuperClass": {"code": "S02C91_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "In kompletter Remission"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S02C92_5",
+      "SuperClass": {"code": "S02C92_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer kompletten Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "In partieller Remission"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S02C92_5",
+      "SuperClass": {"code": "S02C92_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "In kompletter Remission"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S02C93_5",
+      "SuperClass": {"code": "S02C93_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer kompletten Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "In partieller Remission"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S02C93_5",
+      "SuperClass": {"code": "S02C93_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "In kompletter Remission"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S02C94_5",
+      "SuperClass": {"code": "S02C94_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer kompletten Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "In partieller Remission"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S02C94_5",
+      "SuperClass": {"code": "S02C94_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "In kompletter Remission"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S02C95_5",
+      "SuperClass": {"code": "S02C95_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer kompletten Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer Remission"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "In partieller Remission"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S02C95_5",
+      "SuperClass": {"code": "S02C95_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "In kompletter Remission"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S02D180_5",
+      "SuperClass": {"code": "S02D180_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Nicht näher bezeichnete Lokalisation"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S02D180_5",
+      "SuperClass": {"code": "S02D180_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Haut und Unterhaut"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S02D180_5",
+      "SuperClass": {"code": "S02D180_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Intrakraniell"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S02D180_5",
+      "SuperClass": {"code": "S02D180_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Hepatobiliäres System und Pankreas"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "modifier": "S02D180_5",
+      "SuperClass": {"code": "S02D180_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Verdauungssystem"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "modifier": "S02D180_5",
+      "SuperClass": {"code": "S02D180_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Ohr, Nase, Mund und Rachen"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "modifier": "S02D180_5",
+      "SuperClass": {"code": "S02D180_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Auge und Orbita"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S02D180_5",
+      "SuperClass": {"code": "S02D180_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sonstige Lokalisationen"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S02D181_5",
+      "SuperClass": {"code": "S02D181_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Hygroma colli cysticum"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S02D181_5",
+      "SuperClass": {"code": "S02D181_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Axilla"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S02D181_5",
+      "SuperClass": {"code": "S02D181_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Inguinal"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S02D181_5",
+      "SuperClass": {"code": "S02D181_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Retroperitoneal"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S02D181_5",
+      "SuperClass": {"code": "S02D181_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sonstige Lokalisationen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mesenterial"
+          }
+        }
+      ]
+    },
+    {
+      "code": "9",
+      "modifier": "S02D181_5",
+      "SuperClass": {"code": "S02D181_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Nicht näher bezeichnete Lokalisation"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S04E66_5",
+      "Meta": [
+        {
+          "name": "AgeLow",
+          "value": "j018"
+        },
+        {
+          "name": "AgeHigh",
+          "value": "j124"
+        },
+        {
+          "name": "AgeReject",
+          "value": "M"
+        }
+      ],
+      "SuperClass": {"code": "S04E66_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Adipositas Grad I (WHO) bei Patienten von 18 Jahren und älter"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Body-Mass-Index [BMI] von 30 bis unter 35"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S04E66_5",
+      "Meta": [
+        {
+          "name": "AgeLow",
+          "value": "j018"
+        },
+        {
+          "name": "AgeHigh",
+          "value": "j124"
+        },
+        {
+          "name": "AgeReject",
+          "value": "M"
+        }
+      ],
+      "SuperClass": {"code": "S04E66_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Adipositas Grad II (WHO) bei Patienten von 18 Jahren und älter"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Body-Mass-Index [BMI] von 35 bis unter 40"
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "modifier": "S04E66_5",
+      "Meta": [
+        {
+          "name": "AgeLow",
+          "value": "j003"
+        },
+        {
+          "name": "AgeHigh",
+          "value": "j018"
+        },
+        {
+          "name": "AgeReject",
+          "value": "M"
+        }
+      ],
+      "SuperClass": {"code": "S04E66_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Adipositas bei Kindern und Jugendlichen von 3 Jahren bis unter 18 Jahren"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Body-Mass-Index [BMI] über dem BMI-Grenzwert des 97,0-Perzentils [P97,0] bis einschließlich des BMI-Grenzwertes des 99,5-Perzentils [P99,5]"
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "modifier": "S04E66_5",
+      "Meta": [
+        {
+          "name": "AgeLow",
+          "value": "j003"
+        },
+        {
+          "name": "AgeHigh",
+          "value": "j018"
+        },
+        {
+          "name": "AgeReject",
+          "value": "M"
+        }
+      ],
+      "SuperClass": {"code": "S04E66_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Extreme Adipositas bei Kindern und Jugendlichen von 3 Jahren bis unter 18 Jahren"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Body-Mass-Index [BMI] über dem BMI-Grenzwert des 99,5-Perzentils [P99,5]"
+          }
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "modifier": "S04E66_5",
+      "SuperClass": {"code": "S04E66_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Adipositas Grad III (WHO) bei Patienten von 18 Jahren und älter, Body-Mass-Index [BMI] von 40 bis unter 50"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "modifier": "S04E66_5",
+      "SuperClass": {"code": "S04E66_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Adipositas Grad III (WHO) bei Patienten von 18 Jahren und älter, Body-Mass-Index [BMI] von 50 bis unter 60"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S04E66_5",
+      "SuperClass": {"code": "S04E66_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Adipositas Grad III (WHO) bei Patienten von 18 Jahren und älter, Body-Mass-Index [BMI] von 60 und mehr"
+        }
+      }
+    },
+    {
+      "code": "9",
+      "modifier": "S04E66_5",
+      "SuperClass": {"code": "S04E66_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Grad oder Ausmaß der Adipositas nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": ".0",
+      "modifier": "S04E10_4",
+      "SuperClass": {"code": "S04E10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Mit Koma"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisches Koma:"
+              },
+              {
+                "type": "list",
+                "#text": "hyperosmolar"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisches Koma:"
+              },
+              {
+                "type": "list",
+                "#text": "mit oder ohne Ketoazidose"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Hyperglykämisches Koma o.n.A."
+          }
+        },
+        {
+          "kind": "exclusion",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Hypoglykämisches Koma (.6)"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".1",
+      "modifier": "S04E10_4",
+      "SuperClass": {"code": "S04E10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Mit Ketoazidose"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "Azidose"
+              },
+              {
+                "type": "item",
+                "#text": "ohne Angabe eines Komas"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "Ketoazidose"
+              },
+              {
+                "type": "item",
+                "#text": "ohne Angabe eines Komas"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": ".2",
+      "modifier": "S04E10_4",
+      "usage": "dagger",
+      "SuperClass": {"code": "S04E10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Mit Nierenkomplikationen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Diabetische Nephropathie",
+            "Reference": {
+              "class": "in brackets",
+              "usage": "aster",
+              "#text": "N08.3"
+            }
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Intrakapilläre Glomerulonephrose",
+            "Reference": {
+              "class": "in brackets",
+              "usage": "aster",
+              "#text": "N08.3"
+            }
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Kimmelstiel-Wilson-Syndrom",
+            "Reference": {
+              "class": "in brackets",
+              "usage": "aster",
+              "#text": "N08.3"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": ".3",
+      "modifier": "S04E10_4",
+      "usage": "dagger",
+      "SuperClass": {"code": "S04E10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Mit Augenkomplikationen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "Katarakt",
+                "Reference": {
+                  "class": "in brackets",
+                  "usage": "aster",
+                  "#text": "H28.0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "Retinopathie",
+                "Reference": {
+                  "class": "in brackets",
+                  "usage": "aster",
+                  "#text": "H36.0"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": ".4",
+      "modifier": "S04E10_4",
+      "usage": "dagger",
+      "SuperClass": {"code": "S04E10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Mit neurologischen Komplikationen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "Amyotrophie",
+                "Reference": {
+                  "class": "in brackets",
+                  "usage": "aster",
+                  "#text": "G73.0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "autonome Neuropathie",
+                "Reference": {
+                  "class": "in brackets",
+                  "code": "G99.0",
+                  "usage": "aster",
+                  "#text": "G99.0-"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "autonome Polyneuropathie",
+                "Reference": {
+                  "class": "in brackets",
+                  "code": "G99.0",
+                  "usage": "aster",
+                  "#text": "G99.0-"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "Mononeuropathie",
+                "Reference": {
+                  "class": "in brackets",
+                  "usage": "aster",
+                  "#text": "G59.0"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "Polyneuropathie",
+                "Reference": {
+                  "class": "in brackets",
+                  "usage": "aster",
+                  "#text": "G63.2"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": ".5",
+      "modifier": "S04E10_4",
+      "SuperClass": {"code": "S04E10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Mit peripheren vaskulären Komplikationen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "Gangrän"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "usage": "dagger",
+                "#text": "periphere Angiopathie",
+                "Reference": {
+                  "class": "in brackets",
+                  "usage": "aster",
+                  "#text": "I79.2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Diabetisch:"
+              },
+              {
+                "type": "list",
+                "#text": "Ulkus"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": ".6",
+      "modifier": "S04E10_4",
+      "SuperClass": {"code": "S04E10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Mit sonstigen näher bezeichneten Komplikationen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": {
+              "type": "item",
+              "usage": "dagger",
+              "#text": "Diabetische Arthropathie",
+              "Reference": {
+                "class": "in brackets",
+                "code": "M14.2",
+                "usage": "aster",
+                "#text": "M14.2-"
+              }
+            }
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Hypoglykämie"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "#text": "Hypoglykämisches Koma"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "Fragment": {
+              "type": "item",
+              "usage": "dagger",
+              "#text": "Neuropathische diabetische Arthropathie",
+              "Reference": {
+                "class": "in brackets",
+                "code": "M14.6",
+                "usage": "aster",
+                "#text": "M14.6-"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": ".7",
+      "modifier": "S04E10_4",
+      "SuperClass": {"code": "S04E10_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Mit multiplen Komplikationen"
+        }
+      }
+    },
+    {
+      "code": ".8",
+      "modifier": "S04E10_4",
+      "SuperClass": {"code": "S04E10_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Mit nicht näher bezeichneten Komplikationen"
+        }
+      }
+    },
+    {
+      "code": ".9",
+      "modifier": "S04E10_4",
+      "SuperClass": {"code": "S04E10_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Ohne Komplikationen"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S04E10_5",
+      "Meta": [
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .0"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .1"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .7"
+        }
+      ],
+      "SuperClass": {"code": "S04E10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Nicht als entgleist bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S04E10_5",
+      "Meta": {
+        "name": "excludeOnPrecedingModifier",
+        "value": "S04E10_4 .7"
+      },
+      "SuperClass": {"code": "S04E10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Als entgleist bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S04E10_5",
+      "Meta": [
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .0"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .1"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .2"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .3"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .4"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .5"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .6"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .8"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .9"
+        }
+      ],
+      "SuperClass": {"code": "S04E10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Mit sonstigen multiplen Komplikationen, nicht als entgleist bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S04E10_5",
+      "Meta": [
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .0"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .1"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .2"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .3"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .4"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .5"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .6"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .8"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .9"
+        }
+      ],
+      "SuperClass": {"code": "S04E10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Mit sonstigen multiplen Komplikationen, als entgleist bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "modifier": "S04E10_5",
+      "Meta": [
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .0"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .1"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .2"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .3"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .4"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .5"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .6"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .8"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .9"
+        }
+      ],
+      "SuperClass": {"code": "S04E10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Mit diabetischem Fußsyndrom, nicht als entgleist bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "modifier": "S04E10_5",
+      "Meta": [
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .0"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .1"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .2"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .3"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .4"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .5"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .6"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .8"
+        },
+        {
+          "name": "excludeOnPrecedingModifier",
+          "value": "S04E10_4 .9"
+        }
+      ],
+      "SuperClass": {"code": "S04E10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Mit diabetischem Fußsyndrom, als entgleist bezeichnet"
+        }
+      }
+    },
+    {
+      "code": ".0",
+      "modifier": "S05F10_4",
+      "SuperClass": {"code": "S05F10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Akute Intoxikation [akuter Rausch]"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Ein Zustandsbild nach Aufnahme einer psychotropen Substanz mit Störungen von Bewusstseinslage, kognitiven Fähigkeiten, Wahrnehmung, Affekt und Verhalten oder anderer psychophysiologischer Funktionen und Reaktionen. Die Störungen stehen in einem direkten Zusammenhang mit den akuten pharmakologischen Wirkungen der Substanz und nehmen bis zur vollständigen Wiederherstellung mit der Zeit ab, ausgenommen in den Fällen, bei denen Gewebeschäden oder andere Komplikationen aufgetreten sind. Komplikationen können ein Trauma, Aspiration von Erbrochenem, Delir, Koma, Krampfanfälle und andere medizinische Folgen sein. Die Art dieser Komplikationen hängt von den pharmakologischen Eigenschaften der Substanz und der Aufnahmeart ab."
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Akuter Rausch bei Alkoholabhängigkeit"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Pathologischer Rausch"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Rausch o.n.A."
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Trance und Besessenheitszustände bei Intoxikation mit psychotropen Substanzen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "\"Horrortrip\" (Angstreise) bei halluzinogenen Substanzen"
+          }
+        },
+        {
+          "kind": "exclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Intoxikation im Sinne einer Vergiftung",
+            "Reference": {
+              "class": "in brackets",
+              "code": "T36",
+              "#text": "T36-T50"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": ".1",
+      "modifier": "S05F10_4",
+      "SuperClass": {"code": "S05F10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Schädlicher Gebrauch"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Konsum psychotroper Substanzen, der zu Gesundheitsschädigung führt. Diese kann als körperliche Störung auftreten, etwa in Form einer Hepatitis nach Selbstinjektion der Substanz oder als psychische Störung z.B. als depressive Episode durch massiven Alkoholkonsum."
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Missbrauch psychotroper Substanzen"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".2",
+      "modifier": "S05F10_4",
+      "SuperClass": {"code": "S05F10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Abhängigkeitssyndrom"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": [
+              "Eine Gruppe von Verhaltens-, kognitiven und körperlichen Phänomenen, die sich nach wiederholtem Substanzgebrauch entwickeln. Typischerweise besteht ein starker Wunsch, die Substanz einzunehmen, Schwierigkeiten, den Konsum zu kontrollieren, und anhaltender Substanzgebrauch trotz schädlicher Folgen. Dem Substanzgebrauch wird Vorrang vor anderen Aktivitäten und Verpflichtungen gegeben. Es entwickelt sich eine Toleranzerhöhung und manchmal ein körperliches Entzugssyndrom.",
+              "Das Abhängigkeitssyndrom kann sich auf einen einzelnen Stoff beziehen (z.B. Tabak, Alkohol oder Diazepam), auf eine Substanzgruppe (z.B. opiatähnliche Substanzen), oder auch auf ein weites Spektrum pharmakologisch unterschiedlicher Substanzen."
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Chronischer Alkoholismus"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Dipsomanie"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Nicht näher bezeichnete Drogensucht"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".3",
+      "modifier": "S05F10_4",
+      "SuperClass": {"code": "S05F10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Entzugssyndrom"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Es handelt sich um eine Gruppe von Symptomen unterschiedlicher Zusammensetzung und Schwere nach absolutem oder relativem Entzug einer psychotropen Substanz, die anhaltend konsumiert worden ist. Beginn und Verlauf des Entzugssyndroms sind zeitlich begrenzt und abhängig von der Substanzart und der Dosis, die unmittelbar vor der Beendigung oder Reduktion des Konsums verwendet worden ist. Das Entzugssyndrom kann durch symptomatische Krampfanfälle kompliziert werden."
+          }
+        }
+      ]
+    },
+    {
+      "code": ".4",
+      "modifier": "S05F10_4",
+      "SuperClass": {"code": "S05F10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Entzugssyndrom mit Delir"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Ein Zustandsbild, bei dem das Entzugssyndrom (siehe vierte Stelle .3) durch ein Delir, (siehe Kriterien für F05.-) kompliziert wird. Symptomatische Krampfanfälle können ebenfalls auftreten. Wenn organische Faktoren eine beträchtliche Rolle in der Ätiologie spielen, sollte das Zustandsbild unter F05.8 klassifiziert werden."
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Delirium tremens (alkoholbedingt)"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".5",
+      "modifier": "S05F10_4",
+      "SuperClass": {"code": "S05F10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Psychotische Störung"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Eine Gruppe psychotischer Phänomene, die während oder nach dem Substanzgebrauch auftreten, aber nicht durch eine akute Intoxikation erklärt werden können und auch nicht Teil eines Entzugssyndroms sind. Die Störung ist durch Halluzinationen (typischerweise akustische, oft aber auf mehr als einem Sinnesgebiet), Wahrnehmungsstörungen, Wahnideen (häufig paranoide Gedanken oder Verfolgungsideen), psychomotorische Störungen (Erregung oder Stupor) sowie abnorme Affekte gekennzeichnet, die von intensiver Angst bis zur Ekstase reichen können. Das Sensorium ist üblicherweise klar, jedoch kann das Bewusstsein bis zu einem gewissen Grad eingeschränkt sein, wobei jedoch keine ausgeprägte Verwirrtheit auftritt."
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Alkoholhalluzinose"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Alkoholische Paranoia"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Alkoholischer Eifersuchtswahn"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Alkoholpsychose o.n.A."
+          }
+        },
+        {
+          "kind": "exclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Durch Alkohol oder psychoaktive Substanzen bedingter Restzustand und verzögert auftretende psychotische Störung",
+            "Reference": {
+              "class": "in brackets",
+              "code": "F10",
+              "#text": "F10-F19, vierte Stelle .7"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": ".6",
+      "modifier": "S05F10_4",
+      "SuperClass": {"code": "S05F10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Amnestisches Syndrom"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Alkohol- oder substanzbedingte amnestische Störung"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Durch Alkohol oder andere psychotrope Substanzen bedingte Korsakowpsychose"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Nicht näher bezeichnetes Korsakow-Syndrom"
+          }
+        },
+        {
+          "kind": "coding-hint",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Soll ein assoziiertes Wernicke-Syndrom angegeben werden, sind zusätzliche Schlüsselnummern (E51.2\u2020 G32.8*) zu benutzen."
+          }
+        },
+        {
+          "kind": "exclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Nicht alkoholbedingte(s) Korsakow-Psychose oder -Syndrom ",
+            "Reference": {
+              "class": "in brackets",
+              "code": "F04",
+              "#text": "F04"
+            }
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": "Ein Syndrom, das mit einer ausgeprägten andauernden Beeinträchtigung des Kurz- und Langzeitgedächtnisses einhergeht. Das Immediatgedächtnis ist gewöhnlich erhalten, und das Kurzzeitgedächtnis ist mehr gestört als das Langzeitgedächtnis. Die Störungen des Zeitgefühls und des Zeitgitters sind meist deutlich, ebenso wie die Lernschwierigkeiten. Konfabulationen können ausgeprägt sein, sind jedoch nicht in jedem Fall vorhanden. Andere kognitive Funktionen sind meist relativ gut erhalten, die amnestischen Störungen sind im Verhältnis zu anderen Beeinträchtigungen besonders ausgeprägt."
+          }
+        }
+      ]
+    },
+    {
+      "code": ".7",
+      "modifier": "S05F10_4",
+      "SuperClass": {"code": "S05F10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Restzustand und verzögert auftretende psychotische Störung"
+          }
+        },
+        {
+          "kind": "definition",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Para": [
+              "Eine Störung, bei der alkohol- oder substanzbedingte Veränderungen der kognitiven Fähigkeiten, des Affektes, der Persönlichkeit oder des Verhaltens über einen Zeitraum hinaus bestehen, in dem noch eine direkte Substanzwirkung angenommen werden kann.",
+              "Der Beginn dieser Störung sollte in unmittelbarem Zusammenhang mit dem Gebrauch der psychotropen Substanz stehen. Beginnt das Zustandsbild nach dem Substanzgebrauch, ist ein sicherer und genauer Nachweis notwendig, dass der Zustand auf Effekte der psychotropen Substanz zurückzuführen ist. Nachhallphänomene (Flashbacks) unterscheiden sich von einem psychotischen Zustandsbild durch ihr episodisches Auftreten, durch ihre meist kurze Dauer und das Wiederholen kürzlich erlebter alkohol- oder substanzbedingter Erlebnisse."
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Alkoholdemenz o.n.A."
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Chronisches hirnorganisches Syndrom bei Alkoholismus"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Demenz und andere leichtere Formen anhaltender Beeinträchtigung der kognitiven Fähigkeiten"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Nachhallzustände (Flashbacks)"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Posthalluzinogene Wahrnehmungsstörung"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Residuale affektive Störung"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Residuale Störung der Persönlichkeit und des Verhaltens"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Verzögert auftretende psychotische Störung durch psychotrope Substanzen bedingt"
+          }
+        },
+        {
+          "kind": "exclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Alkohol- oder substanzbedingt:"
+              },
+              {
+                "type": "list",
+                "#text": "Korsakow-Syndrom",
+                "Reference": {
+                  "class": "in brackets",
+                  "code": "F10",
+                  "#text": "F10-F19, vierte Stelle .6"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "exclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Alkohol- oder substanzbedingt:"
+              },
+              {
+                "type": "list",
+                "#text": "psychotischer Zustand",
+                "Reference": {
+                  "class": "in brackets",
+                  "code": "F10",
+                  "#text": "F10-F19, vierte Stelle .5"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": ".8",
+      "modifier": "S05F10_4",
+      "SuperClass": {"code": "S05F10_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sonstige psychische und Verhaltensstörungen"
+        }
+      }
+    },
+    {
+      "code": ".9",
+      "modifier": "S05F10_4",
+      "SuperClass": {"code": "S05F10_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Nicht näher bezeichnete psychische und Verhaltensstörung"
+        }
+      }
+    },
+    {
+      "code": ".0",
+      "modifier": "S05F70_4",
+      "SuperClass": {"code": "S05F70_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Keine oder geringfügige Verhaltensstörung"
+        }
+      }
+    },
+    {
+      "code": ".1",
+      "modifier": "S05F70_4",
+      "SuperClass": {"code": "S05F70_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Deutliche Verhaltensstörung, die Beobachtung oder Behandlung erfordert"
+        }
+      }
+    },
+    {
+      "code": ".8",
+      "modifier": "S05F70_4",
+      "SuperClass": {"code": "S05F70_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sonstige Verhaltensstörung"
+        }
+      }
+    },
+    {
+      "code": ".9",
+      "modifier": "S05F70_4",
+      "SuperClass": {"code": "S05F70_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Ohne Angabe einer Verhaltensstörung"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S06G20_5",
+      "SuperClass": {"code": "S06G20_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Wirkungsfluktuation"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer Wirkungsfluktuation"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S06G20_5",
+      "SuperClass": {"code": "S06G20_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Mit Wirkungsfluktuation"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S06G35_5",
+      "SuperClass": {"code": "S06G35_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Ohne Angabe einer akuten Exazerbation oder Progression"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S06G35_5",
+      "SuperClass": {"code": "S06G35_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Mit Angabe einer akuten Exazerbation oder Progression"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S06G45_5",
+      "SuperClass": {"code": "S06G45_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Komplette Rückbildung innerhalb von 1 bis 24 Stunden"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S06G45_5",
+      "SuperClass": {"code": "S06G45_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Komplette Rückbildung innerhalb von weniger als 1 Stunde"
+        }
+      }
+    },
+    {
+      "code": "9",
+      "modifier": "S06G45_5",
+      "SuperClass": {"code": "S06G45_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Verlauf der Rückbildung nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S06G82_5",
+      "SuperClass": {"code": "S06G82_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Akute komplette Querschnittlähmung nichttraumatischer Genese"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S06G82_5",
+      "SuperClass": {"code": "S06G82_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Akute inkomplette Querschnittlähmung nichttraumatischer Genese"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S06G82_5",
+      "SuperClass": {"code": "S06G82_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Chronische komplette Querschnittlähmung"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Komplette Querschnittlähmung o.n.A."
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "modifier": "S06G82_5",
+      "SuperClass": {"code": "S06G82_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Chronische inkomplette Querschnittlähmung"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Inkomplette Querschnittlähmung o.n.A."
+          }
+        }
+      ]
+    },
+    {
+      "code": "9",
+      "modifier": "S06G82_5",
+      "SuperClass": {"code": "S06G82_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Nicht näher bezeichnet"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Zerebrale Ursache"
+          }
+        }
+      ]
+    },
+    {
+      "code": "0",
+      "modifier": "S09I10_5",
+      "SuperClass": {"code": "S09I10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Ohne Angabe einer hypertensiven Krise"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S09I10_5",
+      "SuperClass": {"code": "S09I10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Mit Angabe einer hypertensiven Krise"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S10J44_5",
+      "SuperClass": {"code": "S10J44_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "FEV",
+          "Term": {
+            "class": "subscript",
+            "#text": "1"
+          },
+          "#text1": " <35 % des Sollwertes"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S10J44_5",
+      "SuperClass": {"code": "S10J44_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "FEV",
+          "Term": {
+            "class": "subscript",
+            "#text": "1"
+          },
+          "#text1": " >=35 % und <50 % des Sollwertes"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S10J44_5",
+      "SuperClass": {"code": "S10J44_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "FEV",
+          "Term": {
+            "class": "subscript",
+            "#text": "1"
+          },
+          "#text1": " >=50 % und <70 % des Sollwertes"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S10J44_5",
+      "SuperClass": {"code": "S10J44_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "FEV",
+          "Term": {
+            "class": "subscript",
+            "#text": "1"
+          },
+          "#text1": " >=70 % des Sollwertes"
+        }
+      }
+    },
+    {
+      "code": "9",
+      "modifier": "S10J44_5",
+      "SuperClass": {"code": "S10J44_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "FEV",
+          "Term": {
+            "class": "subscript",
+            "#text": "1"
+          },
+          "#text1": " nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": ".0",
+      "modifier": "S11K25_4",
+      "SuperClass": {"code": "S11K25_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Akut, mit Blutung"
+        }
+      }
+    },
+    {
+      "code": ".1",
+      "modifier": "S11K25_4",
+      "SuperClass": {"code": "S11K25_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Akut, mit Perforation"
+        }
+      }
+    },
+    {
+      "code": ".2",
+      "modifier": "S11K25_4",
+      "SuperClass": {"code": "S11K25_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Akut, mit Blutung und Perforation"
+        }
+      }
+    },
+    {
+      "code": ".3",
+      "modifier": "S11K25_4",
+      "SuperClass": {"code": "S11K25_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Akut, ohne Blutung oder Perforation"
+        }
+      }
+    },
+    {
+      "code": ".4",
+      "modifier": "S11K25_4",
+      "SuperClass": {"code": "S11K25_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Chronisch oder nicht näher bezeichnet, mit Blutung"
+        }
+      }
+    },
+    {
+      "code": ".5",
+      "modifier": "S11K25_4",
+      "SuperClass": {"code": "S11K25_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Chronisch oder nicht näher bezeichnet, mit Perforation"
+        }
+      }
+    },
+    {
+      "code": ".6",
+      "modifier": "S11K25_4",
+      "SuperClass": {"code": "S11K25_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Chronisch oder nicht näher bezeichnet, mit Blutung und Perforation"
+        }
+      }
+    },
+    {
+      "code": ".7",
+      "modifier": "S11K25_4",
+      "SuperClass": {"code": "S11K25_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Chronisch, ohne Blutung oder Perforation"
+        }
+      }
+    },
+    {
+      "code": ".9",
+      "modifier": "S11K25_4",
+      "SuperClass": {"code": "S11K25_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Weder als akut noch als chronisch bezeichnet, ohne Blutung oder Perforation"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S11K40_5",
+      "SuperClass": {"code": "S11K40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Nicht als Rezidivhernie bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S11K40_5",
+      "SuperClass": {"code": "S11K40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Rezidivhernie"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S11K80_5",
+      "SuperClass": {"code": "S11K80_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Ohne Angabe einer Gallenwegsobstruktion"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S11K80_5",
+      "SuperClass": {"code": "S11K80_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Mit Gallenwegsobstruktion"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S11K85_5",
+      "SuperClass": {"code": "S11K85_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ohne Angabe einer Organkomplikation"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Pankreatitis:"
+              },
+              {
+                "type": "list",
+                "#text": "akut (rezidivierend)"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Pankreatitis:"
+              },
+              {
+                "type": "list",
+                "#text": "subakut"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Pankreatitis:"
+              },
+              {
+                "type": "list",
+                "#text": "o.n.A."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S11K85_5",
+      "SuperClass": {"code": "S11K85_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mit Organkomplikation"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Pankreasabszess"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Pankreasnekrose:"
+              },
+              {
+                "type": "list",
+                "#text": "akut"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Pankreasnekrose:"
+              },
+              {
+                "type": "list",
+                "#text": "infektiös"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Pankreatitis:"
+              },
+              {
+                "type": "list",
+                "#text": "eitrig"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Pankreatitis:"
+              },
+              {
+                "type": "list",
+                "#text": "hämorrhagisch"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "0",
+      "modifier": "S12L89_5",
+      "SuperClass": {"code": "S12L89_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Kopf"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S12L89_5",
+      "SuperClass": {"code": "S12L89_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Obere Extremität"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S12L89_5",
+      "SuperClass": {"code": "S12L89_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Dornfortsätze"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S12L89_5",
+      "SuperClass": {"code": "S12L89_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Beckenkamm"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Spina iliaca"
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "modifier": "S12L89_5",
+      "SuperClass": {"code": "S12L89_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Kreuzbein"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Steißbein"
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "modifier": "S12L89_5",
+      "SuperClass": {"code": "S12L89_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sitzbein"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "modifier": "S12L89_5",
+      "SuperClass": {"code": "S12L89_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Trochanter"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "modifier": "S12L89_5",
+      "SuperClass": {"code": "S12L89_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Ferse"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S12L89_5",
+      "SuperClass": {"code": "S12L89_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sonstige Lokalisationen der unteren Extremität"
+        }
+      }
+    },
+    {
+      "code": "9",
+      "modifier": "S12L89_5",
+      "SuperClass": {"code": "S12L89_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sonstige und nicht näher bezeichnete Lokalisationen"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S13M00_5",
+      "SuperClass": {"code": "S13M00_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Mehrere Lokalisationen"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S13M00_5",
+      "SuperClass": {"code": "S13M00_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Schulterregion"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Schulterregion [Klavikula, Skapula, Akromioklavikular-, Schulter-, Sternoklavikulargelenk]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Klavikula"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Skapula"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Akromioklavikulargelenk"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Schultergelenk"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sternoklavikulargelenk"
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "modifier": "S13M00_5",
+      "SuperClass": {"code": "S13M00_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Oberarm"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Oberarm [Humerus, Ellenbogengelenk]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Humerus"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ellenbogengelenk"
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "modifier": "S13M00_5",
+      "SuperClass": {"code": "S13M00_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Unterarm"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Unterarm [Radius, Ulna, Handgelenk]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Radius"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Ulna"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Handgelenk"
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "modifier": "S13M00_5",
+      "SuperClass": {"code": "S13M00_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Hand"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Hand [Finger, Handwurzel, Mittelhand, Gelenke zwischen diesen Knochen]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Finger"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Handwurzel"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mittelhand"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Gelenke zwischen diesen Knochen"
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "modifier": "S13M00_5",
+      "SuperClass": {"code": "S13M00_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Beckenregion und Oberschenkel"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Beckenregion und Oberschenkel [Becken, Femur, Gesäß, Hüfte, Hüftgelenk, Iliosakralgelenk]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Becken"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Femur"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Gesäß"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Hüfte [Hüftgelenk]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Iliosakralgelenk"
+          }
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "modifier": "S13M00_5",
+      "SuperClass": {"code": "S13M00_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Unterschenkel"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Unterschenkel [Fibula, Tibia, Kniegelenk]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Fibula"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Tibia"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Kniegelenk"
+          }
+        }
+      ]
+    },
+    {
+      "code": "7",
+      "modifier": "S13M00_5",
+      "SuperClass": {"code": "S13M00_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Knöchel und Fuß"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Fußwurzel"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mittelfuß"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Zehen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sprunggelenk"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sonstige Gelenke des Fußes"
+          }
+        }
+      ]
+    },
+    {
+      "code": "8",
+      "modifier": "S13M00_5",
+      "SuperClass": {"code": "S13M00_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sonstige"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sonstige [Hals, Kopf, Rippen, Rumpf, Schädel, Wirbelsäule]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Hals"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Kopf"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Rippen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Rumpf"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Schädel"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Wirbelsäule"
+          }
+        }
+      ]
+    },
+    {
+      "code": "9",
+      "modifier": "S13M00_5",
+      "SuperClass": {"code": "S13M00_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Nicht näher bezeichnete Lokalisation"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S13M40_5",
+      "SuperClass": {"code": "S13M40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Mehrere Lokalisationen der Wirbelsäule"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S13M40_5",
+      "SuperClass": {"code": "S13M40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Okzipito-Atlanto-Axialbereich"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S13M40_5",
+      "SuperClass": {"code": "S13M40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Zervikalbereich"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S13M40_5",
+      "SuperClass": {"code": "S13M40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Zervikothorakalbereich"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "modifier": "S13M40_5",
+      "SuperClass": {"code": "S13M40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Thorakalbereich"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "modifier": "S13M40_5",
+      "SuperClass": {"code": "S13M40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Thorakolumbalbereich"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "modifier": "S13M40_5",
+      "SuperClass": {"code": "S13M40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Lumbalbereich"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "modifier": "S13M40_5",
+      "SuperClass": {"code": "S13M40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Lumbosakralbereich"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S13M40_5",
+      "SuperClass": {"code": "S13M40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sakral- und Sakrokokzygealbereich"
+        }
+      }
+    },
+    {
+      "code": "9",
+      "modifier": "S13M40_5",
+      "SuperClass": {"code": "S13M40_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Nicht näher bezeichnete Lokalisation"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S13M99_5",
+      "SuperClass": {"code": "S13M99_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Kopfbereich"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Kopfbereich [okzipitozervikal]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Okzipitozervikal"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S13M99_5",
+      "SuperClass": {"code": "S13M99_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Zervikalbereich"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Zervikalbereich [zervikothorakal]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Zervikothorakal"
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "modifier": "S13M99_5",
+      "SuperClass": {"code": "S13M99_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Thorakalbereich"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Thorakalbereich [thorakolumbal]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Thorakolumbal"
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "modifier": "S13M99_5",
+      "SuperClass": {"code": "S13M99_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Lumbalbereich"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Lumbalbereich [lumbosakral]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Lumbosakral"
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "modifier": "S13M99_5",
+      "SuperClass": {"code": "S13M99_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sakralbereich"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sakralbereich [sakrokokzygeal, sakroiliakal]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sakrokokzygeal"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sakroiliakal"
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "modifier": "S13M99_5",
+      "SuperClass": {"code": "S13M99_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Beckenbereich"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Beckenbereich [Hüft- oder Schambeinregion]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Hüft- oder Schambeinregion"
+          }
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "modifier": "S13M99_5",
+      "SuperClass": {"code": "S13M99_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Untere Extremität"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "modifier": "S13M99_5",
+      "SuperClass": {"code": "S13M99_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Obere Extremität"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Obere Extremität [akromioklavikular, sternoklavikular]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Akromioklavikular"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sternoklavikular"
+          }
+        }
+      ]
+    },
+    {
+      "code": "8",
+      "modifier": "S13M99_5",
+      "SuperClass": {"code": "S13M99_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Brustkorb"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Brustkorb [kostochondral, kostovertebral, sternochondral]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Kostochondral"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Kostovertebral"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sternochondral"
+          }
+        }
+      ]
+    },
+    {
+      "code": "9",
+      "modifier": "S13M99_5",
+      "SuperClass": {"code": "S13M99_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Abdomen und sonstige Lokalisationen"
+        }
+      }
+    },
+    {
+      "code": ".0",
+      "modifier": "S14N00_4",
+      "SuperClass": {"code": "S14N00_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Minimale glomeruläre Läsion"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Minimal changes glomerulonephritis"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".1",
+      "modifier": "S14N00_4",
+      "SuperClass": {"code": "S14N00_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Fokale und segmentale glomeruläre Läsionen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Fokal und segmental:"
+              },
+              {
+                "type": "list",
+                "#text": "Hyalinose"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "Fragment": [
+              {
+                "type": "list",
+                "#text": "Fokal und segmental:"
+              },
+              {
+                "type": "list",
+                "#text": "Sklerose"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Fokale Glomerulonephritis"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".2",
+      "modifier": "S14N00_4",
+      "SuperClass": {"code": "S14N00_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Diffuse membranöse Glomerulonephritis"
+        }
+      }
+    },
+    {
+      "code": ".3",
+      "modifier": "S14N00_4",
+      "SuperClass": {"code": "S14N00_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Diffuse mesangioproliferative Glomerulonephritis"
+        }
+      }
+    },
+    {
+      "code": ".4",
+      "modifier": "S14N00_4",
+      "SuperClass": {"code": "S14N00_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Diffuse endokapillär-proliferative Glomerulonephritis"
+        }
+      }
+    },
+    {
+      "code": ".5",
+      "modifier": "S14N00_4",
+      "SuperClass": {"code": "S14N00_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Diffuse mesangiokapilläre Glomerulonephritis"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Membranoproliferative Glomerulonephritis, Typ I und III, oder o.n.A."
+          }
+        }
+      ]
+    },
+    {
+      "code": ".6",
+      "modifier": "S14N00_4",
+      "SuperClass": {"code": "S14N00_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Dense-deposit-Krankheit"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Membranoproliferative Glomerulonephritis, Typ II"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".7",
+      "modifier": "S14N00_4",
+      "SuperClass": {"code": "S14N00_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Glomerulonephritis mit diffuser Halbmondbildung"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Extrakapilläre Glomerulonephritis"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".8",
+      "modifier": "S14N00_4",
+      "SuperClass": {"code": "S14N00_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sonstige morphologische Veränderungen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Proliferative Glomerulonephritis o.n.A."
+          }
+        }
+      ]
+    },
+    {
+      "code": ".9",
+      "modifier": "S14N00_4",
+      "SuperClass": {"code": "S14N00_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Art der morphologischen Veränderung nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": ".0",
+      "modifier": "S15O03_4",
+      "SuperClass": {"code": "S15O03_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Inkomplett, kompliziert durch Infektion des Genitaltraktes und des Beckens"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mit Zuständen, die unter O08.0 aufgeführt sind"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".1",
+      "modifier": "S15O03_4",
+      "SuperClass": {"code": "S15O03_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Inkomplett, kompliziert durch Spätblutung oder verstärkte Blutung"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mit Zuständen, die unter O08.1 aufgeführt sind"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".2",
+      "modifier": "S15O03_4",
+      "SuperClass": {"code": "S15O03_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Inkomplett, kompliziert durch Embolie"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mit Zuständen, die unter O08.2 aufgeführt sind"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".3",
+      "modifier": "S15O03_4",
+      "SuperClass": {"code": "S15O03_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Inkomplett, mit sonstigen und nicht näher bezeichneten Komplikationen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mit Zuständen, die unter O08.3-O08.9 aufgeführt sind"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".4",
+      "modifier": "S15O03_4",
+      "SuperClass": {"code": "S15O03_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Inkomplett, ohne Komplikation"
+        }
+      }
+    },
+    {
+      "code": ".5",
+      "modifier": "S15O03_4",
+      "SuperClass": {"code": "S15O03_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Komplett oder nicht näher bezeichnet, kompliziert durch Infektion des Genitaltraktes und des Beckens"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mit Zuständen, die unter O08.0 aufgeführt sind"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".6",
+      "modifier": "S15O03_4",
+      "SuperClass": {"code": "S15O03_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Komplett oder nicht näher bezeichnet, kompliziert durch Spätblutung oder verstärkte Blutung"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mit Zuständen, die unter O08.1 aufgeführt sind"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".7",
+      "modifier": "S15O03_4",
+      "SuperClass": {"code": "S15O03_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Komplett oder nicht näher bezeichnet, kompliziert durch Embolie"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mit Zuständen, die unter O08.2 aufgeführt sind"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".8",
+      "modifier": "S15O03_4",
+      "SuperClass": {"code": "S15O03_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Komplett oder nicht näher bezeichnet, mit sonstigen und nicht näher bezeichneten Komplikationen"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Mit Zuständen, die unter O08.3-O08.9 aufgeführt sind"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".9",
+      "modifier": "S15O03_4",
+      "SuperClass": {"code": "S15O03_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Komplett oder nicht näher bezeichnet, ohne Komplikation"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S15O91_5",
+      "SuperClass": {"code": "S15O91_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Ohne Angabe von Schwierigkeiten beim Anlegen"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S15O91_5",
+      "SuperClass": {"code": "S15O91_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Mit Angabe von Schwierigkeiten beim Anlegen"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S15O92_5",
+      "SuperClass": {"code": "S15O92_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Ohne Angabe von Schwierigkeiten beim Anlegen"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S15O92_5",
+      "SuperClass": {"code": "S15O92_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Mit Angabe von Schwierigkeiten beim Anlegen"
+        }
+      }
+    },
+    {
+      "code": ".0",
+      "modifier": "S18R83_4",
+      "SuperClass": {"code": "S18R83_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Abnormer Enzymwert"
+        }
+      }
+    },
+    {
+      "code": ".1",
+      "modifier": "S18R83_4",
+      "SuperClass": {"code": "S18R83_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Abnormer Hormonwert"
+        }
+      }
+    },
+    {
+      "code": ".2",
+      "modifier": "S18R83_4",
+      "SuperClass": {"code": "S18R83_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Abnormer Wert für sonstige Drogen, Arzneimittel und biologisch aktive Substanzen"
+        }
+      }
+    },
+    {
+      "code": ".3",
+      "modifier": "S18R83_4",
+      "SuperClass": {"code": "S18R83_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Abnormer Wert für Substanzen vorwiegend nichtmedizinischer Herkunft"
+        }
+      }
+    },
+    {
+      "code": ".4",
+      "modifier": "S18R83_4",
+      "SuperClass": {"code": "S18R83_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Abnorme immunologische Befunde"
+        }
+      }
+    },
+    {
+      "code": ".5",
+      "modifier": "S18R83_4",
+      "SuperClass": {"code": "S18R83_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Abnorme mikrobiologische Befunde"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Positive Kulturen"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".6",
+      "modifier": "S18R83_4",
+      "SuperClass": {"code": "S18R83_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Abnorme zytologische Befunde"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Abnormer Papanicolaou-Abstrich"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".7",
+      "modifier": "S18R83_4",
+      "SuperClass": {"code": "S18R83_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Abnorme histologische Befunde"
+        }
+      }
+    },
+    {
+      "code": ".8",
+      "modifier": "S18R83_4",
+      "SuperClass": {"code": "S18R83_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Sonstige abnorme Befunde"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Abnorme Chromosomenbefunde"
+          }
+        }
+      ]
+    },
+    {
+      "code": ".9",
+      "modifier": "S18R83_4",
+      "SuperClass": {"code": "S18R83_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Nicht näher bezeichneter abnormer Befund"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S19S00_5",
+      "SuperClass": {"code": "S19S00_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Art der Verletzung nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S19S00_5",
+      "SuperClass": {"code": "S19S00_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Schürfwunde"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S19S00_5",
+      "SuperClass": {"code": "S19S00_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Blasenbildung (nichtthermisch)"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S19S00_5",
+      "SuperClass": {"code": "S19S00_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Insektenbiss oder -stich (ungiftig)"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "modifier": "S19S00_5",
+      "SuperClass": {"code": "S19S00_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Oberflächlicher Fremdkörper (Splitter)"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "modifier": "S19S00_5",
+      "SuperClass": {"code": "S19S00_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Prellung"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S19S00_5",
+      "SuperClass": {"code": "S19S00_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sonstige"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S19S10_5",
+      "SuperClass": {"code": "S19S10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Art der Verletzung nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S19S10_5",
+      "SuperClass": {"code": "S19S10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Schürfwunde"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S19S10_5",
+      "SuperClass": {"code": "S19S10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Blasenbildung (nichtthermisch)"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S19S10_5",
+      "SuperClass": {"code": "S19S10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Insektenbiss oder -stich (ungiftig)"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "modifier": "S19S10_5",
+      "SuperClass": {"code": "S19S10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Oberflächlicher Fremdkörper (Splitter)"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "modifier": "S19S10_5",
+      "SuperClass": {"code": "S19S10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Prellung"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "modifier": "S19S10_5",
+      "SuperClass": {"code": "S19S10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Subkutanes (geschlossenes) Décollement"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S19S10_5",
+      "SuperClass": {"code": "S19S10_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sonstige"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S19S20_5",
+      "SuperClass": {"code": "S19S20_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Art der Verletzung nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S19S20_5",
+      "SuperClass": {"code": "S19S20_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Schürfwunde"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S19S20_5",
+      "SuperClass": {"code": "S19S20_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Blasenbildung (nichtthermisch)"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S19S20_5",
+      "SuperClass": {"code": "S19S20_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Insektenbiss oder -stich (ungiftig)"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "modifier": "S19S20_5",
+      "SuperClass": {"code": "S19S20_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Oberflächlicher Fremdkörper (Splitter)"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "modifier": "S19S20_5",
+      "SuperClass": {"code": "S19S20_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Prellung"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "modifier": "S19S20_5",
+      "SuperClass": {"code": "S19S20_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "#text": "Subkutanes (geschlossenes) Décollement"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S19S20_5",
+      "SuperClass": {"code": "S19S20_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sonstige"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S19T02_5",
+      "SuperClass": {"code": "S19T02_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "geschlossen"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "geschlossen oder o.n.A."
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S19T02_5",
+      "SuperClass": {"code": "S19T02_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "offen"
+        }
+      }
+    },
+    {
+      "code": ".0",
+      "modifier": "S19T08_4",
+      "SuperClass": {"code": "S19T08_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "geschlossen"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "geschlossen oder o.n.A."
+          }
+        }
+      ]
+    },
+    {
+      "code": ".1",
+      "modifier": "S19T08_4",
+      "SuperClass": {"code": "S19T08_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "offen"
+        }
+      }
+    },
+    {
+      "code": ".0",
+      "modifier": "S19T10_4",
+      "SuperClass": {"code": "S19T10_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "geschlossen"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "geschlossen oder o.n.A."
+          }
+        }
+      ]
+    },
+    {
+      "code": ".1",
+      "modifier": "S19T10_4",
+      "SuperClass": {"code": "S19T10_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "offen"
+        }
+      }
+    },
+    {
+      "code": ".0",
+      "modifier": "S19T12_4",
+      "SuperClass": {"code": "S19T12_4"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "geschlossen"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "geschlossen oder o.n.A."
+          }
+        }
+      ]
+    },
+    {
+      "code": ".1",
+      "modifier": "S19T12_4",
+      "SuperClass": {"code": "S19T12_4"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "offen"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S19T142_5",
+      "SuperClass": {"code": "S19T142_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "geschlossen"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "geschlossen oder o.n.A."
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S19T142_5",
+      "SuperClass": {"code": "S19T142_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "offen"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S19T21_5",
+      "SuperClass": {"code": "S19T21_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Rumpf, Teil nicht näher bezeichnet"
+          }
+        },
+        {
+          "kind": "preferredLong",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Teil nicht näher bezeichnet"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S19T21_5",
+      "Meta": [
+        {
+          "name": "SexCode",
+          "value": "9"
+        },
+        {
+          "name": "SexReject",
+          "value": "9"
+        }
+      ],
+      "SuperClass": {"code": "S19T21_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Brustdrüse [Mamma]"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S19T21_5",
+      "SuperClass": {"code": "S19T21_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Thoraxwand ausgenommen Brustdrüse und -warze"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S19T21_5",
+      "SuperClass": {"code": "S19T21_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Bauchdecke"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Flanke"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Leiste"
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "modifier": "S19T21_5",
+      "SuperClass": {"code": "S19T21_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Rücken [jeder Teil]"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Gesäß"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Interskapularregion"
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "modifier": "S19T21_5",
+      "SuperClass": {"code": "S19T21_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "(Äußeres) Genitale"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Hoden"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Labium (majus) (minus)"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Penis"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Perineum"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Skrotum"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Vulva"
+          }
+        }
+      ]
+    },
+    {
+      "code": "9",
+      "modifier": "S19T21_5",
+      "SuperClass": {"code": "S19T21_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sonstige Teile"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S19T22_5",
+      "SuperClass": {"code": "S19T22_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Teil nicht näher bezeichnet"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "modifier": "S19T22_5",
+      "SuperClass": {"code": "S19T22_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Unterarm und Ellenbogen"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S19T22_5",
+      "SuperClass": {"code": "S19T22_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "(Ober-) Arm und Schulterregion"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Schulter"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Skapularregion"
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "modifier": "S19T22_5",
+      "SuperClass": {"code": "S19T22_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Achselhöhle"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S19T31_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T31_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Weniger als 10 % oder nicht näher bezeichneter Anteil von Verbrennungen 3. Grades"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Keine Verbrennungen 3. Grades"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S19T31_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T31_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "10-19 % Verbrennungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S19T31_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T31_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "20-29 % Verbrennungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S19T31_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T31_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "30-39 % Verbrennungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "modifier": "S19T31_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T31_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "40-49 % Verbrennungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "modifier": "S19T31_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T31_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "50-59 % Verbrennungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "modifier": "S19T31_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T31_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "60-69 % Verbrennungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "modifier": "S19T31_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T31_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "70-79 % Verbrennungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S19T31_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T31_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "80-89 % Verbrennungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "9",
+      "modifier": "S19T31_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T31_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "90 % oder mehr Verbrennungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S19T32_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T32_5"},
+      "Rubric": [
+        {
+          "kind": "preferred",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Weniger als 10 % oder nicht näher bezeichneter Anteil von Verätzungen 3. Grades"
+          }
+        },
+        {
+          "kind": "inclusion",
+          "Label": {
+            "xml:lang": "de",
+            "xml:space": "default",
+            "#text": "Keine Verätzungen 3. Grades"
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "modifier": "S19T32_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T32_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "10-19 % Verätzungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "modifier": "S19T32_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T32_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "20-29 % Verätzungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "modifier": "S19T32_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T32_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "30-39 % Verätzungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "modifier": "S19T32_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T32_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "40-49 % Verätzungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "modifier": "S19T32_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T32_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "50-59 % Verätzungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "modifier": "S19T32_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T32_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "60-69 % Verätzungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "modifier": "S19T32_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T32_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "70-79 % Verätzungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S19T32_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T32_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "80-89 % Verätzungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "9",
+      "modifier": "S19T32_5",
+      "usage": "optional",
+      "SuperClass": {"code": "S19T32_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "90 % oder mehr Verätzungen 3. Grades"
+        }
+      }
+    },
+    {
+      "code": "0",
+      "modifier": "S21Z75_5",
+      "SuperClass": {"code": "S21Z75_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Niere"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "modifier": "S21Z75_5",
+      "SuperClass": {"code": "S21Z75_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Niere-Pankreas"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "modifier": "S21Z75_5",
+      "SuperClass": {"code": "S21Z75_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Pankreas"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "modifier": "S21Z75_5",
+      "SuperClass": {"code": "S21Z75_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Dünndarm"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "modifier": "S21Z75_5",
+      "SuperClass": {"code": "S21Z75_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Leber"
+        }
+      }
+    },
+    {
+      "code": "8",
+      "modifier": "S21Z75_5",
+      "SuperClass": {"code": "S21Z75_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Sonstige Organe"
+        }
+      }
+    },
+    {
+      "code": "9",
+      "modifier": "S21Z75_5",
+      "SuperClass": {"code": "S21Z75_5"},
+      "Rubric": {
+        "kind": "preferred",
+        "Label": {
+          "xml:lang": "de",
+          "xml:space": "default",
+          "#text": "Nicht näher bezeichnetes Organ"
+        }
+      }
+    }
+  ]
+}

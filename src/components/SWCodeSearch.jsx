@@ -75,7 +75,7 @@ export class SWCodeSearch extends React.Component {
                                            this.queryStr.get("icd") === "true" ? this.parser.icdTitle(segArray[1]) : '',
                                 msg: this.queryStr.get("icf") === "true" ? this.icfElemType(segArray[1]) : 
                                      this.queryStr.get("icd") === "true" ? this.icdElemType(segArray[1]) : '',
-                                code: segArray[1]
+                                code: segArray[1] ? segArray[1].toLowerCase() : ''
                             });
             }
         } 
@@ -84,31 +84,46 @@ export class SWCodeSearch extends React.Component {
     }   
     matchICDBooks(string) {
         //check regex patterns - TODO: add patterns for ICD-10 chapter and icf and icd10 blocks
-        const regexPat = { icd: /^[A-TV-Z]{1}[0-9]{2}\.?[0-9]{0,2}[GVAZRLB]{0,2}$/gmi,
-                           icf: /^[bsde]{1}[1-9]{0,1}[0-9]{0,4}$/gmi };
+        const regexPat = { icd: /^[A-VY-Z]{1}[0-9]{2}\.?[0-9]{0,2}[GVAZRLB]{0,2}$/gmi,
+                           icf: /^[bsde]{1}[1-9]{0,1}[0-9]{0,4}$/gmi,
+                           icfblock: /^[bsde]{1}[1-9]{1}[0-9]{2}[\-]{1}[bsde]{1}[1-9]{1}[0-9]{2}$/gmi ,
+                           icdblock: /^[A-VY-Z]{1}[1-9]{1}[0-9]{1}[\-]{1}[A-VY-Z]{1}[1-9]{1}[0-9]{1}$/gmi,
+                           icdchap: /^[IVX]{1,5}$/gmi };
         if (string) {               
-            if( string.length > 3 && !string.includes('.') ) { 
+            if( string.length > 3 && !string.includes('.') && !string.includes('-') && /\d/.test(string) ) { 
                 this.setState({icd10: false}); 
-            } else {
+            } else if( string.length <= 5 && !string.includes('.') && !string.includes('-') && !/\d/.test(string) ) {
+                //code for icd10-chapter
+                regexPat.icdchap.test(string) ? this.setState({icd10: true}, () => {
+                    this.setState({ msg: this.icdElemType(string) });
+                    this.setState({ codetitle: this.parser.icdTitle(string) });
+                }) : this.setState({icd10: false, msg: '', codetitle: ''});                 
+            } else if( string.length === 7 && string.includes('-') ) { 
+                //code for icd10-block
+                regexPat.icdblock.test(string) ? this.setState({icd10: true}, () => {
+                    this.setState({ msg: this.icdElemType(string) });
+                    this.setState({ codetitle: this.parser.icdTitle(string) });
+                }) : this.setState({icd10: false, msg: '', codetitle: ''});                 
+            }  else {
                 regexPat.icd.test(string) ? this.setState({icd10: true}, () => {
                     this.setState({ msg: this.icdElemType(string) });
                     this.setState({ codetitle: this.parser.icdTitle(string) });
                 }) : this.setState({icd10: false, msg: '', codetitle: ''}); 
             } 
-            if( string.length !== 3 ){
+            if( string.length !== 3 && string.length !== 9){
                 regexPat.icf.test(string) ? this.setState({icf: true}, () => {
                     this.setState({ msg: this.icfElemType(string) });
                     this.setState({ codetitle: this.parser.icfTitle(string) });    
                 }) : this.setState({icf: false, msg: '', codetitle: ''}); 
+            } else if( string.length === 9 && string.includes('-') ) { 
+                //code for icf-block
+                regexPat.icfblock.test(string) ? this.setState({icf: true}, () => {
+                    this.setState({ msg: this.icfElemType(string) });
+                    this.setState({ codetitle: this.parser.icfTitle(string) });    
+                }) : this.setState({icf: false, msg: '', codetitle: ''});                 
             } else {
                 this.setState({ icf: false, msg: '', codetitle: '' });
-            }
-            if( string.length === 9 && string.includes('-') ) { 
-                //TODO: Insert code for icf-block
-            }
-            if( string.length === 7 && string.includes('-') ) { 
-                //TODO: Insert code for icd10-block
-            }                    
+            }                  
         }
     }
     icfElemType = (string) => {
@@ -117,7 +132,7 @@ export class SWCodeSearch extends React.Component {
                string && string.length > 3 ? !string.includes('-') ? 'ICF-Code' : 'Block' : '';
     }
     icdElemType = (string) => {
-        return string && string.length === 1 ? 'ICD-10 Kapitel' : 
+        return string && string.length <= 5 && !string.includes('.') && !string.includes('-') && !/\d/.test(string)  ? 'ICD-10 Kapitel' : 
                string && string.length >= 3 && string && string.length < 5 ? 'Dreisteller' : 
                string && string.length === 5 ? 'Viersteller' : 
                string && string.length >= 6 ? !string.includes('-') ? 'Fünfsteller' : 'Block' : '';
