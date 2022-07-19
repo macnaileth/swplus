@@ -13,7 +13,7 @@ const manualsWHO = {};
 
 manualsWHO.icf = icfJSON.ClaML;
 manualsWHO.icd = icdJSON.concept; //-> start at node concept parsing
-manualsWHO.icdMod = icdModJSON.Modifier; //-> start parsing at node Modifier
+manualsWHO.icdMod = icdModJSON;
 
 
 export default manualsWHO;

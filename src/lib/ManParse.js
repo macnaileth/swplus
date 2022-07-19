@@ -65,6 +65,10 @@ class ManParse {
                 pData.display.substring(0, charLimit) + elipsis : 
                 pData.display : '';
     }
+    icdResolveMod = (stringMod, stringCode) => {
+        const resModifier = _.find(this.manual.icdMod.ModifierClass, { 'code': stringMod, 'modifier': stringCode });
+        return resModifier;
+    }
     icdModDigits = (string) => {
         const digits = {};
         string.includes('4.') !== undefined ? digits.four = true : digits.four = false;
@@ -72,14 +76,15 @@ class ManParse {
         return digits;
     }
     icdModifiers = (string) => {
-        const Modifiers = this.manual.icdMod.find( element => element.code.includes(string));
+        const Modifiers = this.manual.icdMod.Modifier.find( element => element.code.includes(string));
         const ModElement = {};
         //build modifier element
         ModElement.label = Modifiers.Rubric.Label.Para; //Label text
         ModElement.kind = Modifiers.Rubric.kind;
         ModElement.code = Modifiers.code;
-        //TODO: resolve subcodes of modifiers
-        ModElement.sub = Modifiers.SubClass;
+        //resolve subcodes of modifiers
+        ModElement.sub = [];
+        Modifiers.SubClass.map( (element, index) => ModElement.sub[index] = this.icdResolveMod(element.code, ModElement.code) );
         
         return ModElement;
     }
@@ -92,13 +97,13 @@ class ManParse {
         if ( digits.four === true ){
             //string for modifier retrieval
             const needle = this.icdModifiers( superFirst + '_4' );
-            console.log('Digits to check (' + superFirst + '_4'+ '): Four:' + digits.four + ', Result:', needle);
+            modifierElement.four = needle;
         }
         if ( digits.five === true ){
             const needle = this.icdModifiers( superFirst + '_5' );
-            console.log('Digits to check (' + superFirst + '): Five:' + digits.five + ', Result:', needle);
+            modifierElement.five = needle;
         }
-    
+        return modifierElement;
     }
     icdElement(string) {
         const Element = {};
@@ -128,9 +133,12 @@ class ManParse {
             Element.chint = cData.property.find(element => element.code === 'coding-hint') ? _.find(cData.property, ['code', 'coding-hint']).valueString : '';
             Element.cmodLink = cData.property.find(element => element.code === 'modifierlink') ? _.find(cData.property, ['code', 'modifierlink']).valueString : '';
             //handle 4. 5. digit e.g. .xx of the code if needed
+            Element.cmodifiers = [];
             if(Element.cmodLink) {
-                //we have a modifier link, so we have to get the digit where we should put the modifier to
-                const digits = this.icdModGroup(Element.cmodLink, Element.csuper, Element.cname);                
+                //we have a modifier link, so we have to get the modifiers acoording to the digits
+                Element.cmodifiers = this.icdModGroup(Element.cmodLink, Element.csuper, Element.cname);                
+            } else {
+                //TODO: Check fourth and fifth digit which are NOT identifiable via modifier link
             }
             
         } else {
