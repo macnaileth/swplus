@@ -60,10 +60,33 @@ class ManParse {
                         pTitle.substring(0, charLimit) + elipsis : pTitle : '';
     }
     icdTitle = (string, charLimit = 40, elipsis = '...') => {
-        const pData = this.parseicdCode(string) ? this.parseicdCode(string) : '';
+        let pData = this.parseicdCode(string) ? this.parseicdCode(string) : '';
+        const frontDotPart = string.substring(0,3);
+        
+        if( string.length > 4 && pData === '' && string.charAt(3) === '.') {
+            const pastDotPart = string.substring(3);
+            if(string.length === 5) {   
+                pData = this.parseicdCode(frontDotPart);
+                //get modifier group
+                const pModGroup = this.icdModGroup('4.', _.find(pData.property, ['code', 'parent']).valueCode)
+                        .four.sub.find(element => element.code === pastDotPart.substring(0,2))
+                        .Rubric.find(element => element.kind === "preferred").Label['#text'];
+                pData.modText = pModGroup ? pModGroup : '';
+                pData.modCode = pModGroup ? pastDotPart.substring(0,2) : '';
+                console.log('Viersteller (' + string.length + ' | ' + frontDotPart + ' | ' + pastDotPart + ')', pData.modText);
+            }
+            if(string.length === 6) {
+                //TODO: work this
+                console.log('Fünfsteller (' + string.length + ' | ' + pastDotPart + ')');
+            }
+            if(String.length === 7) {
+                console.log('Fünfsteller + Kennzeichen (' + string.length + ' | ' + pastDotPart + ')');
+            }
+        }
+        
         return pData ? pData.display.length > charLimit ?
-                pData.display.substring(0, charLimit) + elipsis : 
-                pData.display : '';
+                { title: pData.display.substring(0, charLimit) + elipsis, modtext: pData.modText ? pData.modText : '', modcode: pData.modCode ? pData.modCode : '' } : 
+                { title: pData.display, modtext: pData.modText ? pData.modText : '', modcode: pData.modCode ? pData.modCode : '' } : '';
     }
     icdResolveMod = (stringMod, stringCode) => {
         const resModifier = _.find(this.manual.icdMod.ModifierClass, { 'code': stringMod, 'modifier': stringCode });
@@ -78,25 +101,44 @@ class ManParse {
     icdModifiers = (string) => {
         const Modifiers = this.manual.icdMod.Modifier.find( element => element.code.includes(string));
         const ModElement = {};
-        //build modifier element
-        ModElement.label = Modifiers.Rubric.Label.Para; //Label text
-        ModElement.kind = Modifiers.Rubric.kind;
-        ModElement.code = Modifiers.code;
-        //resolve subcodes of modifiers
-        ModElement.sub = [];
-        Modifiers.SubClass.map( (element, index) => ModElement.sub[index] = this.icdResolveMod(element.code, ModElement.code) );
         
+        //build modifier element
+        if (Modifiers !== undefined) {
+            ModElement.label = 'Label' in Modifiers.Rubric ? Modifiers.Rubric.Label.Para : ''; //Label text
+            ModElement.kind = Modifiers.Rubric.kind;
+            ModElement.code = Modifiers.code;
+            //resolve subcodes of modifiers
+            ModElement.sub = [];
+            Modifiers.SubClass.map( (element, index) => ModElement.sub[index] = this.icdResolveMod(element.code, ModElement.code) );
+        }
         return ModElement;
     }
+    icdGetValidModifierCode = (string, interval = 15) => {
+        let modLead = string.substr(0,1);
+        let modNum  = string.substr(1,2) !== "00" ? parseInt(string.substr(1,2)) : string.substr(1,2);
+        let modTrail = string.substr(3,4);
+        let counter = modNum + interval;
+        //return directly if "00" because we need not to iterate
+        //iterate a limited number of times as defined in counter to check if we can find a valid code
+        for (let i = modNum; i < counter; i++){
+            let iNum = i;
+            let padNum = iNum < 10 && iNum > 0 ? "0" + iNum : iNum;
+            const Modifiers = this.manual.icdMod.Modifier.find( element => element.code.includes( modLead + padNum + modTrail ));
+            if ( Modifiers !== undefined) {
+                return modLead + padNum + modTrail;
+            }
+        }
+        return undefined;
+    }
     //stringMod = modLink string, stringSuper = Super Class block, for ex. E10-E14, stringCode = ICD-10 Code 
-    icdModGroup = (stringMod, stringSuper, stringCode) => {
+    icdModGroup = (stringMod, stringSuper) => {
         const digits = this.icdModDigits(stringMod);
         const superFirst = stringSuper.substr(0,3);
         const modifierElement = {};
         
         if ( digits.four === true ){
             //string for modifier retrieval
-            const needle = this.icdModifiers( superFirst + '_4' );
+            const needle = this.icdModifiers( this.icdGetValidModifierCode(superFirst + '_4') );
             modifierElement.four = needle;
         }
         if ( digits.five === true ){
@@ -136,7 +178,7 @@ class ManParse {
             Element.cmodifiers = [];
             if(Element.cmodLink) {
                 //we have a modifier link, so we have to get the modifiers acoording to the digits
-                Element.cmodifiers = this.icdModGroup(Element.cmodLink, Element.csuper, Element.cname);                
+                Element.cmodifiers = this.icdModGroup(Element.cmodLink, Element.csuper);                
             } else {
                 //TODO: Check fourth and fifth digit which are NOT identifiable via modifier link
             }

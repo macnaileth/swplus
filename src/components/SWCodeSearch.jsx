@@ -45,6 +45,7 @@ export class SWCodeSearch extends React.Component {
         this.pathURL = window.location.pathname;
         //get query string
         this.queryStr = new URLSearchParams(document.location.search);
+        this.modobj = {}; //modifier text - no state
         
     }
     ChildUpdateHandler = () => {
@@ -72,7 +73,7 @@ export class SWCodeSearch extends React.Component {
                                 icf: this.queryStr.get("icf") === "true" ? true : false,
                                 icd10: this.queryStr.get("icd") === "true" ? true : false,
                                 codetitle: this.queryStr.get("icf") === "true" ? this.parser.icfTitle(segArray[1]) :
-                                           this.queryStr.get("icd") === "true" ? this.parser.icdTitle(segArray[1]) : '',
+                                           this.queryStr.get("icd") === "true" ? this.parser.icdTitle(segArray[1]).title : '',
                                 msg: this.queryStr.get("icf") === "true" ? this.icfElemType(segArray[1]) : 
                                      this.queryStr.get("icd") === "true" ? this.icdElemType(segArray[1]) : '',
                                 code: segArray[1] ? segArray[1].toLowerCase() : ''
@@ -89,25 +90,26 @@ export class SWCodeSearch extends React.Component {
                            icfblock: /^[bsde]{1}[1-9]{1}[0-9]{2}[\-]{1}[bsde]{1}[1-9]{1}[0-9]{2}$/gmi ,
                            icdblock: /^[A-VY-Z]{1}[1-9]{1}[0-9]{1}[\-]{1}[A-VY-Z]{1}[1-9]{1}[0-9]{1}$/gmi,
                            icdchap: /^[IVX]{1,5}$/gmi };
-        if (string) {               
+        if (string) {     
+            //reset modifier
+            this.modobj = { code: '', text: '' };
             if( string.length > 3 && !string.includes('.') && !string.includes('-') && /\d/.test(string) ) { 
                 this.setState({icd10: false}); 
             } else if( string.length <= 5 && !string.includes('.') && !string.includes('-') && !/\d/.test(string) ) {
                 //code for icd10-chapter
                 regexPat.icdchap.test(string) ? this.setState({icd10: true}, () => {
-                    this.setState({ msg: this.icdElemType(string) });
-                    this.setState({ codetitle: this.parser.icdTitle(string) });
+                    this.setState({ msg: this.icdElemType(string), codetitle: this.parser.icdTitle(string).title });
                 }) : this.setState({icd10: false, msg: '', codetitle: ''});                 
             } else if( string.length === 7 && string.includes('-') ) { 
                 //code for icd10-block
                 regexPat.icdblock.test(string) ? this.setState({icd10: true}, () => {
-                    this.setState({ msg: this.icdElemType(string) });
-                    this.setState({ codetitle: this.parser.icdTitle(string) });
+                    this.setState({ msg: this.icdElemType(string), codetitle: this.parser.icdTitle(string).title });
                 }) : this.setState({icd10: false, msg: '', codetitle: ''});                 
             }  else {
                 regexPat.icd.test(string) ? this.setState({icd10: true}, () => {
-                    this.setState({ msg: this.icdElemType(string) });
-                    this.setState({ codetitle: this.parser.icdTitle(string) });
+                    let titleMod = this.parser.icdTitle(string);
+                    this.modobj = { code: titleMod.modcode, text: titleMod.modtext }
+                    this.setState({ msg: this.icdElemType(string), codetitle: titleMod.title });
                 }) : this.setState({icd10: false, msg: '', codetitle: ''}); 
             } 
             if( string.length !== 3 && string.length !== 9){
@@ -215,9 +217,19 @@ export class SWCodeSearch extends React.Component {
                                     { this.state.icd10 && <StatusBadge BadgeData="ICD-10"/> }
                                     { this.state.icf && <StatusBadge BadgeData="ICF"/> }
                                     { this.state.msg && <StatusBadge BadgeData={ "dark:" + this.state.msg }/> }
-                                    <span className="d-none d-md-inline ms-2">
-                                        { this.state.codetitle && <StatusBadge BadgeData={ "info:" + this.state.codetitle }/> }
-                                    </span>
+                                    { this.state.codetitle && <span className="d-none d-md-inline ms-2">
+                                       <StatusBadge BadgeData={ "info:" + this.state.codetitle }/>
+                                    </span> }
+                                    { !_.isEmpty(this.modobj.text) && 
+                                        <React.Fragment>
+                                            <span className="d-none d-lg-inline ms-2">
+                                                <StatusBadge className="text-info border border-top-0 border-info" BadgeData={ "white:" + this.modobj.text }/>
+                                            </span> 
+                                            <span className="d-inline d-lg-none ms-2">
+                                                <StatusBadge className="text-info border border-top-0 border-info" BadgeData={ "white:" + this.modobj.code }/>
+                                            </span>  
+                                        </React.Fragment>
+                                    }                                    
                                 </div>
                             </div>
                         </div>

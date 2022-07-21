@@ -17,7 +17,7 @@ export class StatusBadge extends React.Component {
             const badgeBG   = this.props.BadgeData.substr(0, this.props.BadgeData.indexOf(':'));
             const badgeMSG  = this.props.BadgeData.substring(this.props.BadgeData.indexOf(':') + 1);
             
-            return (<Badge bg={badgeBG ? badgeBG : 'secondary'}>{ badgeMSG }</Badge>);               
+            return (<Badge className={ this.props.className } bg={ badgeBG ? badgeBG : 'secondary' }>{ badgeMSG }</Badge>);               
             }
 };
 

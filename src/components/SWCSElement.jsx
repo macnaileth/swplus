@@ -10,6 +10,7 @@ import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 
 //internal ressources
+import ICDModifierList from '../components/ICDModifierList';
 
 class SWCSElement extends React.Component {
     
@@ -63,30 +64,19 @@ class SWCSElement extends React.Component {
                                         { !_.isEmpty(this.props.data.cmodifiers.four) &&
                                             <div className="sw-digit-code-list mb-3">
                                                 <span className="text-info"><b>Kodierung vierte Stelle: </b></span><br />
-                                                <span className="text-secondary">{ _.isArray(this.props.data.cmodifiers.four.label) ? 
+                                                <span className="text-secondary mb-3">{ _.isArray(this.props.data.cmodifiers.four.label) ? 
                                                                                         <ul className="list-unstyled">{ this.props.data.cmodifiers.four.label.map((element, index) => ( <li key={ index }>{ element }</li> )) }</ul> : 
                                                                                         this.props.data.cmodifiers.four.label }
-                                                                                { !_.isEmpty(this.props.data.cmodifiers.four.sub) && 
-                                                                                        <div>
-                                                                                            <ul className="list-group list-group-flush">
-                                                                                                { this.props.data.cmodifiers.four.sub.map((element, index) => (            
-                                                                                                    <li className="list-group-item" key={ index }>
-                                                                                                        <span className="bg-secondary text-white p-1 rounded me-2">{ element.code }</span>
-                                                                                                        { _.isArray(element.Rubric) ? element.Rubric.map( element => element.kind === "preferred" ? element.Label['#text'] : '' ) : 
-                                                                                                                element.Rubric.Label['#text'] ? element.Rubric.Label['#text'] : '' }                                                                                                      
-                                                                                                    </li>        
-                                                                                                )) }
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                }
+                                                    <ICDModifierList className="small mt-2" data={ this.props.data.cmodifiers.four.sub }/>
                                                 </span>
                                             </div> }
                                         { !_.isEmpty(this.props.data.cmodifiers.five) &&  
-                                            <div>
+                                            <div className="sw-digit-code-list mb-3">
                                                 <span className="text-info"><b>Kodierung fünfte Stelle: </b></span><br />
                                                 <span className="text-secondary">{ _.isArray(this.props.data.cmodifiers.five.label) ? 
                                                                                         <ul className="list-unstyled">{ this.props.data.cmodifiers.five.label.map((element, index) => ( <li key={ index }>{ element }</li> )) }</ul> : 
                                                                                         this.props.data.cmodifiers.five.label }
+                                                    <ICDModifierList className="small" data={ this.props.data.cmodifiers.five.sub }/>
                                                 </span>                                                
                                             </div> }  
                                     </React.Fragment>
