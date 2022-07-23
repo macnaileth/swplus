@@ -66,6 +66,12 @@ $nav-tabs-border-radius: 0; //nav tab border radius
 .badge + .badge, .sw-code-button + .sw-code-button {
     margin-left: 0.5rem;
 }
+.rounded-start-0 {
+    border-bottom-left-radius: $border-radius !important;
+}
+.rounded-end-0 {
+    border-bottom-left-radius: $border-radius !important;
+}
 .sw-hanging-info {
     margin-top: -4px;
 }
@@ -73,6 +79,34 @@ $nav-tabs-border-radius: 0; //nav tab border radius
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
 }
+.dark-info {
+    background-color: $cyan-600 !important;
+}
+.darker-info {
+    background-color: $cyan-700 !important;
+}
 .sw-footer {
     min-height: 80px;
 }
+// X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {  
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+    .rounded-end-0 { border-bottom-right-radius: 0px !important; }
+    .rounded-start-0 { border-bottom-left-radius: 0px !important; }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {  }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {  }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {  }

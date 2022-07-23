@@ -7,7 +7,8 @@ import _ from "lodash";
 
 class ManParse {
     constructor(manual) {
-        this.manual = manual;
+        this.manual = manual; 
+        this.icdchap = /^[IVX]{1,5}$/gmi;
     }
     codeRubric = (data, string) => { 
             return data && Array.isArray(data.Rubric) ? 
@@ -33,9 +34,28 @@ class ManParse {
         const Code = this.manual.icf.Class.find(element => element.code === string);
         return Code ? Code : undefined;
     };
-    parseicdCode = (string) => {
-        const Code = this.manual.icd.find(element => element.code === string.toUpperCase());
-        return Code ? Code : undefined;
+    parseicdCode = (string, crop = false) => {
+        //we have to do some checks before returning to fallback to the last correct code
+        let counter = 4;
+        let cropStr = string;
+        let code = {};
+        
+        if (crop === true) {
+            for (let i = 0; i < counter; i++){
+                code = this.manual.icd.find(element => element.code === cropStr.toUpperCase());   
+                if (!_.isEmpty(code)) {
+                    code.cropres = cropStr;
+                    //console.log('code found: ', code);
+                } else {
+                    cropStr = cropStr.slice(0, -1);
+                    //console.log('code cropped to: ', cropStr);
+                }
+            }
+        } else {
+            code = this.manual.icd.find(element => element.code === cropStr.toUpperCase()); 
+        } 
+        //const Code = this.manual.icd.find(element => element.code === string.toUpperCase());
+        return code ? code : undefined;
     }
     geticfSubCodes = (array) => {
                 const SubCodes = [];
@@ -47,7 +67,7 @@ class ManParse {
     geticdSubCodes = (array) => {
                 const SubCodes = [];
                 array.map( (element, index) => {  
-                            SubCodes[index] = {code: element, title: this.icdTitle(element, 300)};
+                            SubCodes[index] = {code: element, title: this.icdTitle(element, 300).title};
                         });
                 return SubCodes;
             };             
@@ -59,34 +79,84 @@ class ManParse {
         return pTitle ? pTitle.length > charLimit ? 
                         pTitle.substring(0, charLimit) + elipsis : pTitle : '';
     }
-    icdTitle = (string, charLimit = 40, elipsis = '...') => {
-        let pData = this.parseicdCode(string) ? this.parseicdCode(string) : '';
+    /*
+     * method to find the modifier digit text. needs the full data object returned by parseicdCode()
+     * when parsing the first part of the parent block (icd-10 parent block: fxx-fyy, needed is fxx).
+     * 
+     * pastDotPart is the part of the icd code past the dot to look up, .xx (including the dot).
+     * 
+     * Also needed is to tell if digit four or five is wanted, defaults to 4
+     * 
+     * automatically checks if data rubric is an array or an object and returns accordingly
+     */
+    icdModifierText = ( data, pastDotPart, digit = 4 ) => {
+        const digitStr = digit === 4 ? '4.' : digit === 5 ? '5.' : '4.';
+        const modBase = this.icdModGroup(digitStr, _.find(data.property, ['code', 'parent']).valueCode);
+        const modText = modBase ? !_.isEmpty(modBase.four) && digit === 4 ? modBase.four.sub.find(element => element.code === pastDotPart.substring(0,2)) : 
+                        !_.isEmpty(modBase.five) && digit === 5 ? modBase.five.sub.find(element => element.code === pastDotPart.substring(2,3)) : '' : '';
+        return modText ? _.isArray(modText.Rubric) ? modText.Rubric.find(element => element.kind === "preferred").Label['#text'] : modText.Rubric.Label['#text'] : '';    
+    }
+    icdTitle = (string, charLimit = 40, icdchapter = false, elipsis = '...') => {
+        
+        //optimize string for parsing to allow Zusatzkennzeichen :-)
+        let parseStr = icdchapter === false ? this.isICDSpecChar(string.slice(-1)) === true ? string.slice(0, -1) : string : string;
+        
+        let pData = this.parseicdCode(parseStr) ? this.parseicdCode(parseStr) : '';
         const frontDotPart = string.substring(0,3);
         
         if( string.length > 4 && pData === '' && string.charAt(3) === '.') {
             const pastDotPart = string.substring(3);
             if(string.length === 5) {   
                 pData = this.parseicdCode(frontDotPart);
-                //get modifier group
-                const pModGroup = this.icdModGroup('4.', _.find(pData.property, ['code', 'parent']).valueCode)
-                        .four.sub.find(element => element.code === pastDotPart.substring(0,2))
-                        .Rubric.find(element => element.kind === "preferred").Label['#text'];
+                //get modifier group text
+                const pModGroup = this.icdModifierText(pData, pastDotPart, 4);
+
                 pData.modText = pModGroup ? pModGroup : '';
                 pData.modCode = pModGroup ? pastDotPart.substring(0,2) : '';
+                //reset possible fifth digit
+                pData.modFText = '';
+                pData.modFCode = '';
                 console.log('Viersteller (' + string.length + ' | ' + frontDotPart + ' | ' + pastDotPart + ')', pData.modText);
             }
-            if(string.length === 6) {
+            //also check for additional flags and special chars, like a traling g, v, or so - to prevent code invalidation
+            if( string.length === 6 || (string.length === 7 && this.isICDSpecChar(string.substring(6,7))) ) {
                 //TODO: work this
-                console.log('Fünfsteller (' + string.length + ' | ' + pastDotPart + ')');
+                const SplitPastDotPart = { four: pastDotPart.substring(0,2), five: pastDotPart.substring(2,3) };
+                //first, check if we find digit 4 - if not, code is invalid anyway
+                pData = this.parseicdCode(frontDotPart);
+                //get modifier group text
+                const pModGroup = this.icdModifierText(pData, pastDotPart, 4);                
+                //second, check for digit 5
+                const pModFive = this.icdModifierText(pData, pastDotPart, 5); 
+
+                pData.modText = pModGroup ? pModGroup : '';
+                pData.modCode = pModGroup ? SplitPastDotPart.four : ''; 
+                pData.modFText = pModFive ? pModFive : '';
+                pData.modFCode = pModFive ? SplitPastDotPart.five : '';
+                console.log('Fünfsteller (' + string.length + ' | ' + pastDotPart + 
+                        ') , Splitted: Four: ' + SplitPastDotPart.four + ', ' + pData.modText +
+                        ', Five: ' + SplitPastDotPart.five + ', ' + pData.modFText );
             }
-            if(String.length === 7) {
-                console.log('Fünfsteller + Kennzeichen (' + string.length + ' | ' + pastDotPart + ')');
-            }
-        }
-        
+        }      
         return pData ? pData.display.length > charLimit ?
-                { title: pData.display.substring(0, charLimit) + elipsis, modtext: pData.modText ? pData.modText : '', modcode: pData.modCode ? pData.modCode : '' } : 
-                { title: pData.display, modtext: pData.modText ? pData.modText : '', modcode: pData.modCode ? pData.modCode : '' } : '';
+                { title: pData.display.substring(0, charLimit) + elipsis, 
+                  modtext: pData.modText ? pData.modText : '', 
+                  modcode: pData.modCode ? pData.modCode : '',
+                  modftext: pData.modFText ? pData.modFText : '',
+                  modfcode: pData.modFCode ? pData.modFCode : '' } : 
+                { title: pData.display, 
+                  modtext: pData.modText ? pData.modText : '', 
+                  modcode: pData.modCode ? pData.modCode : '',
+                  modftext: pData.modFText ? pData.modFText : '',
+                  modfcode: pData.modFCode ? pData.modFCode : '' } : '';
+    }
+    icdaddFlags = (string) => {
+        //TODO: put additional flags, special char parsing in here this.manual.icdAdd.find( (element, index) => index === lastChar )
+        const lastChar = string.slice(-1);
+        return this.isICDSpecChar( lastChar ) && string[string.length - 2] !== '.' ? { text: this.manual.icdAdd[lastChar.toUpperCase()], char: lastChar } : {};
+    }    
+    isICDSpecChar = ( char ) => {
+        return (/[GVAZRLB]/gmi).test( char );
     }
     icdResolveMod = (stringMod, stringCode) => {
         const resModifier = _.find(this.manual.icdMod.ModifierClass, { 'code': stringMod, 'modifier': stringCode });
@@ -94,11 +164,11 @@ class ManParse {
     }
     icdModDigits = (string) => {
         const digits = {};
-        string.includes('4.') !== undefined ? digits.four = true : digits.four = false;
-        string.includes('5.') !== undefined ? digits.five = true : digits.five = false;
+        string.includes('4.') === true ? digits.four = true : digits.four = false;
+        string.includes('5.') === true ? digits.five = true : digits.five = false;
         return digits;
     }
-    icdModifiers = (string) => {
+    icdModifiers = (string, hiDigit = undefined) => {
         const Modifiers = this.manual.icdMod.Modifier.find( element => element.code.includes(string));
         const ModElement = {};
         
@@ -109,8 +179,11 @@ class ManParse {
             ModElement.code = Modifiers.code;
             //resolve subcodes of modifiers
             ModElement.sub = [];
-            Modifiers.SubClass.map( (element, index) => ModElement.sub[index] = this.icdResolveMod(element.code, ModElement.code) );
+            Modifiers.SubClass.map( (element, index) => { ModElement.sub[index] = this.icdResolveMod(element.code, ModElement.code); } );
+            //apply highlight if have to
+            ModElement.hilite = !_.isEmpty(hiDigit) ? hiDigit : '';
         }
+        console.log('Prepared String: '+ hiDigit, ModElement);
         return ModElement;
     }
     icdGetValidModifierCode = (string, interval = 15) => {
@@ -131,36 +204,44 @@ class ManParse {
         return undefined;
     }
     //stringMod = modLink string, stringSuper = Super Class block, for ex. E10-E14, stringCode = ICD-10 Code 
-    icdModGroup = (stringMod, stringSuper) => {
+    icdModGroup = (stringMod, stringSuper, stringCode) => {
         const digits = this.icdModDigits(stringMod);
         const superFirst = stringSuper.substr(0,3);
+        const digitVals = stringCode !== undefined && stringCode.includes('.') ? { four: stringCode.length === 5 ? stringCode.slice(-1) : stringCode[stringCode.length - 2], 
+                                                                                   five: stringCode.length === 6 ? stringCode.slice(-1) : undefined } : undefined;
         const modifierElement = {};
         
         if ( digits.four === true ){
             //string for modifier retrieval
-            const needle = this.icdModifiers( this.icdGetValidModifierCode(superFirst + '_4') );
+            const needle = this.icdModifiers( this.icdGetValidModifierCode(superFirst + '_4'), digitVals !== undefined && digitVals.four );
             modifierElement.four = needle;
-        }
+        } else { modifierElement.four = {} };
         if ( digits.five === true ){
-            const needle = this.icdModifiers( superFirst + '_5' );
+            const needle = this.icdModifiers( superFirst + '_5', digitVals !== undefined && digitVals.five );
             modifierElement.five = needle;
-        }
+        } else { modifierElement.five = {} }
         return modifierElement;
     }
     icdElement(string) {
         const Element = {};
-        const cData = string && this.parseicdCode(string) ? this.parseicdCode(string) : '';
+        
+        //before parsing, prepare string
+        let prepStr = !this.icdchap.test(string) ? this.isICDSpecChar(string.slice(-1)) ? string.slice(0, -1) : string : string;
+        const cSpecData = this.isICDSpecChar(string.slice(-1)) ? ( string ? this.icdaddFlags(string) : undefined ) : undefined;
+        
+        const cData = prepStr && this.parseicdCode(prepStr, true) ? this.parseicdCode(prepStr, true) : '';
         
         if(cData) {
+            Element.cspecChar = cSpecData;
             Element.ctype = 'icd-10';
-            Element.cname = cData.code;
+            Element.cname = string.toUpperCase();
             Element.ctitle = cData.display;
             Element.cdef = cData.definition;
             Element.ckind = _.find(cData.property, ['code', 'kind']).valueCode;
             
             if(cData.property.find(element => element.code === 'parent')) {
                 Element.csuper = _.find(cData.property, ['code', 'parent']).valueCode;
-                Element.csuptxt = this.icdTitle(Element.csuper, 300);
+                Element.csuptxt = this.icdchap.test(Element.csuper) ? this.icdTitle(Element.csuper, 300, true).title : this.icdTitle(Element.csuper, 300, false).title;
             }
             //Handle children
             Element.csub = [];
@@ -178,9 +259,23 @@ class ManParse {
             Element.cmodifiers = [];
             if(Element.cmodLink) {
                 //we have a modifier link, so we have to get the modifiers acoording to the digits
-                Element.cmodifiers = this.icdModGroup(Element.cmodLink, Element.csuper);                
+                Element.cmodifiers = this.icdModGroup(Element.cmodLink, Element.csuper, prepStr);   
+                //chop of digit 5 from code name if not allowed and if not a zusatzkennzeichen
+                if (this.icdModDigits(Element.cmodLink).five === false) {   
+                    //crop name to correct length if overtyped
+                    Element.cname = this.icdCropInvalidDigits(Element.cname);
+                };
             } else {
-                //TODO: Check fourth and fifth digit which are NOT identifiable via modifier link
+                //TODO: probably Check fourth and fifth digit which are NOT identifiable via modifier link
+                Element.cmodifiers = {};
+                //crop name to correct length if overtyped - check for chapter
+                if (!cData.code.includes('.')) {
+                    const specTrail = this.isICDSpecChar(Element.cname.slice(-1)) ? Element.cname.slice(-1) : '';
+                    Element.cname = cData.code + specTrail;
+
+                } else {
+                    Element.cname = this.icdCropInvalidDigits(Element.cname);
+                }               
             }
             
         } else {
@@ -191,6 +286,16 @@ class ManParse {
         console.log('ICD-10 Data: ', cData);
         console.log('ICD-10 Element: ', Element);
         return Element;
+    }
+    icdCropInvalidDigits = (string) => {
+        if (string.length === 7) {
+            return string.slice(0, 5) + string.slice(6);
+        } else if (string.length === 6) {
+            if (!this.isICDSpecChar(string.slice(-1))) {
+                return string.slice(0, 5) + string.slice(6);
+            }
+        } 
+        return string;
     }
     icfElement(string) {
         const Element = {};
@@ -225,6 +330,12 @@ class ManParse {
             Element.cerrstr = string === undefined ? 'VOID' : '';
             Element.cerror = string + ' ist kein gültiges Element der ICF.';
         }
+        return Element;
+    }
+    parseError() {
+        const Element = {};
+        Element.cerrstr = '';
+        Element.cerror = 'Kein Element gefunden.';  
         return Element;
     }
 }

@@ -11,6 +11,7 @@ import './App.scss';
 //internal ressources and compomnents
 import SWMainNav from './components/SWMainNav.jsx';
 import swSmallLogo from './img/logo/logo_sw_small.png';
+import swLogo from './img/logo/socialwerks_logo.svg'; //-> TODO: Make this work
 //routes
 import Toolbox from "./routes/Toolbox";
 import Updates from "./routes/Updates";

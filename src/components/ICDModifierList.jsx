@@ -16,8 +16,8 @@ class ICDModifierList extends React.Component {
                         <div>
                             <ul className={ 'list-group list-group-flush' + ( this.props.className ? ' ' + this.props.className : '' ) }>
                                 { this.props.data.map((element, index) => (
-                                                        <li className="list-group-item" key={ index }>
-                                                            <span className="bg-secondary text-white p-1 rounded me-2">{ element.code }</span>
+                                                        <li className={ 'list-group-item' + (index === parseInt(this.props.hilite) ? ' dark-info text-white hilite' : '') } key={ index }>
+                                                            <span className={ (index === parseInt(this.props.hilite) ? 'bg-white text-dark ' : 'bg-secondary text-white ') + 'p-1 rounded me-2' }>{ element.code }</span>
                                                             { _.isArray(element.Rubric) ? element.Rubric.map(element => element.kind === "preferred" ? element.Label['#text'] : '') :
                                                                     element.Rubric.Label['#text'] ? element.Rubric.Label['#text'] : '' }                                                                                                      
                                                         </li>

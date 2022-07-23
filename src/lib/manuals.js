@@ -14,6 +14,15 @@ const manualsWHO = {};
 manualsWHO.icf = icfJSON.ClaML;
 manualsWHO.icd = icdJSON.concept; //-> start at node concept parsing
 manualsWHO.icdMod = icdModJSON;
+manualsWHO.icdAdd = {   
+                        "R": "Rechts",
+                        "L": "Links",
+                        "B": "Beidseitig",
+                        "A": "Ausgeschlossene Diagnose",
+                        "G": "Gesicherte Diagnose",
+                        "V": "Verdachtsdiagnose",
+                        "Z": "Zustand nach der betreffenden Diagnose"
+                    };
 
 
 export default manualsWHO;
