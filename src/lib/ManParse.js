@@ -269,13 +269,19 @@ class ManParse {
                 //TODO: probably Check fourth and fifth digit which are NOT identifiable via modifier link
                 Element.cmodifiers = {};
                 //crop name to correct length if overtyped - check for chapter
-                if (!cData.code.includes('.')) {
-                    const specTrail = this.isICDSpecChar(Element.cname.slice(-1)) ? Element.cname.slice(-1) : '';
-                    Element.cname = cData.code + specTrail;
-
+                if (this.icdchap.test(Element.cname) === true) {
+                    if( !cData.code.includes('.') ) {
+                        const specTrail = this.isICDSpecChar(Element.cname.slice(-1)) ? Element.cname.slice(-1) : '';
+                        Element.cname = cData.code + specTrail;
+                        
+                    }
+                    else {
+                        Element.cname = this.icdCropInvalidDigits(Element.cname);
+                    }
                 } else {
-                    Element.cname = this.icdCropInvalidDigits(Element.cname);
-                }               
+                    console.log('CHAPTER');
+                }
+                
             }
             
         } else {
