@@ -84,6 +84,7 @@ export class SWCodeSearch extends React.Component {
                                      this.queryStr.get("icd") === "true" ? this.icdElemType(segArray[1]) : '',
                                 code: segArray[1] ? segArray[1].toLowerCase() : ''
                             });
+                            //TODO: Correct state.code above to fix input
             }
         } 
         console.log('URL path: ' + this.pathURL, ' Query String: ICF: ' + this.queryStr.get("icf") + ' ICD-10: ' + this.queryStr.get("icd"));
