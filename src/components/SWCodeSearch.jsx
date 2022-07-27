@@ -59,6 +59,9 @@ export class SWCodeSearch extends React.Component {
                 if (!this.queryStr.get("icf") || !this.queryStr.get("icd")) {
                     //update query string
                     this.queryStr = new URLSearchParams(document.location.search);
+                    //update code string here --> fixes problem with input field issues
+                    const segArray = this.pathURL.substring(1).split("/");
+                    this.setState({ code: segArray[1] ? segArray[1].toLowerCase() : '' });
                 }
                 console.log('Updated from Child - state: ' + this.state.cupdate + ', query str icf: ' + this.queryStr.get("icf") + ', query str icd10: ' + this.queryStr.get("icd"));
             });     
@@ -81,10 +84,8 @@ export class SWCodeSearch extends React.Component {
                                 codetitle: this.queryStr.get("icf") === "true" ? this.parser.icfTitle(segArray[1]) :
                                            this.queryStr.get("icd") === "true" ? /^[IVX]{1,5}$/gmi.test(segArray[1]) ? this.parser.icdTitle(segArray[1], 40, true).title : this.parser.icdTitle(segArray[1]).title : '',
                                 msg: this.queryStr.get("icf") === "true" ? this.icfElemType(segArray[1]) : 
-                                     this.queryStr.get("icd") === "true" ? this.icdElemType(segArray[1]) : '',
-                                code: segArray[1] ? segArray[1].toLowerCase() : ''
+                                     this.queryStr.get("icd") === "true" ? this.icdElemType(segArray[1]) : ''
                             });
-                            //TODO: Correct state.code above to fix input
             }
         } 
         console.log('URL path: ' + this.pathURL, ' Query String: ICF: ' + this.queryStr.get("icf") + ' ICD-10: ' + this.queryStr.get("icd"));
@@ -243,7 +244,7 @@ export class SWCodeSearch extends React.Component {
                                                 <StatusBadge className={ !_.isEmpty(this.modobj.text) ? 'rounded-end-0' : '' } BadgeData={ "info:" + this.state.codetitle }/>
                                             </span> 
                                             <span className="d-inline d-md-none ms-2">
-                                                <StatusBadge BadgeData={ "info:" + this.state.code.substring(0,3).toUpperCase() }/>
+                                                <StatusBadge BadgeData={ "info:" + ( this.state.icd10 === true ? this.state.code.substring(0,3).toUpperCase() : this.state.code ) }/>
                                             </span>    
                                         </React.Fragment>
                                     }

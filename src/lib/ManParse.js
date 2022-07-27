@@ -266,7 +266,7 @@ class ManParse {
                     Element.cname = this.icdCropInvalidDigits(Element.cname);
                 };
             } else {
-                //TODO: probably Check fourth and fifth digit which are NOT identifiable via modifier link
+                //TODO: FIX some coding issues here
                 Element.cmodifiers = {};
                 //crop name to correct length if overtyped - check for chapter
                 if (this.icdchap.test(Element.cname) === true) {
