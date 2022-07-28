@@ -44,7 +44,7 @@ class App extends React.Component {
                   innerClass="pt-2"
                   toggleClass="border-0 pb-0 pt-2"
                 />
-                <main className="bg-white">
+                <main id="sw_main_content" className="bg-white">
                     <div className="container">
                             <Routes>                
                                 <Route path="/" element={ < Toolbox / > } />

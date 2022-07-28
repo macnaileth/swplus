@@ -48,6 +48,9 @@ $nav-tabs-border-radius: 0; //nav tab border radius
 @import "./scss/bootstrap/bootstrap";
 
 //css classes
+#sw_main_content {
+    min-height: 500px;
+}
 .navbar-toggler-icon:hover, .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
     background-color: var(--bs-primary);
     border-radius: .25rem;
@@ -88,6 +91,7 @@ $nav-tabs-border-radius: 0; //nav tab border radius
 .sw-footer {
     min-height: 80px;
 }
+
 // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
 

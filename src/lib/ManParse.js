@@ -257,7 +257,7 @@ class ManParse {
             Element.cmodLink = cData.property.find(element => element.code === 'modifierlink') ? _.find(cData.property, ['code', 'modifierlink']).valueString : '';
             //handle 4. 5. digit e.g. .xx of the code if needed
             Element.cmodifiers = [];
-            if(Element.cmodLink) {
+            if(Element.cmodLink !== '') {
                 //we have a modifier link, so we have to get the modifiers acoording to the digits
                 Element.cmodifiers = this.icdModGroup(Element.cmodLink, Element.csuper, prepStr);   
                 //chop of digit 5 from code name if not allowed and if not a zusatzkennzeichen
@@ -266,21 +266,21 @@ class ManParse {
                     Element.cname = this.icdCropInvalidDigits(Element.cname);
                 };
             } else {
-                //TODO: FIX some coding issues here
                 Element.cmodifiers = {};
                 //crop name to correct length if overtyped - check for chapter
-                if (this.icdchap.test(Element.cname) === true) {
-                    if( !cData.code.includes('.') ) {
-                        const specTrail = this.isICDSpecChar(Element.cname.slice(-1)) ? Element.cname.slice(-1) : '';
-                        Element.cname = cData.code + specTrail;
-                        
-                    }
-                    else {
-                        Element.cname = this.icdCropInvalidDigits(Element.cname);
-                    }
+                console.log('Element Name (no modifiers): ', Element.cname);  
+                if (!Element.cname.includes('.')) {
+                    //TODO: still have to fix this conditional to work
+                    let specTrail = this.isICDSpecChar(Element.cname.slice(-1)) && this.icdchap.test(Element.cname) ? Element.cname.slice(-1) : '';        
+                    
+                    specTrail = specTrail.toLowerCase() === 'v' && /^\d+$/.test(Element.cname[Element.cname.length - 2]) ? specTrail : '';
+                    
+                    console.log('Element Name cutted (Spec Trail: ' + specTrail + ', Sliced: ' + Element.cname.slice(-1) + ', Zusatzkennzeichen? ' + this.isICDSpecChar(Element.cname.slice(-1)) +'): ', Element.cname);  
+                    Element.cname = cData.code + specTrail;
+
                 } else {
-                    console.log('CHAPTER');
-                }
+                    Element.cname = this.icdCropInvalidDigits(Element.cname);
+                }                    
                 
             }
             
