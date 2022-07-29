@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 
 //internal ressources
 import ICDModifierList from '../components/ICDModifierList';
+import Icons from '../lib/Icons';
 
 class SWCSElement extends React.Component {
     
@@ -47,7 +48,12 @@ class SWCSElement extends React.Component {
                         <div className="row">                     
                             <div className={ "col-12 col-md-3 " + (!this.props.data.cerror ? 'bg-dark' : 'bg-warning') + " text-light p-2 d-flex justify-content-start justify-content-md-between" }>
                                 <div>
-                                    <h2 className="mb-0 mb-md-1">{ !this.props.data.cerror ? this.props.data.cname : 'Fehler' }</h2>
+                                <h2 className="mb-0 mb-md-1">{ !this.props.data.cerror ? 
+                                                                <React.Fragment>
+                                                                    <span className="code-text">{ this.props.data.cname }</span>
+                                                                    <span className="icon icon-copy ms-2">{ Icons.copy }</span> 
+                                                                </React.Fragment>
+                                                                : 'Fehler' }</h2>
                                     {!this.props.data.cerror && this.props.data.ckind !== 'chapter' && this.props.data.ctype === 'icd-10' ?
                                         <React.Fragment>
                                             { !_.isEmpty(this.props.data.cspecChar) ? 

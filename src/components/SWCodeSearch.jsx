@@ -13,6 +13,7 @@ import _ from "lodash";
 import StatusBadge from '../components/StatusBadge';
 import ManParse from '../lib/ManParse';
 import SwCSElement from '../components/SWCSElement';
+import Icons from '../lib/Icons';
 
 //json manuals
 import manualsWHO from '../lib/manuals';
@@ -229,9 +230,9 @@ export class SWCodeSearch extends React.Component {
                                         variant="primary" 
                                         type="submit"
                                         id="sw_icd_icf_button" 
-                                        className={ this.state.icd10 || this.state.icf ? '' : 'disabled' }
+                                        className={ 'pb-0 pe-2' + (this.state.icd10 || this.state.icf ? '' : 'disabled') }
                                         onClick={ (event) => { this.handleSubmitCode('LOCAL', event); } }>
-                                        { this.props.buttonText === undefined ? 'Go!' : this.props.buttonText }
+                                        { Icons.search }
                                     </Button>
                                 </InputGroup> 
                                 <div className="sw-hanging-info text-center">

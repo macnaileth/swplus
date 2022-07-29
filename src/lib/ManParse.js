@@ -120,7 +120,6 @@ class ManParse {
             }
             //also check for additional flags and special chars, like a traling g, v, or so - to prevent code invalidation
             if( string.length === 6 || (string.length === 7 && this.isICDSpecChar(string.substring(6,7))) ) {
-                //TODO: work this
                 const SplitPastDotPart = { four: pastDotPart.substring(0,2), five: pastDotPart.substring(2,3) };
                 //first, check if we find digit 4 - if not, code is invalid anyway
                 pData = this.parseicdCode(frontDotPart);
@@ -269,19 +268,12 @@ class ManParse {
                 Element.cmodifiers = {};
                 //crop name to correct length if overtyped - check for chapter
                 console.log('Element Name (no modifiers): ', Element.cname);  
-                if (!Element.cname.includes('.')) {
-                    //TODO: still have to fix this conditional to work
-                    let specTrail = this.isICDSpecChar(Element.cname.slice(-1)) && this.icdchap.test(Element.cname) ? Element.cname.slice(-1) : '';        
-                    
-                    specTrail = specTrail.toLowerCase() === 'v' && /^\d+$/.test(Element.cname[Element.cname.length - 2]) ? specTrail : '';
-                    
-                    console.log('Element Name cutted (Spec Trail: ' + specTrail + ', Sliced: ' + Element.cname.slice(-1) + ', Zusatzkennzeichen? ' + this.isICDSpecChar(Element.cname.slice(-1)) +'): ', Element.cname);  
-                    Element.cname = cData.code + specTrail;
-
-                } else {
-                    Element.cname = this.icdCropInvalidDigits(Element.cname);
-                }                    
-                
+                    if (Element.cname !== cData.code) {
+                        Element.cname = this.icdCropInvalidDigits( cData.code + Element.cspecChar.char.toUpperCase() );
+                    } else {
+                        Element.cname = this.icdCropInvalidDigits(Element.cname); 
+                    }
+                console.log('Element Name (modifiers): ', Element.cname);             
             }
             
         } else {

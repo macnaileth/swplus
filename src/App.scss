@@ -51,6 +51,17 @@ $nav-tabs-border-radius: 0; //nav tab border radius
 #sw_main_content {
     min-height: 500px;
 }
+#sw_icd_icf_button svg {
+    height: 26px;
+}
+h2 .icon svg {
+    height: 26px;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(177deg) brightness(105%) contrast(102%);
+}
+h2 .icon:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
 .navbar-toggler-icon:hover, .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
     background-color: var(--bs-primary);
     border-radius: .25rem;
