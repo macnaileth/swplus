@@ -13,6 +13,7 @@ import _ from "lodash";
 import StatusBadge from '../components/StatusBadge';
 import ManParse from '../lib/ManParse';
 import SwCSElement from '../components/SWCSElement';
+import BookChapDDown from '../components/BookChapDDown';
 import Icons from '../lib/Icons';
 
 //json manuals
@@ -219,13 +220,15 @@ export class SWCodeSearch extends React.Component {
                                 <InputGroup className="shadow-sm">                  
                                     <Form.Control        
                                         id="sw-codesearch"
+                                        className="border-end-0 border"
                                         placeholder="ICD-10 oder ICF Code"
                                         aria-label="ICD-10 oder ICF Code"
                                         aria-describedby="sw_icd_icf_input"
                                         maxLength="9"
                                         value={ this.state.code }
                                         onChange={ (event) => { this.handleCodeInput(event); } }
-                                    />
+                                    />     
+                                    <BookChapDDown id="sw_chapter_open"/>
                                     <Button 
                                         variant="primary" 
                                         type="submit"
@@ -233,8 +236,8 @@ export class SWCodeSearch extends React.Component {
                                         className={ 'pb-0 pe-2' + (this.state.icd10 || this.state.icf ? '' : 'disabled') }
                                         onClick={ (event) => { this.handleSubmitCode('LOCAL', event); } }>
                                         { Icons.search }
-                                    </Button>
-                                </InputGroup> 
+                                    </Button> 
+                                </InputGroup>                                   
                                 <div className="sw-hanging-info text-center">
                                     { this.state.icd10 && <StatusBadge BadgeData="ICD-10"/> }
                                     { this.state.icf && <StatusBadge BadgeData="ICF"/> }

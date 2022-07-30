@@ -11,6 +11,8 @@ import Button from 'react-bootstrap/Button';
 
 //internal ressources
 import ICDModifierList from '../components/ICDModifierList';
+import CClipButton from '../components/CClipButton';
+
 import Icons from '../lib/Icons';
 
 class SWCSElement extends React.Component {
@@ -50,8 +52,8 @@ class SWCSElement extends React.Component {
                                 <div>
                                 <h2 className="mb-0 mb-md-1">{ !this.props.data.cerror ? 
                                                                 <React.Fragment>
-                                                                    <span className="code-text">{ this.props.data.cname }</span>
-                                                                    <span className="icon icon-copy ms-2">{ Icons.copy }</span> 
+                                                                    <span className="code-text">{ this.props.data.cname }</span>  
+                                                                    <CClipButton id="sw_copy_code" className="icon-white" masterstring={ this.props.data.cname }/>                
                                                                 </React.Fragment>
                                                                 : 'Fehler' }</h2>
                                     {!this.props.data.cerror && this.props.data.ckind !== 'chapter' && this.props.data.ctype === 'icd-10' ?
@@ -79,7 +81,12 @@ class SWCSElement extends React.Component {
                                 </div>
                             </div> 
                             <div className="col-12 col-md-9 p-2">
-                            <h2>{ !this.props.data.cerror ? <span className="sw-h2-code">{ this.props.data.ctitle }</span> : 'Leider nichts gefunden!' }</h2>                          
+                            <h2>{ !this.props.data.cerror ? 
+                                    <React.Fragment>
+                                        <span className="sw-h2-code">{ this.props.data.ctitle }</span> 
+                                        <span className="icon icon-add icon-black ms-1">{ Icons.addlist }</span> 
+                                    </React.Fragment>
+                                    : 'Leider nichts gefunden!' }</h2>                          
                                 { this.props.data.cerror && 
                                         <React.Fragment>
                                             <p>

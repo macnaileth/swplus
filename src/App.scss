@@ -51,12 +51,17 @@ $nav-tabs-border-radius: 0; //nav tab border radius
 #sw_main_content {
     min-height: 500px;
 }
-#sw_icd_icf_button svg {
+#sw_icd_icf_button svg, h2 .icon svg, .icon-btn svg {
     height: 26px;
 }
-h2 .icon svg {
-    height: 26px;
+.icon-white {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(177deg) brightness(105%) contrast(102%);
+}
+.icon-btn:hover, .icon-black {
+    filter: invert(0%) sepia(94%) saturate(42%) hue-rotate(99deg) brightness(90%) contrast(100%);    
+}
+.icon-secondary {
+    filter: invert(64%) sepia(4%) saturate(112%) hue-rotate(155deg) brightness(96%) contrast(96%)
 }
 h2 .icon:hover {
     cursor: pointer;
