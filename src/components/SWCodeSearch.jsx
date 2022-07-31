@@ -228,7 +228,10 @@ export class SWCodeSearch extends React.Component {
                                         value={ this.state.code }
                                         onChange={ (event) => { this.handleCodeInput(event); } }
                                     />     
-                                    <BookChapDDown id="sw_chapter_open"/>
+                                    <BookChapDDown 
+                                        id="sw_chapter_open"
+                                        chapters={ [ manualsWHO.icfComps, manualsWHO.icdChaps ] }
+                                    />
                                     <Button 
                                         variant="primary" 
                                         type="submit"

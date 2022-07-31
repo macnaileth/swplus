@@ -63,6 +63,12 @@ $nav-tabs-border-radius: 0; //nav tab border radius
 .icon-secondary {
     filter: invert(64%) sepia(4%) saturate(112%) hue-rotate(155deg) brightness(96%) contrast(96%)
 }
+.icon-info {
+    filter: invert(78%) sepia(44%) saturate(5507%) hue-rotate(135deg) brightness(99%) contrast(84%);
+}
+.icon-dark {
+    filter: invert(29%) sepia(3%) saturate(473%) hue-rotate(219deg) brightness(91%) contrast(89%);
+}
 h2 .icon:hover {
     cursor: pointer;
     opacity: 0.6;

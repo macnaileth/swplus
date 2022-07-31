@@ -53,7 +53,9 @@ class SWCSElement extends React.Component {
                                 <h2 className="mb-0 mb-md-1">{ !this.props.data.cerror ? 
                                                                 <React.Fragment>
                                                                     <span className="code-text">{ this.props.data.cname }</span>  
-                                                                    <CClipButton id="sw_copy_code" className="icon-white" masterstring={ this.props.data.cname }/>                
+                                                                    <span className="ms-1 border-start border-3">
+                                                                        <CClipButton id="sw_copy_code" className="icon-white ms-1" masterstring={ this.props.data.cname }/> 
+                                                                    </span>
                                                                 </React.Fragment>
                                                                 : 'Fehler' }</h2>
                                     {!this.props.data.cerror && this.props.data.ckind !== 'chapter' && this.props.data.ctype === 'icd-10' ?

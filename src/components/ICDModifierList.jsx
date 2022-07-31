@@ -1,5 +1,5 @@
 /**
- * StatusBadge React Component: Builds a Badge based on data entered
+ * ICD Modifier list React Component: Builds a List of ICD Modifiers based on data entered
  */
 //external ressources
 import React from 'react';
