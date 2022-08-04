@@ -64,6 +64,8 @@ export class SWCodeSearch extends React.Component {
                     //update code string here --> fixes problem with input field issues
                     const segArray = this.pathURL.substring(1).split("/");
                     this.setState({ code: segArray[1] ? segArray[1].toLowerCase() : '' });
+                } else {
+                    console.log('all goood child update!');
                 }
                 console.log('Updated from Child - state: ' + this.state.cupdate + ', query str icf: ' + this.queryStr.get("icf") + ', query str icd10: ' + this.queryStr.get("icd"));
             });     
@@ -231,6 +233,7 @@ export class SWCodeSearch extends React.Component {
                                     <BookChapDDown 
                                         id="sw_chapter_open"
                                         chapters={ [ manualsWHO.icfComps, manualsWHO.icdChaps ] }
+                                        handler = { this.ChildUpdateHandler }
                                     />
                                     <Button 
                                         variant="primary" 

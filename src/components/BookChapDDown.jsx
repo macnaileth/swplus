@@ -18,15 +18,20 @@ class BookChapDDown extends React.Component {
         super(props); 
         this.state = { show: false };
         this.opencloseHandle = this.opencloseHandle.bind(this);
+        this.chapLinkUpdateHandler = this.chapLinkUpdateHandler.bind(this);
         this.chapters = { icf: this.props.chapters[0], icd: this.props.chapters[1] };
     } 
     opencloseHandle = () => this.state.show === true ? this.setState({ show: false }) : this.state.show === false ? this.setState({ show: true }) : null;
+    
+    chapLinkUpdateHandler(){ 
+        this.setState({ show: false }); 
+        this.props.handler(); 
+    }; 
     
     render() {
 
         return (
                 <React.Fragment>
-                    { console.log('Chapters: ', this.chapters.icf) }
                     <OverlayTrigger
                         placement='top'
                         overlay={
@@ -39,21 +44,29 @@ class BookChapDDown extends React.Component {
                           <span className="icon-secondary icon-btn">{ Icons.book }</span>
                         </Button>
                     </OverlayTrigger>
-                    <Offcanvas placement="end" show={ this.state.show } onHide={ () => this.setState({show: false}) }>
+                    <Offcanvas className="shadow" placement="end" show={ this.state.show } onHide={ () => this.setState({show: false}) }>
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title>Kapitel-/Komponentenauswahl</Offcanvas.Title>
                         </Offcanvas.Header>
-                        <Offcanvas.Body>  
-                            <h3>ICD-10 Kapitel</h3>
-                            <p className="lead">
-                            Auswahl aus den insgesamt 22 Kapiteln des ICD-10 Manuals.
-                            </p>
-                            <BookChapList className="mb-5 border-bottom"data={ this.chapters.icd }/>
-                            <h3>ICF Komponenten</h3>
-                            <p className="lead">
-                            Auswahl aus den 4 Komponenten der ICF. Prsönliche Faktoren werden nicht kodiert.
-                            </p>                            
-                            <BookChapList data={ this.chapters.icf }/>
+                        <Offcanvas.Body className="px-0">
+                            <div className="px-3">
+                                <h3>ICD-10 Kapitel</h3>
+                                <p className="lead">
+                                Auswahl aus den insgesamt 22 Kapiteln des ICD-10 Manuals.
+                                </p>
+                            </div>
+                            <BookChapList 
+                                className="mb-5 border-bottom" 
+                                manualtype="icd" 
+                                data={ this.chapters.icd }
+                                handler = { this.chapLinkUpdateHandler }/>
+                            <div className="px-3">
+                                <h3>ICF Komponenten</h3>
+                                <p className="lead">
+                                Auswahl aus den 4 Komponenten der ICF. Prsönliche Faktoren werden nicht kodiert.
+                                </p> 
+                            </div>
+                            <BookChapList data={ this.chapters.icf } manualtype="icf" handler = { this.chapLinkUpdateHandler } />
                         </Offcanvas.Body>
                     </Offcanvas>
                 </React.Fragment>

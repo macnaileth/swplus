@@ -43,7 +43,8 @@ $nav-tabs-link-active-border-color: $cyan;
 $nav-tabs-link-active-bg: $cyan; //nav tab link active bg
 $nav-tabs-link-active-color: #fff; //nav tab link active color
 $nav-tabs-border-radius: 0; //nav tab border radius
-
+//list group
+$list-group-active-bg: $dark;
 //bootstrap scss ready for compilation
 @import "./scss/bootstrap/bootstrap";
 
@@ -112,6 +113,9 @@ h2 .icon:hover {
 }
 .sw-footer {
     min-height: 80px;
+}
+.chapter-list-item {
+    cursor: pointer;
 }
 
 // X-Small devices (portrait phones, less than 576px)
