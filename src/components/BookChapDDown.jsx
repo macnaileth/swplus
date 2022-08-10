@@ -66,7 +66,10 @@ class BookChapDDown extends React.Component {
                                 Auswahl aus den 4 Komponenten der ICF. Prsönliche Faktoren werden nicht kodiert.
                                 </p> 
                             </div>
-                            <BookChapList data={ this.chapters.icf } manualtype="icf" handler = { this.chapLinkUpdateHandler } />
+                            <BookChapList 
+                                data={ this.chapters.icf } 
+                                manualtype="icf" 
+                                handler = { this.chapLinkUpdateHandler } />
                         </Offcanvas.Body>
                     </Offcanvas>
                 </React.Fragment>

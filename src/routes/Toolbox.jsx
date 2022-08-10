@@ -9,6 +9,7 @@ import Tab from 'react-bootstrap/Tab';
 
 //internal ressources
 import SWCodeSearch from '../components/SWCodeSearch.jsx';
+import SWCodeContainer from '../components/SWCodeContainer.jsx';
 
 export default function Toolbox() {
   
@@ -19,19 +20,14 @@ export default function Toolbox() {
                 <h1 className="display-6 text-secondary text-center">ICD-10 - ICF Codesuche</h1>
                 <SWCodeSearch buttonText ="Suchen!" />            
             </Tab>
-            <Tab eventKey="browseICD" title="ICD-10">
-                <h1 className="display-6 text-secondary">ICD-10 durchsuchen</h1>
-                Blabla
-            </Tab>
-            <Tab eventKey="browseICF" title="ICF">
-                <h1 className="display-6 text-secondary">ICF durchsuchen</h1>
-                Blubb
-            </Tab>
             <Tab eventKey="BPSModel" title="BPSM">
                 <h1 className="display-6 text-secondary">Biopsychosoziales Modell</h1>
                 BlubberBlubb
             </Tab>            
         </Tabs>
+        <SWCodeContainer 
+            className="mt-3"
+        />
     </div>
   );
 }

@@ -59,8 +59,7 @@ export class SWCodeSearch extends React.Component {
            cupdate: true
          }, () => {
                 if (!this.queryStr.get("icf") || !this.queryStr.get("icd")) {
-                    //update query string
-                    this.queryStr = new URLSearchParams(document.location.search);
+
                     //update code string here --> fixes problem with input field issues
                     const segArray = this.pathURL.substring(1).split("/");
                     this.setState({ code: segArray[1] ? segArray[1].toLowerCase() : '' });
@@ -75,7 +74,9 @@ export class SWCodeSearch extends React.Component {
         //get uri segments
         const segArray = this.pathURL.substring(1).split("/");
         //reset modifier  
-        this.modobj = { code: '', text: '', codefive: '', textfive: '', specchar: '' };   
+        this.modobj = { code: '', text: '', codefive: '', textfive: '', specchar: '' };           
+        //update query string
+        this.queryStr = new URLSearchParams(document.location.search);
         
         if ( segArray[0] === basepath ) {
             //is it icf or icd?
@@ -289,7 +290,7 @@ export class SWCodeSearch extends React.Component {
                             </div>
                         </div>
                     </Form>
-                    <div className="row">
+                    <div className="row px-0 mx-0">
                         <div className="col mt-5">
                             { !_.isEmpty( this.state.codeobj ) && <SwCSElement handler = {this.ChildUpdateHandler} data = { this.state.codeobj } /> }
                         </div>

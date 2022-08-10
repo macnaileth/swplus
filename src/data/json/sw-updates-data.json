@@ -1,4 +1,13 @@
-[    
+[ 
+    {
+        "id": 4,
+        "category": "Update",
+        "date": "2022-08-10",
+        "title": "ICD-10 Parser implementiert & Kapitelauswahl nutzbar",
+        "content": "Vollständiges Durchsuchen von ICD-10 und ICF sind jetzt möglich. eine Kapitelauswahl wurde außerdem integriert (Buch-Icon und funktioniert. Bekannte Fehler: Kapitel V ICD-10 ist nicht zuverlässlig abrufbar.",
+        "author": "Marco",
+        "img": ""
+    },    
     {
         "id": 3,
         "category": "Update",
