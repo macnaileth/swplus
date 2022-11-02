@@ -86,7 +86,11 @@ class SWCSElement extends React.Component {
                             <h2>{ !this.props.data.cerror ? 
                                     <React.Fragment>
                                         <span className="sw-h2-code">{ this.props.data.ctitle }</span> 
-                                        <span className="icon icon-add icon-black ms-1">{ Icons.addlist }</span> 
+                                        <span className="icon icon-add icon-black ms-1"
+                                              onClick={ () => this.props.codepasser(this.props.data.cname, this.props.data.ctype) }
+                                        >
+                                            { Icons.addlist }
+                                        </span> 
                                     </React.Fragment>
                                     : 'Leider nichts gefunden!' }</h2>                          
                                 { this.props.data.cerror && 

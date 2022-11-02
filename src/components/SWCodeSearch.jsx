@@ -42,6 +42,7 @@ export class SWCodeSearch extends React.Component {
         this.handleSubmitCode = this.handleSubmitCode.bind(this);
         this.matchQURI = this.matchQURI.bind(this);
         this.didURLchange = this.didURLchange.bind(this);
+        this.containerUpdateHandler = this.containerUpdateHandler.bind(this);
         this.ChildUpdateHandler = this.ChildUpdateHandler.bind(this);
         this.icdElemType = this.icdElemType.bind(this);
         this.icfElemType = this.icfElemType.bind(this);
@@ -53,6 +54,10 @@ export class SWCodeSearch extends React.Component {
         this.queryStr = new URLSearchParams(document.location.search);
         this.modobj = {}; //modifier text - no state
         
+    }
+    containerUpdateHandler = (strCode, strDesc) => {
+        //Float this data further upward to the container and trigger state update rerender - this is just a wrapper
+        this.props.handler(strCode, strDesc); 
     }
     ChildUpdateHandler = () => {
         this.setState({
@@ -292,7 +297,7 @@ export class SWCodeSearch extends React.Component {
                     </Form>
                     <div className="row px-0 mx-0">
                         <div className="col mt-5">
-                            { !_.isEmpty( this.state.codeobj ) && <SwCSElement handler = {this.ChildUpdateHandler} data = { this.state.codeobj } /> }
+                            { !_.isEmpty( this.state.codeobj ) && <SwCSElement handler = {this.ChildUpdateHandler} data = { this.state.codeobj } codepasser = { this.containerUpdateHandler } /> }
                         </div>
                     </div>                
                 </React.Fragment>
