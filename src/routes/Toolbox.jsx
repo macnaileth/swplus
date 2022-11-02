@@ -42,7 +42,7 @@ export default function Toolbox() {
             </Tab>            
         </Tabs>
         <SWCodeContainer 
-            className={ _.isEmpty( codes.icf ) && _.isEmpty( codes.icd ) ? 'py-2' : 'py-0' }
+            className="py-2"
             selectedCodes={ codes }
         />
     </div>
