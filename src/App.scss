@@ -70,6 +70,9 @@ $list-group-active-bg: $dark;
 .icon-dark {
     filter: invert(29%) sepia(3%) saturate(473%) hue-rotate(219deg) brightness(91%) contrast(89%);
 }
+.icon-danger {
+    filter: invert(42%) sepia(26%) saturate(5355%) hue-rotate(328deg) brightness(83%) contrast(110%);
+}
 h2 .icon:hover {
     cursor: pointer;
     opacity: 0.6;
@@ -79,7 +82,7 @@ h2 .icon:hover {
     border-radius: .25rem;
     padding: .25rem;
 }
-.navbar-toggler-icon:hover {
+.navbar-toggler-icon:hover, .sw-code-list-icons .sw-help-icon:hover, .sw-code-list-icons .sw-remove-icon svg:hover  {
     opacity: 0.75;
     background-color: transparent;
 }
@@ -116,6 +119,13 @@ h2 .icon:hover {
 }
 .chapter-list-item {
     cursor: pointer;
+}
+//icd/icf container list icons
+.sw-code-list-icons .sw-help-icon svg {
+    height: 20px !important;
+}
+.sw-code-list-icons .sw-remove-icon svg {
+    height: 22px !important;
 }
 
 // X-Small devices (portrait phones, less than 576px)

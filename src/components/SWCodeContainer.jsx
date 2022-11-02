@@ -26,8 +26,16 @@ class SWCodeContainer extends React.Component {
         return (
                     <div className="p-2">
                         <h5>{ type === 'icd' ? 'ICD-10 Codes' : type === 'icf' ? 'ICF Codes' : null }</h5>
-                        <ListGroup variant="flush">
-                            { array.map((element, index) => ( <ListGroup.Item key={ index }>{ element }</ListGroup.Item> )) }
+                        <ListGroup className="sw-code-list" variant="flush">
+                            { array.map((element, index) => ( <ListGroup.Item action key={ index + '_' + element }>
+                                                                <div className="d-flex justify-content-between">
+                                                                    <div className="sw-code-list-item">{ element }</div>
+                                                                    <div className="sw-code-list-icons">
+                                                                        <span className="icon-info sw-help-icon">{ Icons.help }</span>
+                                                                        <span className="icon-danger sw-remove-icon">{ Icons.remove }</span>
+                                                                    </div>
+                                                                </div>
+                                                              </ListGroup.Item> )) }
                         </ListGroup>
                     </div>
                );

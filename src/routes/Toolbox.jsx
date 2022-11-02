@@ -37,7 +37,7 @@ export default function Toolbox() {
                 />            
             </Tab>
             <Tab eventKey="BPSModel" title="BPSM">
-                <h1 className="display-6 text-secondary">Biopsychosoziales Modell</h1>
+                <h1 className="display-6 text-secondary text-center">Biopsychosoziales Modell</h1>
                 BlubberBlubb
             </Tab>            
         </Tabs>
