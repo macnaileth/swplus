@@ -1,4 +1,24 @@
-# Getting Started with Create React App
+# Socialwerks Plus WebApp
+
+Application to search the icd-10 and icf for codes and build BPS-Models, coresets and lists.
+Toolset for social and healthcare personal specially in consulting and assesment jobs.
+
+Built on REACT, Bootstrap and SASS, using JSON icd-10 source from dotbase and converted icf xml machine
+readable version from the who.
+
+Converted data is property of the who / german bfarm.de
+
+Created using the machine-readable version of the ICD-10 by the Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM).
+
+ICF-Codes, -texts (c) World Health Organization, translated and published by the Deutsche Institut für Medizinische Dokumentation und Information (DIMDI) from the International classification of functioning, disability and health – ICF, published by the World Health Organization (WHO)
+-
+Die Erstellung erfolgt unter Verwendung der maschinenlesbaren Fassung der ICD-10 des
+Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM).
+
+ICF-Kodes, -Begriffe und -Texte © Weltgesundheitsorganisation,
+übersetzt und herausgegeben durch das Deutsche Institut für Medizinische Dokumentation und Information von der International classification of functioning, disability and health – ICF, herausgegeben durch die Weltgesundheitsorganisation
+
+### Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
