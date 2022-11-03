@@ -25,6 +25,14 @@ export default function Toolbox() {
   
       console.log('Update: ' + codes.update + ', Code State: ', codes);
   }
+  
+  const removeCodesHandler = ( strCode, strType ) => {
+    //remove data from objects
+    strType === 'icf' && setCodes( codes => ({ icf: codes.icf.filter(function (str) { return str !== strCode; }), icd: [...codes.icd] }));
+    strType === 'icd' && setCodes( codes => ({ icd: codes.icd.filter(function (str) { return str !== strCode; }), icf: [...codes.icf] }));
+    
+    console.log( 'Remove triggered for: ' + strCode + ', type: ' + strType );
+  }
     
   return (
     <div className="py-5">       
@@ -44,6 +52,7 @@ export default function Toolbox() {
         <SWCodeContainer 
             className="py-2"
             selectedCodes={ codes }
+            removeHandler={ removeCodesHandler }
         />
     </div>
   );

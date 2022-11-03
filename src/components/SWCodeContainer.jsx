@@ -32,7 +32,10 @@ class SWCodeContainer extends React.Component {
                                                                     <div className="sw-code-list-item">{ element }</div>
                                                                     <div className="sw-code-list-icons">
                                                                         <span className="icon-info sw-help-icon">{ Icons.help }</span>
-                                                                        <span className="icon-danger sw-remove-icon">{ Icons.remove }</span>
+                                                                        <span className="icon-danger sw-remove-icon"
+                                                                              onClick={ () => this.props.removeHandler( element, type ) } >
+                                                                                { Icons.remove }
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                               </ListGroup.Item> )) }
