@@ -10,6 +10,7 @@ import _ from "lodash";
 
 //internal ressources
 import Icons from '../lib/Icons';
+import IconPopover from '../components/IconPopover';
 
 class SWCodeContainer extends React.Component {
     
@@ -18,6 +19,7 @@ class SWCodeContainer extends React.Component {
         this.state = { open: false, update: 0 };
         this.opencloseHandle = this.opencloseHandle.bind(this);
         this.displayCodes = this.displayCodes.bind(this);
+        this.displayCodeInfo = this.displayCodeInfo.bind(this);
     }
     
     opencloseHandle = () => this.state.open === true ? this.setState({ open: false }) : this.state.open === false ? this.setState({ open: true }) : null;
@@ -31,7 +33,14 @@ class SWCodeContainer extends React.Component {
                                                                 <div className="d-flex justify-content-between">
                                                                     <div className="sw-code-list-item">{ element }</div>
                                                                     <div className="sw-code-list-icons">
-                                                                        <span className="icon-info sw-help-icon">{ Icons.help }</span>
+                                                                        <IconPopover className="icon-info sw-help-icon"
+                                                                                     placement="top"
+                                                                                     id={ 'sw_info_' + element }
+                                                                                     headerText={ type === 'icd' ? 'ICD-10 Code: ' + element : type === 'icf' ? 'ICF Code: ' + element : 'sonstiger Code: ' + element }
+                                                                                     bodyText="Dies ist ein Testtext. Hier wird mehr stehen."
+                                                                                     icon={ Icons.help }
+                                                                                     
+                                                                        />  
                                                                         <span className="icon-danger sw-remove-icon"
                                                                               onClick={ () => this.props.removeHandler( element, type ) } >
                                                                                 { Icons.remove }
@@ -44,6 +53,10 @@ class SWCodeContainer extends React.Component {
                );
         
     }
+    
+    displayCodeInfo = ( code, type ) => {
+        console.log('Info for code: ' + code + '(' + type + ')' );
+    };
 
     render() {
         return (    <React.Fragment>

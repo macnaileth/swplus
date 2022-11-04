@@ -18,10 +18,10 @@ export default function Toolbox() {
   
   const [codes, setCodes] = useState({ "icf": [], "icd": [] });
   
-  const updateCodesHandler = ( strCode, strDesc ) => {
+  const updateCodesHandler = ( strCode, strType ) => {
       //push data into objects
-      strDesc === 'icf' && setCodes( codes => ({ icf: [...codes.icf, strCode], icd: [...codes.icd] })); 
-      strDesc === 'icd-10' && setCodes( codes => ({ icd: [...codes.icd, strCode], icf: [...codes.icf] })); 
+      strType === 'icf' && setCodes( codes => ({ icf: [...codes.icf, strCode], icd: [...codes.icd] })); 
+      strType === 'icd-10' && setCodes( codes => ({ icd: [...codes.icd, strCode], icf: [...codes.icf] })); 
   
       console.log('Update: ' + codes.update + ', Code State: ', codes);
   }

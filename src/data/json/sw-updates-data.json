@@ -1,5 +1,14 @@
 [ 
     {
+        "id": 5,
+        "category": "Update",
+        "date": "2022-11-03",
+        "title": "Code-Auswahl vollständig integriert",
+        "content": "Code-Auswahl ist nun möglich für eine geplante weitere Bearbeitung im Rahmen von ICF-CoreSets und dem Biopsychosozialen Modell.",
+        "author": "Marco",
+        "img": ""
+    }, 
+    {
         "id": 4,
         "category": "Update",
         "date": "2022-08-10",
