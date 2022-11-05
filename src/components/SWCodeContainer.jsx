@@ -11,6 +11,11 @@ import _ from "lodash";
 //internal ressources
 import Icons from '../lib/Icons';
 import IconPopover from '../components/IconPopover';
+import ManParse from '../lib/ManParse';
+
+//json manuals
+import manualsWHO from '../lib/manuals';
+Object.freeze(manualsWHO);
 
 class SWCodeContainer extends React.Component {
     
@@ -20,6 +25,9 @@ class SWCodeContainer extends React.Component {
         this.opencloseHandle = this.opencloseHandle.bind(this);
         this.displayCodes = this.displayCodes.bind(this);
         this.displayCodeInfo = this.displayCodeInfo.bind(this);
+        
+        //declare icd/icf parser for use
+        this.parser = new ManParse(manualsWHO);
     }
     
     opencloseHandle = () => this.state.open === true ? this.setState({ open: false }) : this.state.open === false ? this.setState({ open: true }) : null;
@@ -37,7 +45,7 @@ class SWCodeContainer extends React.Component {
                                                                                      placement="top"
                                                                                      id={ 'sw_info_' + element }
                                                                                      headerText={ type === 'icd' ? 'ICD-10 Code: ' + element : type === 'icf' ? 'ICF Code: ' + element : 'sonstiger Code: ' + element }
-                                                                                     bodyText="Dies ist ein Testtext. Hier wird mehr stehen."
+                                                                                     bodyText={ type === 'icd' ? this.parser.icdTitle( element, 180 ).title : type === 'icf' ? this.parser.icfTitle( element, 180 ) : 'unbekannter Code' }
                                                                                      icon={ Icons.help }
                                                                                      
                                                                         />  

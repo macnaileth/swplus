@@ -11,9 +11,6 @@ import Tab from 'react-bootstrap/Tab';
 import SWCodeSearch from '../components/SWCodeSearch.jsx';
 import SWCodeContainer from '../components/SWCodeContainer.jsx';
 
-//lodash
-import _ from "lodash";
-
 export default function Toolbox() {
   
   const [codes, setCodes] = useState({ "icf": [], "icd": [] });
