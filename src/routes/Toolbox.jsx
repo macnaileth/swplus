@@ -10,6 +10,7 @@ import Tab from 'react-bootstrap/Tab';
 //internal ressources
 import SWCodeSearch from '../components/SWCodeSearch.jsx';
 import SWCodeContainer from '../components/SWCodeContainer.jsx';
+import SWBPSModel from '../components/SWBPSModel.jsx';
 
 export default function Toolbox() {
   
@@ -43,7 +44,7 @@ export default function Toolbox() {
             </Tab>
             <Tab eventKey="BPSModel" title="BPSM">
                 <h1 className="display-6 text-secondary text-center">Biopsychosoziales Modell</h1>
-                BlubberBlubb
+                <SWBPSModel selectedCodes={ codes } />
             </Tab>            
         </Tabs>
         <SWCodeContainer 
