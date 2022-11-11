@@ -48,6 +48,7 @@ $list-group-active-bg: $dark;
 //bootstrap scss ready for compilation
 @import "./scss/bootstrap/bootstrap";
 
+
 //css classes
 #sw_main_content {
     min-height: 500px;
@@ -129,7 +130,45 @@ h2 .icon:hover {
 }
 //bpsm model
 .sw-bpsm-card {
-    width: 300px;
+    width: 100%;
+}
+#sw_bpsm_container .arrow polygon,  {
+    fill: var(--bs-dark);
+}
+.sw-bpsm-arrow-straight .sw-bpsm-arrow-horizontal {
+    width: 0px;
+}
+.sw-bpsm-arrow-set-upper .sw-bpsm-arrow-horizontal, .sw-bpsm-arrow-set-lower .sw-bpsm-arrow-horizontal {
+    width: 0px;
+}
+.sw-bpsm-arrow-set-lower .sw-bpsm-arrow-horizontal {
+    position: relative;
+    top: 46px;    
+}
+.sw-bpsm-arrow-set-lower .sw-bpsm-arrowhead-down.center {
+    position: relative;
+    top: 15px;    
+}
+.sw-bpsm-arrow-set-upper .sw-bpsm-arrowhead-down, .sw-bpsm-arrow-set-lowest .sw-bpsm-arrowhead-down {
+    position: relative;
+    top: 13px;
+}
+.sw-bpsm-arrow-set-lower .sw-bpsm-arrowhead-up {
+    position: relative;
+    top: 14px;    
+} 
+.sw-bpsm-arrow-set-upper .sw-bpsm-arrowhead-down.first, .sw-bpsm-arrow-set-lower .sw-bpsm-arrowhead-up.first, .sw-bpsm-arrow-set-lowest .sw-bpsm-arrowhead-down.first {
+    left: 15px;
+}
+.sw-bpsm-arrow-set-upper .sw-bpsm-arrowhead-down.last, .sw-bpsm-arrow-set-lower .sw-bpsm-arrowhead-up.last, .sw-bpsm-arrow-set-lowest .sw-bpsm-arrowhead-down.last {
+    left: -15px;
+}
+.sw-bpsm-arrow-set-upper .sw-bpsm-arrowhead-updown.center, .sw-bpsm-arrow-set-lower .sw-bpsm-arrowhead-updown.center {
+    position: relative;
+    top: -13px;
+}
+.sw-bpsm-arrow-set-lowest .sw-bpsm-arrow-horizontal {
+    width: 0px;
 }
 
 // X-Small devices (portrait phones, less than 576px)
@@ -144,13 +183,61 @@ h2 .icon:hover {
 @media (min-width: 768px) { 
     .rounded-end-0 { border-bottom-right-radius: 0px !important; }
     .rounded-start-0 { border-bottom-left-radius: 0px !important; }
+    .sw-bpsm-arrow-set-upper .sw-bpsm-arrow-horizontal, .sw-bpsm-arrow-set-lower .sw-bpsm-arrow-horizontal {
+        width: 230px;
+    }
+    .sw-bpsm-arrow-set-lowest .sw-bpsm-arrow-horizontal {
+        width: 380px;
+    }   
+    .sw-bpsm-card {
+        width: 300px;
+    }
 }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px) {  }
+@media (min-width: 992px) { 
+    .sw-bpsm-arrow-straight .sw-bpsm-arrow-horizontal {
+        width: 80px;
+    }    
+    .sw-bpsm-arrow-set-upper .sw-bpsm-arrow-horizontal, .sw-bpsm-arrow-set-lower .sw-bpsm-arrow-horizontal {
+        width: 330px;
+    } 
+    .sw-bpsm-arrow-set-lowest .sw-bpsm-arrow-horizontal {
+        width: 450px;
+    }    
+    .sw-bpsm-arrow-set-lower .sw-bpsm-arrowhead-down.center {
+        position: relative;
+        top: 15px;    
+    }      
+}
 
 // X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
+@media (min-width: 1200px) {  
+    .sw-bpsm-arrow-straight .sw-bpsm-arrow-horizontal {
+        width: 100px;
+    }
+    .sw-bpsm-arrow-set-upper .sw-bpsm-arrow-horizontal, .sw-bpsm-arrow-set-lower .sw-bpsm-arrow-horizontal {
+        width: 400px;
+    }    
+    .sw-bpsm-arrow-set-lowest .sw-bpsm-arrow-horizontal {
+        width: 500px;
+    }  
+    .sw-bpsm-arrow-set-lower .sw-bpsm-arrowhead-down.center {
+        position: relative;
+        top: 17px;    
+    }      
+}
 
 // XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {  }
+@media (min-width: 1400px) {  
+    .sw-bpsm-arrow-straight .sw-bpsm-arrow-horizontal {
+        width: 150px;
+    }
+    .sw-bpsm-arrow-set-upper .sw-bpsm-arrow-horizontal, .sw-bpsm-arrow-set-lower .sw-bpsm-arrow-horizontal {
+        width: 480px;
+    }   
+    .sw-bpsm-arrow-set-lower .sw-bpsm-arrowhead-up {
+        position: relative;
+        top: 15px;    
+    }       
+}

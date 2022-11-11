@@ -44,7 +44,7 @@ export default function Toolbox() {
             </Tab>
             <Tab eventKey="BPSModel" title="BPSM">
                 <h1 className="display-6 text-secondary text-center">Biopsychosoziales Modell</h1>
-                <SWBPSModel selectedCodes={ codes } />
+                <SWBPSModel selectedCodes={ codes } className="my-4" />
             </Tab>            
         </Tabs>
         <SWCodeContainer 
