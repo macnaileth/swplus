@@ -5,7 +5,8 @@ import React from 'react';
 
 //third party stuff
 import Card from 'react-bootstrap/Card';
-import Alert from 'react-bootstrap/Alert'
+import Alert from 'react-bootstrap/Alert';
+import _ from "lodash";
 
 export class SWBPSModel extends React.Component {
     
@@ -17,6 +18,9 @@ export class SWBPSModel extends React.Component {
         this.bpsmArrowSetUpper = this.bpsmArrowSetUpper.bind(this);
         this.bpsmArrowSetLower = this.bpsmArrowSetLower.bind(this);
         this.bpsmArrowSetLowest = this.bpsmArrowSetLowest.bind(this);
+        this.codeListStr = this.codeListStr.bind(this);
+        this.splitICFCodes = this.splitICFCodes.bind(this);
+        this.bpsmBodyText = this.bpsmBodyText.bind(this);
     }
     
     bpsmCard = ( titleStr, bodyContent, cssHead = '', cardCSS = '' ) => {
@@ -138,31 +142,77 @@ export class SWBPSModel extends React.Component {
                 </div>                    
             </div>
         );
-    }      
+    }  
+    
+    codeListStr = ( codeArray, css ) => {
+        return (
+            <React.Fragment>
+                { !_.isEmpty(codeArray) &&
+                        codeArray.map((element, index, array) => (<span key={ index } className={ css } >{ element + (index === array.length - 1 ? '' : ', ')}</span>))
+                        }
+            </React.Fragment>
+        );
+    }
+    
+    splitICFCodes = ( codeArray ) => {
+        
+        const sortedCodes = {   
+                                "bsCodes": [], 
+                                "eCodes": [],
+                                "aCodes": [],
+                                "pCodes": []
+                            };
+        
+        !_.isEmpty(codeArray) && codeArray.map(( element ) => {  
+            
+            let firstChar = element.charAt(0);
+            let secChar = element.charAt(1);
+            
+            if (firstChar === 'b' || firstChar === 's') {
+                sortedCodes.bsCodes.push( element );
+            } else if (firstChar === 'e') {
+                sortedCodes.eCodes.push( element );
+            } else if (firstChar === 'd') {
+                if (secChar === '1' || secChar === '2' || secChar === '3' || secChar === '4') {
+                    sortedCodes.aCodes.push( element );
+                } else if (secChar === '5' || secChar === '6' || secChar === '7' || secChar === '8' || secChar === '9') { 
+                    sortedCodes.pCodes.push( element );
+                }
+            }
+            
+        });   
+                            
+        return sortedCodes;
+        
+    }
+    
+    bpsmBodyText = ( codeArray, css = 'sw-bpsm-entry' ) => { return !_.isEmpty(codeArray) ? this.codeListStr( codeArray, css) : 'Keine Auswahl getroffen.'; }
     
     render() {
-        console.log('codes: ', this.props.selectedCodes);
         return (
                 <div id="sw_bpsm_container" className={ this.props.className }>
                     <Alert className="d-block d-md-none mb-4" variant="warning"><strong>Hinweis:</strong> Ihr Browserfenster ist zu schmal, um das BPSM korrekt darzustellen. Daher erfolgt die Darstellung als Liste. Wenn Sie ein Smartphone verwenden, versuchen sie es im Querformat (768px min.).</Alert>
                     <div className="d-block d-md-flex justify-content-center align-items-stretch">
-                        { this.bpsmCard( 'Gesundheitsproblem', 'Lore Ipsum Dolor', 'darker-info text-white', 'mb-4' ) }
+                        { this.bpsmCard( 'Gesundheitsproblem', this.bpsmBodyText( this.props.selectedCodes.icd ), 'darker-info text-white', 'mb-4' ) }
                     </div>
                     { this.bpsmArrowSetUpper() }
                     <div className="d-block d-md-flex justify-content-evenly align-items-stretch">
-                        { this.bpsmCard( 'Körperfunktionen und -strukturen', 'Lore Ipsum Dolor', 'bg-dark text-white',  'mb-4 mb-md-0' ) }
+                        { this.bpsmCard( 'Körperfunktionen und -strukturen', this.bpsmBodyText( this.splitICFCodes( this.props.selectedCodes.icf ).bsCodes ), 'bg-dark text-white',  'mb-4 mb-md-0' ) }
                         { this.bpsmArrowStraight() }
-                        { this.bpsmCard( 'Aktivitäten', 'Lore Ipsum Dolor', 'bg-dark text-white', 'mb-4 mb-md-0' ) }
+                        { this.bpsmCard( 'Aktivitäten', this.bpsmBodyText( this.splitICFCodes( this.props.selectedCodes.icf ).aCodes ), 'bg-dark text-white', 'mb-4 mb-md-0' ) }
                         { this.bpsmArrowStraight() }
-                        { this.bpsmCard( 'Partizipation (Teilhabe)', 'Lore Ipsum Dolor', 'bg-dark text-white' ) }
+                        { this.bpsmCard( 'Partizipation (Teilhabe)', this.bpsmBodyText( this.splitICFCodes( this.props.selectedCodes.icf ).pCodes ), 'bg-dark text-white' ) }
                     </div>     
                     { this.bpsmArrowSetLower() }
                     { this.bpsmArrowSetLowest() }
                     <div className="d-block d-md-flex justify-content-center align-items-stretch">
-                        { this.bpsmCard( 'Umweltfaktoren', 'Lore Ipsum Dolor', 'dark-info text-white', 'mt-4' ) }
+                        { this.bpsmCard( 'Umweltfaktoren', this.bpsmBodyText( this.splitICFCodes( this.props.selectedCodes.icf ).eCodes ), 'dark-info text-white', 'mt-4' ) }
                         { this.bpsmArrowStraight( 'my-4' ) }
                         { this.bpsmCard( 'personenbezogene Faktoren', 'Lore Ipsum Dolor', 'dark-info text-white', 'mt-4' ) }
-                    </div>                       
+                    </div>    
+                    <div className="my-4 text-secondary text-center">
+                    Für die Zuordnung von Aktivität und Teilhabe wird hier der Ansatz eines getrennten Satzes von Aktivität und Partizipation verwendet, an <a class="link-info" target="_blank" rel="noopener noreferrer" href="https://www.dimdi.de/static/de/klassifikationen/icf/icfhtml2005/zusatz-07-anh-3-liste-teilhabe.htm">Anhang 3 der ICF angelehnt</a>.
+                    </div>
                 </div>         
                );
     }    
