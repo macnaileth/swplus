@@ -20,6 +20,7 @@ class SWCSElement extends React.Component {
     constructor(props) {
         super(props);
         this.handleRefElementClick = this.handleRefElementClick.bind(this);
+        this.isValidAddable = this.isValidAddable.bind(this);
         this.state = { pupdate: false };
     }   
     handleRefElementClick() {
@@ -28,6 +29,7 @@ class SWCSElement extends React.Component {
             //this.props.handler;
         });
     }
+    
     preferredModifier = (digit = 4) => {
         
         let dbase = {};
@@ -43,6 +45,38 @@ class SWCSElement extends React.Component {
                                             dbase.sub[parseInt(dbase.hilite)].Rubric.find(element => element.kind === "preferred").Label['#text'] : 
                                             dbase.sub[parseInt(dbase.hilite)].Rubric.Label['#text'] : '' : '';
     }
+    
+    isValidAddable = ( code ) => {
+    
+        let firstChar = code.charAt(0);
+        let secChar = code.charAt(1);
+        
+        if( code.length >= 3 && code.length <= 7 ){
+            console.log('length match!');
+            
+            if( firstChar.toUpperCase() !== firstChar.toLowerCase() ) {
+                console.log('first char letter match!');
+                
+                if(isNaN(secChar)){
+                    return false;
+                    
+                } else {
+                  if ( code.includes("-") ) {
+                      return false;
+                  } else {
+                    console.log('second char num match!');
+                    return true;                       
+                  }
+                  return false;
+                }
+                
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+    
     render() {
         return (
                 <React.Fragment>
@@ -86,11 +120,13 @@ class SWCSElement extends React.Component {
                             <h2>{ !this.props.data.cerror ? 
                                     <React.Fragment>
                                         <span className="sw-h2-code">{ this.props.data.ctitle }</span> 
-                                        <span className="icon icon-add icon-black ms-1"
-                                              onClick={ () => this.props.codepasser(this.props.data.cname, this.props.data.ctype) }
-                                        >
-                                            { Icons.addlist }
-                                        </span> 
+                                        { this.isValidAddable( this.props.data.cname ) &&
+                                            <span className="icon icon-add icon-black ms-1"
+                                                  onClick={ () => this.props.codepasser(this.props.data.cname, this.props.data.ctype) }
+                                            >
+                                                { Icons.addlist }
+                                            </span> 
+                                        }
                                     </React.Fragment>
                                     : 'Leider nichts gefunden!' }</h2>                          
                                 { this.props.data.cerror && 
