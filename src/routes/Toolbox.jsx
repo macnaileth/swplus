@@ -18,8 +18,8 @@ export default function Toolbox() {
   
   const updateCodesHandler = ( strCode, strType ) => {
       //push data into objects
-      strType === 'icf' && setCodes( codes => ({ icf: [...codes.icf, strCode], icd: [...codes.icd] })); 
-      strType === 'icd-10' && setCodes( codes => ({ icd: [...codes.icd, strCode], icf: [...codes.icf] })); 
+      strType === 'icf' && !codes.icf.includes( strCode ) && setCodes( codes => ({ icf: [...codes.icf, strCode], icd: [...codes.icd] })); 
+      strType === 'icd-10' &&  !codes.icd.includes( strCode ) && setCodes( codes => ({ icd: [...codes.icd, strCode], icf: [...codes.icf] })); 
   
       console.log('Update: ' + codes.update + ', Code State: ', codes);
   }
