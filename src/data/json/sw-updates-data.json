@@ -1,5 +1,14 @@
 [ 
     {
+        "id": 6,
+        "category": "Update",
+        "date": "2022-11-18",
+        "title": "BPSM voll funktionsfähig",
+        "content": "Ausgewählte Codes und eingegebene Persönliche Faktoren werden nun in einem Bio-Psychosozialen Modell dargestellt. Nächster Schritt ist der Einbau des Datenexports.",
+        "author": "Marco",
+        "img": ""
+    }, 
+    {
         "id": 5,
         "category": "Update",
         "date": "2022-11-03",

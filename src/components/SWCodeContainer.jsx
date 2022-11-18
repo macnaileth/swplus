@@ -86,6 +86,13 @@ class SWCodeContainer extends React.Component {
                                        <div className="fw-bold text-center code-container-no-code">Keine Codes ausgewählt. Wählen Sie Codes aus, um diese im Biopsychosozialen Modell oder den ICF-Listen zu verwenden.</div> }
                                { !_.isEmpty( this.props.selectedCodes.icf ) && <div className="col code-container-icf">{ this.displayCodes(this.props.selectedCodes.icf, 'icf') }</div> }
                                { !_.isEmpty( this.props.selectedCodes.icd ) && <div className="col code-container-icd">{ this.displayCodes(this.props.selectedCodes.icd, 'icd') }</div> }
+                               { !_.isEmpty( this.props.selectedCodes.pfactors ) && 
+                                        <div className="col-12 code-container-pfactors border-top pt-1">
+                                            <div className="p-2">
+                                                <h5>Persönliche Faktoren</h5>
+                                                <p><em>{ this.props.selectedCodes.pfactors }</em></p>
+                                            </div>
+                                        </div> }
                             </div>
                           </Collapse>
                         </div> 

@@ -6,7 +6,52 @@ import React from 'react';
 //third party stuff
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 import _ from "lodash";
+
+class BPSMPersonalFactors extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = { show: false, pfactors: '' };
+    }
+    render() {        
+        return (
+            <React.Fragment>
+                <Modal
+                    show={ this.state.show }
+                    onHide={ () => this.setState({ show: false }) }
+                    size="lg"
+                    aria-labelledby="sw_bpsm_modal_pfactors"
+                    centered
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="sw_bpsm_modal_pfactors">
+                          Persönliche Faktoren
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="my-2">
+                            <textarea   type="text" 
+                                        value={ this.state.pfactors }
+                                        onChange={ ( event ) => this.setState( { pfactors: event.target.value }, () => this.props.handler( this.state.pfactors, 'pfactors' ) ) }
+                                        className="form-control" 
+                                        id="sw_bpsm_pf_input" 
+                                        placeholder='Persönliche Faktoren hier eingeben' />
+                        </div>
+                    </Modal.Body>
+                </Modal>
+                <div className="d-grid gap-2">
+                   <Button variant="outline-dark" onClick={() => this.setState({ show: true })}>
+                       Bearbeiten
+                   </Button>
+                </div>  
+            </React.Fragment>
+        );      
+    }
+}
 
 export class SWBPSModel extends React.Component {
     
@@ -23,14 +68,14 @@ export class SWBPSModel extends React.Component {
         this.bpsmBodyText = this.bpsmBodyText.bind(this);
     }
     
-    bpsmCard = ( titleStr, bodyContent, cssHead = '', cardCSS = '' ) => {
+    bpsmCard = ( titleStr, bodyContent, cssHead = '', cardCSS = '', pWrap = true ) => {
         return (
             <Card className={ cardCSS === '' ? "mx-0 mx-md-2 sw-bpsm-card shadow-sm" : "mx-0 mx-md-2 sw-bpsm-card shadow-sm " + cardCSS } >
                 <Card.Header className={ cssHead === '' ? 'sw-bpsm-card-header' : 'sw-bpsm-card-header ' + cssHead }><strong>{ titleStr }</strong></Card.Header>
                 <Card.Body>
-                    <Card.Text>
+                    { pWrap === true ? <Card.Text> 
                         { bodyContent }
-                    </Card.Text>
+                        </Card.Text> : <React.Fragment>{ bodyContent }</React.Fragment> }                  
                 </Card.Body>
             </Card>        
             );
@@ -142,7 +187,7 @@ export class SWBPSModel extends React.Component {
                 </div>                    
             </div>
         );
-    }  
+    }     
     
     codeListStr = ( codeArray, css ) => {
         return (
@@ -188,6 +233,8 @@ export class SWBPSModel extends React.Component {
     
     bpsmBodyText = ( codeArray, css = 'sw-bpsm-entry' ) => { return !_.isEmpty(codeArray) ? this.codeListStr( codeArray, css) : 'Keine Auswahl getroffen.'; }
     
+    
+    
     render() {
         return (
                 <div id="sw_bpsm_container" className={ this.props.className }>
@@ -208,10 +255,10 @@ export class SWBPSModel extends React.Component {
                     <div className="d-block d-md-flex justify-content-center align-items-stretch">
                         { this.bpsmCard( 'Umweltfaktoren', this.bpsmBodyText( this.splitICFCodes( this.props.selectedCodes.icf ).eCodes ), 'dark-info text-white', 'mt-4' ) }
                         { this.bpsmArrowStraight( 'my-4' ) }
-                        { this.bpsmCard( 'personenbezogene Faktoren', 'Lore Ipsum Dolor', 'dark-info text-white', 'mt-4' ) }
+                        { this.bpsmCard( 'personenbezogene Faktoren', <BPSMPersonalFactors handler={ this.props.handler } />, 'dark-info text-white', 'mt-4', 'false' ) }
                     </div>    
                     <div className="my-4 text-secondary text-center">
-                    Für die Zuordnung von Aktivität und Teilhabe wird hier der Ansatz eines getrennten Satzes von Aktivität und Partizipation verwendet, an <a class="link-info" target="_blank" rel="noopener noreferrer" href="https://www.dimdi.de/static/de/klassifikationen/icf/icfhtml2005/zusatz-07-anh-3-liste-teilhabe.htm">Anhang 3 der ICF angelehnt</a>.
+                    Für die Zuordnung von Aktivität und Teilhabe wird hier der Ansatz eines getrennten Satzes von Aktivität und Partizipation verwendet, an <a className="link-info" target="_blank" rel="noopener noreferrer" href="https://www.dimdi.de/static/de/klassifikationen/icf/icfhtml2005/zusatz-07-anh-3-liste-teilhabe.htm">Anhang 3 der ICF angelehnt</a>.
                     </div>
                 </div>         
                );
