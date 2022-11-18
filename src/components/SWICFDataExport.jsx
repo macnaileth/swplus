@@ -74,14 +74,14 @@ class SWICFDataExport extends React.Component {
                                     type="switch"
                                     inline
                                     id="sw_icf_list_switch"
-                                    label="ICF-Liste erstellen"
+                                    label="ICF-Liste"
                                     defaultChecked={ true } 
                                 />     
                                 <Form.Check 
                                     type="switch"
                                     inline
                                     id="sw_needs_switch"
-                                    label="Liste zur Vorbereitung der Bedarfserhebung erstellen"
+                                    label="Liste zur Vorbereitung der Bedarfserhebung"
                                     defaultChecked={ false } 
                                 />       
                                 <Form.Select aria-label="Formatauswahl" className="mt-2">
