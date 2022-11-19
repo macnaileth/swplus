@@ -127,15 +127,14 @@ class SWICFDataExport extends React.Component {
             this.setState({ ndlist: checked, message: '', messagelvl: '' });
         }   
         //if no doc type is selected, produce warning
-        if ( icflist.checked === false && ndlist.checked === false) {
+        if ( icflist.checked === false && ndlist.checked === false ) {
             warning.msg = 'Kein Ausgabeformat gewählt. Bitte zumindest ICF-Liste oder Liste Bedarfsermittlung aktivieren, um ein Dokument erzeugen zu können.';
             warning.msglvl = 'danger';   
             //disable button
             createbtn.disabled = true;
             this.setState({ message: warning.msg, messagelvl: warning.msglvl });
-        } else {
+        } else if ( icflist.checked === true || ndlist.checked === true ) {
             createbtn.disabled = false;
-            this.setState({ ndlist: checked, message: '', messagelvl: '' });
         }
         
         console.log( 'Switch: ' + strSwitch + ', checked: ' + checked );
