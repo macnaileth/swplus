@@ -8,10 +8,7 @@ import Badge from 'react-bootstrap/Badge';
 
 
 export class StatusBadge extends React.Component {
-    
-    constructor(props) {
-        super(props);
-    }
+
         render() {
             
             const badgeBG   = this.props.BadgeData.substr(0, this.props.BadgeData.indexOf(':'));

@@ -16,8 +16,6 @@ import swLogo from './img/logo/socialwerks_logo.svg'; //-> TODO: Make this work
 import Toolbox from "./routes/Toolbox";
 import Updates from "./routes/Updates";
 
-import SWCodeSearch from './components/SWCodeSearch.jsx';
-
 class App extends React.Component {
     
     constructor(props) {

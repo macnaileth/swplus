@@ -7,6 +7,9 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+//internal ressources
+import ICFListPDF from '../lib/ICFListPDF';
+
 
 //inital state
 const initalState = {
@@ -32,6 +35,8 @@ class SWICFDataExport extends React.Component {
         
         this.state = initalState;
         
+        this.pdf = new ICFListPDF;
+        
         this.verifySwitch = this.verifySwitch.bind(this);
         this.resetForm = this.resetForm.bind(this);
     }
@@ -43,7 +48,8 @@ class SWICFDataExport extends React.Component {
         document.getElementById('sw_create_doc_btn').disabled = false;
         document.getElementById("sw_create_doclist").reset();
         //reset states also!
-        this.setState( initalState );
+        this.setState({ initalState });
+        console.log( 'Reseted state:', this.state );
     }
     
     verifySwitch = ( strSwitch, checked ) => {
@@ -251,7 +257,9 @@ class SWICFDataExport extends React.Component {
                                 </div>                         
                             </div>
                             <div className="d-grid d-md-flex justify-content-md-center gap-2 mb-4">
-                                <Button id="sw_create_doc_btn" variant="primary">Dokument erzeugen</Button>
+                                <Button id="sw_create_doc_btn" 
+                                        variant="primary"
+                                        onClick={ () => this.pdf.createPDFfromData( 'sw-list-', this.state, this.props.selectedCodes ) }>Dokument erzeugen</Button>
                                 <Button variant="dark"
                                         onClick={ () => this.resetForm() }>Einstellungen zurücksetzen</Button>
                             </div>

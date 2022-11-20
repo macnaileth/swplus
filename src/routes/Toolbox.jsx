@@ -54,7 +54,7 @@ export default function Toolbox() {
             </Tab>   
             <Tab eventKey="listexport" title="Export">
                 <h1 className="display-6 text-secondary text-center">Daten exportieren</h1>
-                <SWICFDataExport />
+                <SWICFDataExport selectedCodes={ codes } />
             </Tab>               
         </Tabs>
         <SWCodeContainer 
