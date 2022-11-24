@@ -10,7 +10,6 @@ import Button from 'react-bootstrap/Button';
 //internal ressources
 import ICFListPDF from '../lib/ICFListPDF';
 
-
 //inital state
 const initalState = {
     icd10: true,
@@ -26,7 +25,6 @@ const initalState = {
     message: '',
     messagelvl: ''
 };
-
 
 class SWICFDataExport extends React.Component {
     
