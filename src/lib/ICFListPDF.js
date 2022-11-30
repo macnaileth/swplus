@@ -41,7 +41,7 @@ class SWICFListPDF {
     setPDFProps = ( options = {} ) => {
         
         //generate title
-        let title = 'ICF-Liste';
+        let title = 'ICF-Liste (aus BPSM)';
         
         if ( !_.isEmpty( options ) ) {
             title = options.ndlist === true && options.icflist === true ? title + ' und Liste für die Bedarfserhebung' : 
@@ -50,7 +50,7 @@ class SWICFListPDF {
         
         this.doc.setProperties({
                 title: title,
-                subject: 'ICF-Liste zur Nutzung zur Bedarfsermittlung',
+                subject: 'ICF-Liste zur Nutzung bei der Bedarfsermittlung',
                 author: 'social.werks+ - www.socialwerks.de',
                 keywords: 'icf,Bedarfsermittlung,ICD-10,Hilfebedarf',
                 creator: 'social.werks+ | jsPDF'
@@ -60,7 +60,7 @@ class SWICFListPDF {
         
     }
     //creates intro block for icf/icd10 blocks
-    createIntroBlock = (topDist, headline, desc) => {
+    createIntroBlock = (topDist, headline, desc = '') => {
         
         let yCoord = topDist;
         
@@ -68,26 +68,30 @@ class SWICFListPDF {
         this.doc.setFont( 'AlegreyaSans-Bold' );
         this.doc.setFontSize(16);
         this.doc.text( headline, 25, yCoord, { maxWidth: 165 });
-         
-        //proceed on doc
-        yCoord += 8;
         
-        //set text to default float text size
-        this.setWordWrappingDefault();
-        this.doc.text( desc, 25, yCoord, { maxWidth: 165 });
-             
-        //proceed  
-        //calc
-        let descLength = desc.length;
-        let lineCount = Math.floor( descLength / charsPerLine );
+        //create desc only if desc is not empty, otherwise we just have a headline
+        if ( !_.isEmpty( desc ) ) {          
+            //proceed on doc
+            yCoord += 8;
+               
+            //set text to default float text size
+            this.setWordWrappingDefault();
         
-        yCoord = ( this.doc.text.length * 10 ) + ( lineCount * 8 );  
+            this.doc.text( desc, 25, yCoord, { maxWidth: 165 });
+
+            //proceed  
+            //calc
+            let descLength = desc.length;
+            let lineCount = Math.floor( descLength / charsPerLine );
+
+            yCoord = ( this.doc.text.length * 10 ) + ( lineCount * 8 );  
+        }
         
         return yCoord;
         
     }
     //creates block for ICD-10 diagnoses
-    createICDBlock = ( data, desc, topDist = 40, headline = 'ICD-10 Diagnosen', ) => {
+    createICDBlock = ( data, desc, topDist = 40, headline = 'Gesundheitsproblem', ) => {
         
         let yCoord = this.createIntroBlock( topDist, headline, desc );
         
@@ -102,7 +106,7 @@ class SWICFListPDF {
             autoTable(this.doc, {
                 theme: 'grid',
                 headStyles: { fillColor: [60, 60, 60], textColor:  [255, 255, 255] },
-                columnStyles: { icdkey: { minCellWidth: 35 }, icdtext: { minCellWidth: 130 } },
+                columnStyles: { key: { minCellWidth: 35 }, text: { minCellWidth: 130 } },
                 columns: [
                     { header: 'Schlüssel', dataKey: 'key' },
                     { header: 'Diagnose nach ICD-10', dataKey: 'text' },
@@ -117,7 +121,7 @@ class SWICFListPDF {
             autoTable(this.doc, {
                 theme: 'grid',
                 headStyles: { fillColor: [60, 60, 60], textColor:  [255, 255, 255] },
-                columnStyles: { icdkey: { minCellWidth: 35 }, icdtext: { minCellWidth: 130 } },
+                columnStyles: { key: { minCellWidth: 35 }, text: { minCellWidth: 130 } },
                 columns: [
                     { header: 'Schlüssel', dataKey: 'key' },
                     { header: 'Diagnose nach ICD-10', dataKey: 'text' },
@@ -136,24 +140,110 @@ class SWICFListPDF {
         //update y coordinate
         yCoord = this.doc.lastAutoTable.finalY;
         
-        console.log('Whats in the table? ', this.doc.lastAutoTable);
-        
         //finally, return needed data in object for further blocks
         return { posY: yCoord, pages: this.doc.lastAutoTable.pageCount };
     }
     
-    createICFBlocks = ( data, topDist = 40, desc, headline = 'ICF-Codeauswahl' ) => {
+    createICFBlocks = ( data, topDist = 40, options = {} ) => {
+
+        let yCoord = topDist;
         
-        let yCoord = this.createIntroBlock( topDist, headline, desc );
+        console.log('YCord at start of ICF table:' + yCoord);
+        
+        //create table data array
+        const compICF = { b: [], s: [], d: [], e: [] };
         
         //create code boxes
         if ( !_.isEmpty( data ) ) {  
-           //we have to sort the codes first -> b, s, d, e for each component
+            //we have to sort the codes first -> b, s, d, e for each component
+            data.map((element) => {
+                
+                let component = element.charAt(0);
+                
+                if ( component === 'b' ){
+                    compICF.b.push({ key: element, text: this.parser.icfTitle( element, 180 ) });
+                }
+                if ( component === 's' ){
+                    compICF.s.push({ key: element, text: this.parser.icfTitle( element, 180 ) });
+                }   
+                if ( component === 'd' ){
+                    compICF.d.push({ key: element, text: this.parser.icfTitle( element, 180 ) });
+                } 
+                if ( component === 'e' ){
+                    compICF.e.push({ key: element, text: this.parser.icfTitle( element, 180 ) });
+                }                                
+            });
            
-        }  
+        } 
+        
+        if ( !_.isEmpty( compICF.b ) ) {   
+            yCoord = this.createIntroBlock( yCoord, 'b - ' + this.parser.icfTitle( 'b', 180 ) );
+            yCoord = this.createICFTable( compICF.b, yCoord + 5, options ) + 8;
+            
+            console.log('yCoord after b: ' + yCoord);           
+        }
+        if ( !_.isEmpty( compICF.s ) ) { 
+            yCoord = this.createIntroBlock( yCoord, 's - ' + this.parser.icfTitle( 's', 180 ) );
+            yCoord = this.createICFTable( compICF.s, yCoord + 5, options ) + 8;
+    
+            console.log('yCoord after s: ' + yCoord);
+        }    
+        if ( !_.isEmpty( compICF.d ) ) { 
+            yCoord = this.createIntroBlock( yCoord, 'd - ' + this.parser.icfTitle( 'd', 180 ) );
+            yCoord = this.createICFTable( compICF.d, yCoord + 5, options ) + 8;
+     
+            console.log('yCoord after d: ' + yCoord);
+        }     
+        if ( !_.isEmpty( compICF.e ) ) { 
+            yCoord = this.createIntroBlock( yCoord, 'e - ' + this.parser.icfTitle( 'e', 180 ) );
+            yCoord = this.createICFTable( compICF.e, yCoord + 5, options ) + 8;
+     
+            console.log('yCoord after e: ' + yCoord);
+        }         
+        
+        console.log('ICF Data', compICF);
+        console.log('YCord after ICF table:' + yCoord);
         
         return yCoord;
         
+    }
+    
+    createICFTable = ( tableData, yCoord, options ) => {
+        
+        console.log('YCord before ICF table:' + yCoord);
+        
+        autoTable(this.doc, {
+            theme: 'grid',
+            headStyles: {fillColor: [60, 60, 60], textColor: [255, 255, 255]},
+            columnStyles: { key: {minCellWidth: 30}, grad: {minCellWidth: 30}, text: {minCellWidth: 105} },
+            columns: [
+                {header: 'Code', dataKey: 'key'},
+                {header: 'Graduierung', dataKey: 'grad'},
+                {header: 'Titel', dataKey: 'text'},
+            ],
+            body: tableData,
+            startY: yCoord,
+            margin: {top: 25, right: 20, bottom: 20, left: 25}
+        }); 
+        
+        //do we have to create remark fields below each code block?
+        if ( !_.isEmpty( options ) && options.remfields === true ) {
+                autoTable(this.doc, {
+                    theme: 'plain',
+                    columnStyles: { remarks: { minCellWidth: 165, minCellHeight: 30, lineWidth: 0.25 } },
+                    columns: [
+                        { header: 'Anmerkungen', dataKey: 'remarks' },
+                    ],
+                    body: [
+                        { remarks: '' },                    
+                    ],
+                    startY: this.doc.lastAutoTable.finalY,
+                    margin: {top: 25, right: 20, bottom: 0, left: 25}
+                });          
+        }
+        
+        //return last y coordinate
+        return this.doc.lastAutoTable.finalY;      
     }
     
     
@@ -169,7 +259,7 @@ class SWICFListPDF {
 
             let icddesc = data.icd.length === 0 ?
                             'An dieser Stelle können ICD-10 verschlüsselte Diagnosen notiert werden. Bitte beachten Sie, dass Diagnosen nur von entsprechend geschultem Fachpersonal gestellt werden sollten.' :
-                            'Untenstehende Diagnosen sind ICD-10 verschlüsselt. Für weitere Informationen nutzen Sie die ICD-10, die beim Bundesamt für Arzneimittel und Medizinprodukte (BfArM) vorliegt.';
+                            'Untenstehende Diagnosen sind ICD-10 verschlüsselt. Für weitere Informationen nutzen Sie die ICD-10, beim Bundesamt für Arzneimittel und Medizinprodukte (BfArM) herunterladbar.';
             const docTitle = this.setPDFProps( options );
 
             //title setup
@@ -180,10 +270,14 @@ class SWICFListPDF {
             //build ICD-10 diagnostics block
             posData = options.icd10 === true && this.createICDBlock( data.icd, icddesc );
             
-            console.log( 'Table next Y: ' + posData.posY + ', Pages: ' + posData.pages );
+            console.log( 'Table next Y: ' + Math.round(posData.posY) + ', Pages: ' + posData.pages );
+            
+            //title setup
+            this.createIntroBlock( Math.round(posData.posY) + 16, 'ICF Codeauswahl', 'Ausgewählte Codes sortiert und zugeordnet den Komponenten der ICF (b, s, d, e).' ); 
             
             //build ICF Code block
-            options.icf === true && this.createICFBlocks( data.icf, posData.posY + 16, 'Ausgewählte Codes sortiert und zugeordnet den Komponenten der ICF (b, s, d, e).' );
+            options.icf === true && this.createICFBlocks( data.icf, Math.round(posData.posY) + 34, options );
+            
             
             //save doc finally
             this.doc.save( name + timeStamp + ".pdf" );  
