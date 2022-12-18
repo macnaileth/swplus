@@ -1,5 +1,14 @@
 [ 
     {
+        "id": 7,
+        "category": "Update",
+        "date": "2022-12-13",
+        "title": "Exportfunktion integriert",
+        "content": "Exportfunktion integriert - das Bio-Psycho-Soziale Modell kann jetzt als PDF-ICF-Liste exportiert werden.",
+        "author": "Marco",
+        "img": ""
+    }, 
+    {
         "id": 6,
         "category": "Update",
         "date": "2022-11-18",

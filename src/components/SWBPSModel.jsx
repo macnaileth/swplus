@@ -29,7 +29,7 @@ class BPSMPersonalFactors extends React.Component {
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="sw_bpsm_modal_pfactors">
-                          Persönliche Faktoren
+                          Personenbezogene Faktoren
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -39,7 +39,7 @@ class BPSMPersonalFactors extends React.Component {
                                         onChange={ ( event ) => this.setState( { pfactors: event.target.value }, () => this.props.handler( this.state.pfactors, 'pfactors' ) ) }
                                         className="form-control" 
                                         id="sw_bpsm_pf_input" 
-                                        placeholder='Persönliche Faktoren hier eingeben' />
+                                        placeholder='Personenbezogene Faktoren hier eingeben' />
                         </div>
                     </Modal.Body>
                 </Modal>

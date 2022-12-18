@@ -30,10 +30,12 @@ class SWICFListPDF {
         this.doc = new jsPDF();
         
         this.parser = new ManParse(manualsWHO);
+        
+        this.docFonts = { bold: 'AlegreyaSans-Bold', regular: 'AlegreyaSans-Regular', thin: 'AlegreyaSans-Thin' };
     }
     
     setWordWrappingDefault = () => {
-        this.doc.setFont( 'AlegreyaSans-Regular' );
+        this.doc.setFont( this.docFonts.regular );
         this.doc.setFontSize(12);       
     }
     
@@ -65,7 +67,7 @@ class SWICFListPDF {
         let yCoord = topDist;
         
         //headline
-        this.doc.setFont( 'AlegreyaSans-Bold' );
+        this.doc.setFont( this.docFonts.bold );
         this.doc.setFontSize(16);
         this.doc.text( headline, 25, yCoord, { maxWidth: 165 });
         
@@ -105,8 +107,8 @@ class SWICFListPDF {
             //give em codes
             autoTable(this.doc, {
                 theme: 'grid',
-                headStyles: { fillColor: [60, 60, 60], textColor:  [255, 255, 255] },
-                columnStyles: { key: { minCellWidth: 35 }, text: { minCellWidth: 130 } },
+                headStyles: { fillColor: [60, 60, 60], textColor:  [255, 255, 255], font: this.docFonts.bold },
+                columnStyles: { key: { minCellWidth: 35, font: this.docFonts.regular }, text: { minCellWidth: 130, font: this.docFonts.regular } },
                 columns: [
                     { header: 'Schlüssel', dataKey: 'key' },
                     { header: 'Diagnose nach ICD-10', dataKey: 'text' },
@@ -120,8 +122,8 @@ class SWICFListPDF {
             //give em empty lines instead
             autoTable(this.doc, {
                 theme: 'grid',
-                headStyles: { fillColor: [60, 60, 60], textColor:  [255, 255, 255] },
-                columnStyles: { key: { minCellWidth: 35 }, text: { minCellWidth: 130 } },
+                headStyles: { fillColor: [60, 60, 60], textColor:  [255, 255, 255], font: this.docFonts.bold },
+                columnStyles: { key: { minCellWidth: 35, font: this.docFonts.regular }, text: { minCellWidth: 130, font: this.docFonts.regular } },
                 columns: [
                     { header: 'Schlüssel', dataKey: 'key' },
                     { header: 'Diagnose nach ICD-10', dataKey: 'text' },
@@ -204,23 +206,26 @@ class SWICFListPDF {
         console.log('ICF Data', compICF);
         console.log('YCord after ICF table:' + yCoord);
         
-        return yCoord;
+        return { posY: yCoord, pages: this.doc.lastAutoTable.pageCount };
         
     }
     
+    //creates an icf table
     createICFTable = ( tableData, yCoord, options ) => {
         
         console.log('YCord before ICF table:' + yCoord);
         
+        //create columns array
+        const tabCols = [];
+        tabCols.push( { header: 'Code', dataKey: 'key' } );
+        options.gradfields === true && tabCols.push( { header: 'Graduierung', dataKey: 'grad' } );
+        tabCols.push( { header: 'Titel', dataKey: 'text' } );
+        
         autoTable(this.doc, {
             theme: 'grid',
-            headStyles: {fillColor: [60, 60, 60], textColor: [255, 255, 255]},
-            columnStyles: { key: {minCellWidth: 30}, grad: {minCellWidth: 30}, text: {minCellWidth: 105} },
-            columns: [
-                {header: 'Code', dataKey: 'key'},
-                {header: 'Graduierung', dataKey: 'grad'},
-                {header: 'Titel', dataKey: 'text'},
-            ],
+            headStyles: {fillColor: [60, 60, 60], textColor: [255, 255, 255], font: this.docFonts.bold},
+            columnStyles: { key: {minCellWidth: 30, font: this.docFonts.regular}, grad: {minCellWidth: 30, font: this.docFonts.regular}, text: {minCellWidth: 105, font: this.docFonts.regular} },
+            columns: tabCols,
             body: tableData,
             startY: yCoord,
             margin: {top: 25, right: 20, bottom: 20, left: 25}
@@ -230,7 +235,8 @@ class SWICFListPDF {
         if ( !_.isEmpty( options ) && options.remfields === true ) {
                 autoTable(this.doc, {
                     theme: 'plain',
-                    columnStyles: { remarks: { minCellWidth: 165, minCellHeight: 30, lineWidth: 0.25 } },
+                    headStyles: {font: "AlegreyaSans-Bold"},
+                    columnStyles: { remarks: { minCellWidth: 165, minCellHeight: 30, lineWidth: 0.25, font: this.docFonts.regular } },
                     columns: [
                         { header: 'Anmerkungen', dataKey: 'remarks' },
                     ],
@@ -238,14 +244,164 @@ class SWICFListPDF {
                         { remarks: '' },                    
                     ],
                     startY: this.doc.lastAutoTable.finalY,
-                    margin: {top: 25, right: 20, bottom: 0, left: 25}
+                    margin: {top: 25, right: 20, bottom: 20, left: 25}
                 });          
         }
         
         //return last y coordinate
         return this.doc.lastAutoTable.finalY;      
     }
+    //creates a block of personal factors
+    createPFactorsBlock = ( strData, yCoord, options, createHeadline = true, headTxt = 'Personenbezogene Faktoren' ) => {  
+        
+        //insert headline
+        yCoord = createHeadline === true ? this.createIntroBlock( yCoord, headTxt ) : yCoord;
+        
+        //static base config for both tables
+        const tableConf = { theme: 'plain', minCellWidth: 165, minCellHeight: 30, margin: { top: 25, right: 20, bottom: 20, left: 25 } }
+        
+        //Build pFactors block
+        if ( !_.isEmpty( strData ) && options.pfactors === true ) {
+                autoTable(this.doc, {
+                    theme: tableConf.theme,
+                    columnStyles: { pfactors: { minCellWidth: tableConf.minCellWidth, minCellHeight: 0, lineWidth: 0, font: this.docFonts.regular } },
+                    headStyles: {font: this.docFonts.bold},
+                    columns: [
+                        { header: 'Aus Biopsychosozialem Modell', dataKey: 'pfactors' },
+                    ],
+                    body: [
+                        { pfactors: strData },                    
+                    ],
+                    startY: yCoord + 4,
+                    margin: tableConf.margin,
+                    showHead: 'firstPage'
+                });          
+        }
+        if ( options.pfacfields === true ) { 
+                autoTable(this.doc, {
+                    theme: tableConf.theme,
+                    columnStyles: { pfacform: { minCellWidth: tableConf.minCellWidth, minCellHeight: tableConf.minCellHeight, lineWidth: 0.25, font: this.docFonts.regular } },
+                    headStyles: {font: this.docFonts.bold},
+                    columns: [
+                        { header: _.isEmpty( strData ) ? '' : 'Raum für Ergänzungen', dataKey: 'pfacform' },
+                    ],
+                    body: [
+                        { remarks: '' },                    
+                    ],
+                    startY: !_.isEmpty( strData ) && options.pfactors === true ? this.doc.lastAutoTable.finalY : yCoord + 4,
+                    margin: tableConf.margin
+                });               
+        }
+        
+        return { posY: this.doc.lastAutoTable.finalY, pages: this.doc.lastAutoTable.pageCount };
+    } 
     
+    //creates simple comment field
+    createCommentField = ( yCoord, title = 'Bemerkungen') => {
+        //insert headline
+        yCoord = this.createIntroBlock( yCoord, title );   
+        
+        autoTable(this.doc, {
+            theme: 'plain',
+            columnStyles: { comments: { minCellWidth: 165, minCellHeight: 30, lineWidth: 0.25, font: this.docFonts.regular } },
+            headStyles: {font: this.docFonts.bold},
+            columns: [
+                {header: title, dataKey: 'comments'},
+            ],
+            body: [
+                { comments: '' },
+            ],
+            startY: yCoord + 4,
+            margin: { top: 25, right: 20, bottom: 20, left: 25 }
+        });
+                
+         return { posY: this.doc.lastAutoTable.finalY, pages: this.doc.lastAutoTable.pageCount };  
+         
+    }
+    
+    //creates a bpsm modell into a pdf page with landscape orientation - geoSetup defaults to optimal values for DIN A4 landscape format
+    createBPSMforPDF = ( yCoord, data, geoSetup = { maxWidth: 247, boxWidth: 55.67, boxHeight: 30, marginX: 20, marginY: 20 } ) => {
+        
+        //create all needed geometry first
+        const maxHeight = 210 - yCoord - 25;    
+        const centerBoxX = ( this.doc.internal.pageSize.getWidth() / 2 ) - ( geoSetup.boxWidth / 2 );
+        //second row x vals
+        const leftBoxX = centerBoxX - ( geoSetup.boxWidth + geoSetup.marginX );
+        const rightBoxX = centerBoxX + ( geoSetup.boxWidth + geoSetup.marginX );
+        //third row x vals
+        const lowerleftBoxX = centerBoxX - (( geoSetup.boxWidth / 2 ) + ( geoSetup.marginX / 2 ));
+        const lowerrightBoxX = centerBoxX + (( geoSetup.boxWidth / 2 ) + ( geoSetup.marginX / 2 ));  
+        //horizontal lines x vals
+        //long lines
+        const longhorLine = { 
+                                startX: leftBoxX + ( geoSetup.boxWidth / 2 ), 
+                                upperY: yCoord + geoSetup.boxHeight + ( geoSetup.marginY / 2 ),
+                                lowerY: yCoord + ( geoSetup.boxHeight*2 ) + geoSetup.marginY + ( geoSetup.marginY / 3 ),
+                                length: rightBoxX + ( geoSetup.boxWidth / 2 ) 
+                            };
+        //lower short line
+        const shrthorLine = {
+                                startX: lowerleftBoxX + ( geoSetup.boxWidth / 2 ),
+                                length: lowerrightBoxX + ( geoSetup.boxWidth / 2 ),
+                                vertY: yCoord + ( geoSetup.boxHeight*2 ) + geoSetup.marginY + (( geoSetup.marginY / 3 )*2)
+                            };
+        //row 2 between boxes lines
+        const centerLines = {
+                                startLineAX: leftBoxX + geoSetup.boxWidth, 
+                                lengthLineA: centerBoxX,
+                                startLineBX: centerBoxX + geoSetup.boxWidth,
+                                lengthLineB: rightBoxX,
+                                vertY: yCoord + geoSetup.boxHeight + geoSetup.marginY + ( geoSetup.boxHeight / 2 )
+                            };
+        //row 3 between boxes line
+        const lowerLine  =  {
+                                startX: lowerleftBoxX + geoSetup.boxWidth,
+                                length: lowerrightBoxX,
+                                vertY: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2) +  ( geoSetup.boxHeight / 2 )           
+                            };
+        
+        //set line widht
+        this.doc.setLineWidth(0.25);
+        
+        //create first box - centered
+        this.doc.rect( centerBoxX, yCoord, geoSetup.boxWidth, geoSetup.boxHeight );
+        
+        //create second row
+        //box 1
+        this.doc.rect( leftBoxX, yCoord + geoSetup.boxHeight + geoSetup.marginY, geoSetup.boxWidth, geoSetup.boxHeight );        
+        //box 2
+        this.doc.rect( centerBoxX, yCoord + geoSetup.boxHeight + geoSetup.marginY, geoSetup.boxWidth, geoSetup.boxHeight );
+        //box 3
+        this.doc.rect( rightBoxX, yCoord + geoSetup.boxHeight + geoSetup.marginY, geoSetup.boxWidth, geoSetup.boxHeight );  
+        
+        //create third row
+        //box 1
+        this.doc.rect( lowerleftBoxX, yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2), geoSetup.boxWidth, geoSetup.boxHeight ); 
+        //box 2
+        this.doc.rect( lowerrightBoxX, yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2), geoSetup.boxWidth, geoSetup.boxHeight ); 
+        
+        //draw lines & arrows
+        
+        //horizontal
+        //upper
+        this.doc.line( longhorLine.startX, longhorLine.upperY, longhorLine.length, longhorLine.upperY );
+        //lower
+        this.doc.line( longhorLine.startX, longhorLine.lowerY, longhorLine.length, longhorLine.lowerY );
+        //lower short
+        this.doc.line( shrthorLine.startX, shrthorLine.vertY, shrthorLine.length, shrthorLine.vertY );
+        
+        //between the center boxes
+        //first line
+        this.doc.line( centerLines.startLineAX, centerLines.vertY, centerLines.lengthLineA, centerLines.vertY );
+        //second line
+        this.doc.line( centerLines.startLineBX, centerLines.vertY, centerLines.lengthLineB, centerLines.vertY );
+        
+        //between the lower boxes
+        this.doc.line( lowerLine.startX, lowerLine.vertY, lowerLine.length, lowerLine.vertY );
+        
+        //vertical
+        
+    }
     
     //creates the pdf finally - returns true on success, false on error
     createPDFfromData = ( name = 'sw-list-', options = {}, data = {} ) => {  
@@ -263,7 +419,7 @@ class SWICFListPDF {
             const docTitle = this.setPDFProps( options );
 
             //title setup
-            this.doc.setFont( 'AlegreyaSans-Thin' );
+            this.doc.setFont( this.docFonts.thin );
             this.doc.setFontSize(26);
             this.doc.text(docTitle, 25, 25, { maxWidth: 165 });
 
@@ -276,10 +432,28 @@ class SWICFListPDF {
             this.createIntroBlock( Math.round(posData.posY) + 16, 'ICF Codeauswahl', 'Ausgewählte Codes sortiert und zugeordnet den Komponenten der ICF (b, s, d, e).' ); 
             
             //build ICF Code block
-            options.icf === true && this.createICFBlocks( data.icf, Math.round(posData.posY) + 34, options );
+            posData = options.icf === true && this.createICFBlocks( data.icf, Math.round(posData.posY) + 34, options );
             
+            //build personal factors
+            if ( options.pfactors === true  || options.pfacfields === true ) {
+                posData = this.createPFactorsBlock( data.pfactors, Math.round(posData.posY) + 8, options );
+            }
+            //Build comment fields
+            posData = options.commfields === true && this.createCommentField( Math.round(posData.posY) + 16 );
+            //TODO: Include BPSM if needed
+            if ( options.bpsm === true ) {
+                //first break page
+                this.doc.addPage("a4", "l");
+                //Add Page doc title
+                this.doc.setFont( this.docFonts.thin );
+                this.doc.setFontSize(26);
+                this.doc.text('Biopsychosoziales Modell der ICF', this.doc.internal.pageSize.getWidth() / 2, 25, { maxWidth: 247, align: 'center' });  
+                this.setWordWrappingDefault();
+                //TODO: get the model onto the page
+                this.createBPSMforPDF( 40, data );
+            }
             
-            //save doc finally
+            //save doc finally if not already done
             this.doc.save( name + timeStamp + ".pdf" );  
 
             console.log('PDF File "' + name + timeStamp + '" created succesfully');

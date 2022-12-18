@@ -178,7 +178,7 @@ class SWICFDataExport extends React.Component {
                                     <Form.Check 
                                         type="switch"
                                         id="sw_icf_pfactors_switch"
-                                        label="ICF - Persönliche Faktoren im Export beinhalten"
+                                        label="ICF - personenbezogene Faktoren im Export beinhalten"
                                         value="pfactors"
                                         onChange={ ( event ) => this.verifySwitch( event.target.value, event.target.checked ) }
                                     />       
@@ -211,7 +211,7 @@ class SWICFDataExport extends React.Component {
                                     <Form.Check 
                                         type="switch"
                                         id="sw_icf_pfactors_switch"
-                                        label="5 Zeilen für Persönliche Faktoren vorsehen"
+                                        label="5 Zeilen für personenbezogene Faktoren vorsehen"
                                         defaultChecked={ true } 
                                         value="pfacfields"
                                         onChange={ ( event ) => this.verifySwitch( event.target.value, event.target.checked ) }
