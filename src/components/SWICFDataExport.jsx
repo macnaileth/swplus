@@ -242,7 +242,7 @@ class SWICFDataExport extends React.Component {
                                         type="switch"
                                         inline
                                         id="sw_needs_switch"
-                                        label="Liste zur Vorbereitung der Bedarfserhebung"
+                                        label="Liste für die Bedarfsermittlung (Neun Lebensbereiche - SGB IX)"
                                         defaultChecked={ false } 
                                         value="ndlist"
                                         onChange={ ( event ) => this.verifySwitch( event.target.value, event.target.checked ) }

@@ -32,11 +32,13 @@ class SWICFListPDF {
         this.parser = new ManParse(manualsWHO);
         
         this.docFonts = { bold: 'AlegreyaSans-Bold', regular: 'AlegreyaSans-Regular', thin: 'AlegreyaSans-Thin' };
+        
+        this.docFontSize = { default: 12, headline: 16, display: 26 };
     }
     
     setWordWrappingDefault = () => {
         this.doc.setFont( this.docFonts.regular );
-        this.doc.setFontSize(12);       
+        this.doc.setFontSize( this.docFontSize.default );       
     }
     
     // sets PDF props and returns the title for furhter use as a string
@@ -68,7 +70,7 @@ class SWICFListPDF {
         
         //headline
         this.doc.setFont( this.docFonts.bold );
-        this.doc.setFontSize(16);
+        this.doc.setFontSize( this.docFontSize.headline );
         this.doc.text( headline, 25, yCoord, { maxWidth: 165 });
         
         //create desc only if desc is not empty, otherwise we just have a headline
@@ -359,7 +361,38 @@ class SWICFListPDF {
                                 length: lowerrightBoxX,
                                 vertY: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2) +  ( geoSetup.boxHeight / 2 )           
                             };
-        
+        //center horizontal lines
+        //upper center
+        const upperCenterLine = { 
+                                    startX: this.doc.internal.pageSize.getWidth() / 2,
+                                    startY: yCoord + geoSetup.boxHeight,
+                                    length: yCoord + geoSetup.boxHeight + geoSetup.marginY,
+                                };
+        //upper left
+        const upperLeftLine =   { 
+                                    startX: longhorLine.startX,
+                                    startY: longhorLine.upperY,
+                                    length: longhorLine.upperY + ( geoSetup.marginY / 2 ),                                    
+                                };
+        //upper right - takes Y value and length from upperLeftLine
+        const upperRightLine =  { 
+                                    startX: longhorLine.length,                                    
+                                };  
+        //lower left - shares start x value with upperLeftLine
+        const lowerLeftLine =   { 
+                                    startY: upperLeftLine.length  + geoSetup.boxHeight,
+                                    length: upperLeftLine.length  + geoSetup.boxHeight + ( geoSetup.marginY / 3 ),                                    
+                                };       
+        //lower center line - shares start x with upperCenterLine
+        const lowerCenterLine = {
+                                    startY: upperCenterLine.length + geoSetup.boxHeight,
+                                    length: upperCenterLine.length + geoSetup.boxHeight + ( ( geoSetup.marginY / 3 ) * 2 ),
+                                };      
+        //arrowhead relative dimensions
+        const arrowHeadDim =    {
+                                    xHalfWidth: geoSetup.marginX / 12,
+                                    yHeight: geoSetup.marginY / 6
+                                };                        
         //set line widht
         this.doc.setLineWidth(0.25);
         
@@ -400,7 +433,205 @@ class SWICFListPDF {
         this.doc.line( lowerLine.startX, lowerLine.vertY, lowerLine.length, lowerLine.vertY );
         
         //vertical
+        //upper center line
+        this.doc.line( upperCenterLine.startX, upperCenterLine.startY, upperCenterLine.startX, upperCenterLine.length );
+        //upper left line
+        this.doc.line( upperLeftLine.startX, upperLeftLine.startY, upperLeftLine.startX, upperLeftLine.length );
+        //upper right line - partially shares coords with upperLeftLine
+        this.doc.line( upperRightLine.startX, upperLeftLine.startY, upperRightLine.startX, upperLeftLine.length );
+        //lower left line - shares x coords with upperLeftLine
+        this.doc.line( upperLeftLine.startX, lowerLeftLine.startY, upperLeftLine.startX, lowerLeftLine.length );
+        //lower right line
+        this.doc.line( upperRightLine.startX, lowerLeftLine.startY, upperRightLine.startX, lowerLeftLine.length );
+        //lower center line
+        this.doc.line( upperCenterLine.startX, lowerCenterLine.startY, upperCenterLine.startX, lowerCenterLine.length );
+        //lowest left line
+        this.doc.line( shrthorLine.startX, shrthorLine.vertY, shrthorLine.startX, shrthorLine.vertY + ( geoSetup.marginY / 3 ) );
+        //lowest right line
+        this.doc.line( shrthorLine.length, shrthorLine.vertY, shrthorLine.length, shrthorLine.vertY + ( geoSetup.marginY / 3 ) );
         
+        //arrowheads
+        //fill according to doc
+        this.doc.setFillColor(60, 60, 60);
+        //vertical
+        //upper center
+        this.doc.triangle(  upperCenterLine.startX, 
+                            upperCenterLine.startY, 
+                            upperCenterLine.startX - arrowHeadDim.xHalfWidth, 
+                            upperCenterLine.startY + arrowHeadDim.yHeight, 
+                            upperCenterLine.startX + arrowHeadDim.xHalfWidth,  
+                            upperCenterLine.startY + arrowHeadDim.yHeight, 'F' );
+                            
+        this.doc.triangle(  upperCenterLine.startX, 
+                            upperCenterLine.length, 
+                            upperCenterLine.startX - arrowHeadDim.xHalfWidth, 
+                            upperCenterLine.length - arrowHeadDim.yHeight, 
+                            upperCenterLine.startX + arrowHeadDim.xHalfWidth,  
+                            upperCenterLine.length - arrowHeadDim.yHeight, 'F' );   
+                            
+        //upper left
+        this.doc.triangle(  upperLeftLine.startX, 
+                            upperLeftLine.length, 
+                            upperLeftLine.startX - arrowHeadDim.xHalfWidth, 
+                            upperLeftLine.length - arrowHeadDim.yHeight, 
+                            upperLeftLine.startX + arrowHeadDim.xHalfWidth,  
+                            upperLeftLine.length - arrowHeadDim.yHeight, 'F' ); 
+        
+        //upper right                    
+        this.doc.triangle(  upperRightLine.startX, 
+                            upperLeftLine.length, 
+                            upperRightLine.startX - arrowHeadDim.xHalfWidth, 
+                            upperLeftLine.length - arrowHeadDim.yHeight, 
+                            upperRightLine.startX + arrowHeadDim.xHalfWidth,  
+                            upperLeftLine.length - arrowHeadDim.yHeight, 'F' );  
+        //lower center                    
+        this.doc.triangle(  upperCenterLine.startX, 
+                            lowerCenterLine.startY, 
+                            upperCenterLine.startX - arrowHeadDim.xHalfWidth, 
+                            lowerCenterLine.startY + arrowHeadDim.yHeight, 
+                            upperCenterLine.startX + arrowHeadDim.xHalfWidth,  
+                            lowerCenterLine.startY + arrowHeadDim.yHeight, 'F' );  
+        //lower left
+        this.doc.triangle(  upperLeftLine.startX, 
+                            lowerCenterLine.startY, 
+                            upperLeftLine.startX - arrowHeadDim.xHalfWidth, 
+                            lowerCenterLine.startY + arrowHeadDim.yHeight, 
+                            upperLeftLine.startX + arrowHeadDim.xHalfWidth,  
+                            lowerCenterLine.startY + arrowHeadDim.yHeight, 'F' ); 
+        //lower right
+        this.doc.triangle(  upperRightLine.startX, 
+                            lowerCenterLine.startY, 
+                            upperRightLine.startX - arrowHeadDim.xHalfWidth, 
+                            lowerCenterLine.startY + arrowHeadDim.yHeight, 
+                            upperRightLine.startX + arrowHeadDim.xHalfWidth,  
+                            lowerCenterLine.startY + arrowHeadDim.yHeight, 'F' );      
+        //lower left down
+        this.doc.triangle(  shrthorLine.startX, 
+                            shrthorLine.vertY + ( geoSetup.marginY / 3 ), 
+                            shrthorLine.startX - arrowHeadDim.xHalfWidth, 
+                            ( shrthorLine.vertY + ( geoSetup.marginY / 3 ) ) - arrowHeadDim.yHeight, 
+                            shrthorLine.startX + arrowHeadDim.xHalfWidth,  
+                            ( shrthorLine.vertY + ( geoSetup.marginY / 3 ) )- arrowHeadDim.yHeight, 'F' );    
+        //lower right down                    
+        this.doc.triangle(  shrthorLine.length, 
+                            shrthorLine.vertY + ( geoSetup.marginY / 3 ), 
+                            shrthorLine.length - arrowHeadDim.xHalfWidth, 
+                            ( shrthorLine.vertY + ( geoSetup.marginY / 3 ) ) - arrowHeadDim.yHeight, 
+                            shrthorLine.length + arrowHeadDim.xHalfWidth,  
+                            ( shrthorLine.vertY + ( geoSetup.marginY / 3 ) )- arrowHeadDim.yHeight, 'F' );  
+                            
+        //Horizontal lines
+        //center row
+        //left
+        this.doc.triangle(  centerLines.startLineAX, 
+                            centerLines.vertY, 
+                            centerLines.startLineAX + ( arrowHeadDim.xHalfWidth * 2 ), 
+                            centerLines.vertY - ( arrowHeadDim.yHeight / 2 ), 
+                            centerLines.startLineAX + ( arrowHeadDim.xHalfWidth * 2 ),  
+                            centerLines.vertY + ( arrowHeadDim.yHeight / 2 ), 'F' );   
+        this.doc.triangle(  centerLines.lengthLineA, 
+                            centerLines.vertY, 
+                            centerLines.lengthLineA - ( arrowHeadDim.xHalfWidth * 2 ), 
+                            centerLines.vertY - ( arrowHeadDim.yHeight / 2 ), 
+                            centerLines.lengthLineA - ( arrowHeadDim.xHalfWidth * 2 ),  
+                            centerLines.vertY + ( arrowHeadDim.yHeight / 2 ), 'F' );                          
+        //right
+        this.doc.triangle(  centerLines.startLineBX, 
+                            centerLines.vertY, 
+                            centerLines.startLineBX + ( arrowHeadDim.xHalfWidth * 2 ), 
+                            centerLines.vertY - ( arrowHeadDim.yHeight / 2 ), 
+                            centerLines.startLineBX + ( arrowHeadDim.xHalfWidth * 2 ),  
+                            centerLines.vertY + ( arrowHeadDim.yHeight / 2 ), 'F' );  
+        this.doc.triangle(  centerLines.lengthLineB, 
+                            centerLines.vertY, 
+                            centerLines.lengthLineB - ( arrowHeadDim.xHalfWidth * 2 ), 
+                            centerLines.vertY - ( arrowHeadDim.yHeight / 2 ), 
+                            centerLines.lengthLineB - ( arrowHeadDim.xHalfWidth * 2 ),  
+                            centerLines.vertY + ( arrowHeadDim.yHeight / 2 ), 'F' );       
+        //lower
+        this.doc.triangle(  lowerLine.startX, 
+                            lowerLine.vertY, 
+                            lowerLine.startX + ( arrowHeadDim.xHalfWidth * 2 ), 
+                            lowerLine.vertY - ( arrowHeadDim.yHeight / 2 ), 
+                            lowerLine.startX + ( arrowHeadDim.xHalfWidth * 2 ),  
+                            lowerLine.vertY + ( arrowHeadDim.yHeight / 2 ), 'F' );      
+        this.doc.triangle(  lowerLine.length, 
+                            lowerLine.vertY, 
+                            lowerLine.length - ( arrowHeadDim.xHalfWidth * 2 ), 
+                            lowerLine.vertY - ( arrowHeadDim.yHeight / 2 ), 
+                            lowerLine.length - ( arrowHeadDim.xHalfWidth * 2 ),  
+                            lowerLine.vertY + ( arrowHeadDim.yHeight / 2 ), 'F' );                              
+        
+        //labels
+        
+        //label box height
+        const labelBoxH = geoSetup.boxHeight / 4;
+        const textMargin = { x: geoSetup.marginX / 8, y: labelBoxH / 1.54 };
+        
+        //health problem
+        this.createBPSMLabel( 
+                                { x: centerBoxX, y: yCoord, w: geoSetup.boxWidth, h: labelBoxH }, 
+                                { x: centerBoxX + textMargin.x, y: yCoord + textMargin.y, w: geoSetup.boxWidth }, 
+                                'Gesundheitsproblem',
+                                10
+                            );
+        //body functions and structures
+        this.createBPSMLabel( 
+                                { x: leftBoxX, y: yCoord + geoSetup.boxHeight + geoSetup.marginY, w: geoSetup.boxWidth, h: labelBoxH }, 
+                                { x: leftBoxX + textMargin.x, y: yCoord + geoSetup.boxHeight + geoSetup.marginY + textMargin.y, w: geoSetup.boxWidth },
+                                'Körperfunktionen und -strukturen',
+                                10
+                            );        
+        //Acitivities
+        this.createBPSMLabel( 
+                                { x: centerBoxX, y: yCoord + geoSetup.boxHeight + geoSetup.marginY, w: geoSetup.boxWidth, h: labelBoxH }, 
+                                { x: centerBoxX + textMargin.x, y: yCoord + geoSetup.boxHeight + geoSetup.marginY + textMargin.y, w: geoSetup.boxWidth },
+                                'Aktivitäten',
+                                10
+                            );          
+        //Participation
+        this.createBPSMLabel( 
+                                { x: rightBoxX, y: yCoord + geoSetup.boxHeight + geoSetup.marginY, w: geoSetup.boxWidth, h: labelBoxH }, 
+                                { x: rightBoxX + textMargin.x, y: yCoord + geoSetup.boxHeight + geoSetup.marginY + textMargin.y, w: geoSetup.boxWidth },
+                                'Partizipation (Teilhabe)',
+                                10
+                            ); 
+        //environmental factors
+        this.createBPSMLabel( 
+                                { x: lowerleftBoxX, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2), w: geoSetup.boxWidth, h: labelBoxH }, 
+                                { x: lowerleftBoxX + textMargin.x, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2) + textMargin.y, w: geoSetup.boxWidth },
+                                'Umweltfaktoren',
+                                10
+                            );         
+        //personal factors
+        this.createBPSMLabel( 
+                                { x: lowerrightBoxX, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2), w: geoSetup.boxWidth, h: labelBoxH }, 
+                                { x: lowerrightBoxX + textMargin.x, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2) + textMargin.y, w: geoSetup.boxWidth },
+                                'personenbezogene Faktoren',
+                                10
+                            );         
+        //TODO: contents
+        
+    }
+    
+    //creates a label box rect for bpsm model
+    //rect coords must be set as an object: { x: x start value, y: y start value, w: widht value, h: height value }
+    //text coords must be set as an object: { x: x start value, y: y start value, w: max width value }
+    createBPSMLabel = ( rectCoords, textCoords, textStr, textSize = this.docFontSize.default, textWeight = this.docFonts.bold, textColor = { r: 255, g: 255, b: 255 }, fillColor = { r: 60, g: 60, b: 60 } ) => {
+        
+        //break if vals are empty
+        if ( _.isEmpty( rectCoords ) || _.isEmpty( textCoords ) || _.isEmpty( textStr ) ) {
+            return false;
+        } else {
+            this.doc.setFont( textWeight ); //title font weight bold        
+            this.doc.setFontSize( textSize ); //set font size to default
+            //draw stuff
+            this.doc.setFillColor( fillColor.r, fillColor.g, fillColor.b ); //fill color
+            this.doc.rect( rectCoords.x, rectCoords.y, rectCoords.w, rectCoords.h, 'F' ); //box
+            this.doc.setTextColor( textColor.r, textColor.g, textColor.b ); //text color white for labels
+            this.doc.text( textStr, textCoords.x, textCoords.y, { maxWidth: textCoords.w } ); //box text            
+        }  
+        return true;
     }
     
     //creates the pdf finally - returns true on success, false on error
@@ -420,7 +651,7 @@ class SWICFListPDF {
 
             //title setup
             this.doc.setFont( this.docFonts.thin );
-            this.doc.setFontSize(26);
+            this.doc.setFontSize( this.docFontSize.display );
             this.doc.text(docTitle, 25, 25, { maxWidth: 165 });
 
             //build ICD-10 diagnostics block
@@ -446,7 +677,7 @@ class SWICFListPDF {
                 this.doc.addPage("a4", "l");
                 //Add Page doc title
                 this.doc.setFont( this.docFonts.thin );
-                this.doc.setFontSize(26);
+                this.doc.setFontSize( this.docFontSize.display );
                 this.doc.text('Biopsychosoziales Modell der ICF', this.doc.internal.pageSize.getWidth() / 2, 25, { maxWidth: 247, align: 'center' });  
                 this.setWordWrappingDefault();
                 //TODO: get the model onto the page
