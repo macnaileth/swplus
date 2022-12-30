@@ -15,6 +15,7 @@ import autoTable from 'jspdf-autotable';
 import _ from "lodash";
 //local ressources
 import ManParse from '../lib/ManParse';
+import ManHelper from '../lib/ManHelper';
 //json manuals
 import manualsWHO from '../lib/manuals';
 Object.freeze(manualsWHO);
@@ -322,7 +323,7 @@ class SWICFListPDF {
     }
     
     //creates a bpsm modell into a pdf page with landscape orientation - geoSetup defaults to optimal values for DIN A4 landscape format
-    createBPSMforPDF = ( yCoord, data, geoSetup = { maxWidth: 247, boxWidth: 55.67, boxHeight: 30, marginX: 20, marginY: 20 } ) => {
+    createBPSMforPDF = ( yCoord, data, geoSetup = { maxWidth: 247, boxWidth: 55.67, boxHeight: 30, marginX: 20, marginY: 20 }, finalLine = { display: true, content: 'Codes und Inhalte die mit [...] versehen sind, wurden gekürzt. Siehe vollständige Daten in obiger ICF-Liste.' } ) => {
         
         //create all needed geometry first
         const maxHeight = 210 - yCoord - 25;    
@@ -568,50 +569,108 @@ class SWICFListPDF {
         const labelBoxH = geoSetup.boxHeight / 4;
         const textMargin = { x: geoSetup.marginX / 8, y: labelBoxH / 1.54 };
         
-        //health problem
-        this.createBPSMLabel( 
-                                { x: centerBoxX, y: yCoord, w: geoSetup.boxWidth, h: labelBoxH }, 
-                                { x: centerBoxX + textMargin.x, y: yCoord + textMargin.y, w: geoSetup.boxWidth }, 
-                                'Gesundheitsproblem',
-                                10
-                            );
-        //body functions and structures
-        this.createBPSMLabel( 
-                                { x: leftBoxX, y: yCoord + geoSetup.boxHeight + geoSetup.marginY, w: geoSetup.boxWidth, h: labelBoxH }, 
-                                { x: leftBoxX + textMargin.x, y: yCoord + geoSetup.boxHeight + geoSetup.marginY + textMargin.y, w: geoSetup.boxWidth },
-                                'Körperfunktionen und -strukturen',
-                                10
-                            );        
-        //Acitivities
-        this.createBPSMLabel( 
-                                { x: centerBoxX, y: yCoord + geoSetup.boxHeight + geoSetup.marginY, w: geoSetup.boxWidth, h: labelBoxH }, 
-                                { x: centerBoxX + textMargin.x, y: yCoord + geoSetup.boxHeight + geoSetup.marginY + textMargin.y, w: geoSetup.boxWidth },
-                                'Aktivitäten',
-                                10
-                            );          
-        //Participation
-        this.createBPSMLabel( 
-                                { x: rightBoxX, y: yCoord + geoSetup.boxHeight + geoSetup.marginY, w: geoSetup.boxWidth, h: labelBoxH }, 
-                                { x: rightBoxX + textMargin.x, y: yCoord + geoSetup.boxHeight + geoSetup.marginY + textMargin.y, w: geoSetup.boxWidth },
-                                'Partizipation (Teilhabe)',
-                                10
-                            ); 
-        //environmental factors
-        this.createBPSMLabel( 
-                                { x: lowerleftBoxX, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2), w: geoSetup.boxWidth, h: labelBoxH }, 
-                                { x: lowerleftBoxX + textMargin.x, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2) + textMargin.y, w: geoSetup.boxWidth },
-                                'Umweltfaktoren',
-                                10
-                            );         
-        //personal factors
-        this.createBPSMLabel( 
-                                { x: lowerrightBoxX, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2), w: geoSetup.boxWidth, h: labelBoxH }, 
-                                { x: lowerrightBoxX + textMargin.x, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2) + textMargin.y, w: geoSetup.boxWidth },
-                                'personenbezogene Faktoren',
-                                10
-                            );         
-        //TODO: contents
+        //split icf codes for use in boxes
+        const icfCodes = ManHelper.splitICFCodes( data.icf );
         
+        //health problem
+        this.createBPSMBoxContent( 
+                                    { label: 'Gesundheitsproblem', body: data.icd.join(', ') }, 
+                                    { x: centerBoxX, y: yCoord, w: geoSetup.boxWidth, h: labelBoxH }, 
+                                    { x: centerBoxX + textMargin.x, y: yCoord + textMargin.y, w: geoSetup.boxWidth - textMargin.x }, 
+                                    { body: 10, label: 10 }
+                                 );            
+                            
+        //body functions and structures    
+        this.createBPSMBoxContent( 
+                                    { label: 'Körperfunktionen und -strukturen', body: icfCodes.bsCodes.join(', ') }, 
+                                    { x: leftBoxX, y: yCoord + geoSetup.boxHeight + geoSetup.marginY, w: geoSetup.boxWidth, h: labelBoxH },
+                                    { x: leftBoxX + textMargin.x, y: yCoord + geoSetup.boxHeight + geoSetup.marginY + textMargin.y, w: geoSetup.boxWidth - textMargin.x },
+                                    { body: 10, label: 10 }
+                                 );                     
+        //Acitivities 
+        this.createBPSMBoxContent( 
+                                    { label: 'Aktivitäten', body: icfCodes.aCodes.join(', ') }, 
+                                    { x: centerBoxX, y: yCoord + geoSetup.boxHeight + geoSetup.marginY, w: geoSetup.boxWidth, h: labelBoxH },
+                                    { x: centerBoxX + textMargin.x, y: yCoord + geoSetup.boxHeight + geoSetup.marginY + textMargin.y, w: geoSetup.boxWidth - textMargin.x },
+                                    { body: 10, label: 10 }
+                                 );                     
+        //Participation
+        this.createBPSMBoxContent( 
+                                    { label: 'Partizipation (Teilhabe)', body: icfCodes.pCodes.join(', ') }, 
+                                    { x: rightBoxX, y: yCoord + geoSetup.boxHeight + geoSetup.marginY, w: geoSetup.boxWidth, h: labelBoxH }, 
+                                    { x: rightBoxX + textMargin.x, y: yCoord + geoSetup.boxHeight + geoSetup.marginY + textMargin.y, w: geoSetup.boxWidth - textMargin.x },
+                                    { body: 10, label: 10 }
+                                 );                       
+        //environmental factors  
+        this.createBPSMBoxContent( 
+                                    { label: 'Umweltfaktoren', body: icfCodes.eCodes.join(', ') }, 
+                                    { x: lowerleftBoxX, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2), w: geoSetup.boxWidth, h: labelBoxH }, 
+                                    { x: lowerleftBoxX + textMargin.x, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2) + textMargin.y, w: geoSetup.boxWidth - textMargin.x },
+                                    { body: 10, label: 10 }
+                                 );                     
+        //personal factors    
+        this.createBPSMBoxContent( 
+                                    { label: 'personenbezogene Faktoren', body: data.pfactors }, 
+                                    { x: lowerrightBoxX, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2), w: geoSetup.boxWidth, h: labelBoxH }, 
+                                    { x: lowerrightBoxX + textMargin.x, y: yCoord + (geoSetup.boxHeight*2) + (geoSetup.marginY*2) + textMargin.y, w: geoSetup.boxWidth - textMargin.x },
+                                    { body: 10, label: 10 }
+                                 );                      
+        //final line 
+        if ( finalLine.display === true ) {
+            const finalLineCoords = { y: yCoord + (geoSetup.boxHeight*3) + (geoSetup.marginY*3), x: this.doc.internal.pageSize.getWidth() / 2 };
+            //draw stuff
+            this.doc.setTextColor( 60, 60, 60 ); //text color
+            this.doc.setFont( this.docFonts.regular );
+            this.doc.text( finalLine.content, finalLineCoords.x, finalLineCoords.y, { maxWidth: geoSetup.maxWidth, align: 'center' } ); //text  
+        }
+        
+    }
+    //simplified wrapper around the createBPSMText and createBPSMLabel functions to generate boxes as one.
+    //if you need access to all possible params and setup possiblities, better use both functions separate.
+    // content is an object looking like this: { label: '', body: '' } not allowed to be empty
+    //rect coords must be set as an object: { x: x start value, y: y start value, w: widht value, h: height value }
+    //text coords must be set as an object: { x: x start value, y: y start value, w: max width value }
+    createBPSMBoxContent = ( content, rectCoords, textCoords, textSize = { body: this.docFontSize.default, label: this.docFontSize.default }, textCrop = 120,  ) => {
+        
+        if ( _.isEmpty( rectCoords ) || _.isEmpty( textCoords ) || _.isEmpty( content ) ) {
+            return false;
+        } else {
+            //label
+            this.createBPSMLabel( 
+                                    { x: rectCoords.x, y: rectCoords.y, w: rectCoords.w, h: rectCoords.h }, 
+                                    { x: textCoords.x, y: textCoords.y, w: textCoords.w }, 
+                                    content.label,
+                                    textSize.label
+                                );
+            //calculate from data above
+            const bodyStartY = textCoords.y - rectCoords.y;           
+            //content data
+            this.createBPSMText(
+                                    { x: textCoords.x, y: rectCoords.y + rectCoords.h + bodyStartY, w: textCoords.w },
+                                    content.body,
+                                    textSize.body,
+                                    textCrop        
+                               );
+        }
+        return true;           
+    }
+    //creates the content text from certain data
+    //text coords must be set as an object: { x: x start value, y: y start value, w: max width value }
+    createBPSMText = ( textCoords, textStr, textSize = this.docFontSize.default, textCrop = 120, textWeight = this.docFonts.regular, textColor = { r: 0, g: 0, b: 0 } ) => {
+        if ( _.isEmpty( textCoords ) || _.isEmpty( textStr ) ) {
+            return false;
+        } else {
+            this.doc.setFont( textWeight ); //text font weight regular        
+            this.doc.setFontSize( textSize ); //set font size to default
+            
+            // Crop String if too long
+            const croppedStr = textStr.length > textCrop ? textStr.substring(0, textCrop) + ' [...]' : textStr;
+            
+            //draw stuff
+            this.doc.setTextColor( textColor.r, textColor.g, textColor.b ); //text color
+            this.doc.text( croppedStr, textCoords.x, textCoords.y, { maxWidth: textCoords.w } ); //text              
+        }
+        return true;
     }
     
     //creates a label box rect for bpsm model
@@ -671,7 +730,11 @@ class SWICFListPDF {
             }
             //Build comment fields
             posData = options.commfields === true && this.createCommentField( Math.round(posData.posY) + 16 );
-            //TODO: Include BPSM if needed
+            
+            //TODO: Include d1-9 field list
+            
+            
+            //Include BPSM if needed
             if ( options.bpsm === true ) {
                 //first break page
                 this.doc.addPage("a4", "l");

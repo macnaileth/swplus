@@ -11,6 +11,9 @@ import Modal from 'react-bootstrap/Modal';
 
 import _ from "lodash";
 
+//local ressources
+import ManHelper from '../lib/ManHelper';
+
 class BPSMPersonalFactors extends React.Component {
     constructor(props) {
         super(props);
@@ -64,7 +67,6 @@ export class SWBPSModel extends React.Component {
         this.bpsmArrowSetLower = this.bpsmArrowSetLower.bind(this);
         this.bpsmArrowSetLowest = this.bpsmArrowSetLowest.bind(this);
         this.codeListStr = this.codeListStr.bind(this);
-        this.splitICFCodes = this.splitICFCodes.bind(this);
         this.bpsmBodyText = this.bpsmBodyText.bind(this);
     }
     
@@ -197,40 +199,7 @@ export class SWBPSModel extends React.Component {
                         }
             </React.Fragment>
         );
-    }
-    
-    splitICFCodes = ( codeArray ) => {
-        
-        const sortedCodes = {   
-                                "bsCodes": [], 
-                                "eCodes": [],
-                                "aCodes": [],
-                                "pCodes": []
-                            };
-        
-        !_.isEmpty(codeArray) && codeArray.map(( element ) => {  
-            
-            let firstChar = element.charAt(0);
-            let secChar = element.charAt(1);
-            
-            if (firstChar === 'b' || firstChar === 's') {
-                sortedCodes.bsCodes.push( element );
-            } else if (firstChar === 'e') {
-                sortedCodes.eCodes.push( element );
-            } else if (firstChar === 'd') {
-                if (secChar === '1' || secChar === '2' || secChar === '3' || secChar === '4') {
-                    sortedCodes.aCodes.push( element );
-                } else if (secChar === '5' || secChar === '6' || secChar === '7' || secChar === '8' || secChar === '9') { 
-                    sortedCodes.pCodes.push( element );
-                }
-            }
-            
-        });   
-                            
-        return sortedCodes;
-        
-    }
-    
+    }    
     bpsmBodyText = ( codeArray, css = 'sw-bpsm-entry' ) => { return !_.isEmpty(codeArray) ? this.codeListStr( codeArray, css) : 'Keine Auswahl getroffen.'; }
     
     
@@ -244,16 +213,16 @@ export class SWBPSModel extends React.Component {
                     </div>
                     { this.bpsmArrowSetUpper() }
                     <div className="d-block d-md-flex justify-content-evenly align-items-stretch">
-                        { this.bpsmCard( 'Körperfunktionen und -strukturen', this.bpsmBodyText( this.splitICFCodes( this.props.selectedCodes.icf ).bsCodes ), 'bg-dark text-white',  'mb-4 mb-md-0' ) }
+                        { this.bpsmCard( 'Körperfunktionen und -strukturen', this.bpsmBodyText( ManHelper.splitICFCodes( this.props.selectedCodes.icf ).bsCodes ), 'bg-dark text-white',  'mb-4 mb-md-0' ) }
                         { this.bpsmArrowStraight() }
-                        { this.bpsmCard( 'Aktivitäten', this.bpsmBodyText( this.splitICFCodes( this.props.selectedCodes.icf ).aCodes ), 'bg-dark text-white', 'mb-4 mb-md-0' ) }
+                        { this.bpsmCard( 'Aktivitäten', this.bpsmBodyText( ManHelper.splitICFCodes( this.props.selectedCodes.icf ).aCodes ), 'bg-dark text-white', 'mb-4 mb-md-0' ) }
                         { this.bpsmArrowStraight() }
-                        { this.bpsmCard( 'Partizipation (Teilhabe)', this.bpsmBodyText( this.splitICFCodes( this.props.selectedCodes.icf ).pCodes ), 'bg-dark text-white' ) }
+                        { this.bpsmCard( 'Partizipation (Teilhabe)', this.bpsmBodyText( ManHelper.splitICFCodes( this.props.selectedCodes.icf ).pCodes ), 'bg-dark text-white' ) }
                     </div>     
                     { this.bpsmArrowSetLower() }
                     { this.bpsmArrowSetLowest() }
                     <div className="d-block d-md-flex justify-content-center align-items-stretch">
-                        { this.bpsmCard( 'Umweltfaktoren', this.bpsmBodyText( this.splitICFCodes( this.props.selectedCodes.icf ).eCodes ), 'dark-info text-white', 'mt-4' ) }
+                        { this.bpsmCard( 'Umweltfaktoren', this.bpsmBodyText( ManHelper.splitICFCodes( this.props.selectedCodes.icf ).eCodes ), 'dark-info text-white', 'mt-4' ) }
                         { this.bpsmArrowStraight( 'my-4' ) }
                         { this.bpsmCard( 'personenbezogene Faktoren', <BPSMPersonalFactors handler={ this.props.handler } />, 'dark-info text-white', 'mt-4', 'false' ) }
                     </div>    
