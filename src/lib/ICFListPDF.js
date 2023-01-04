@@ -46,12 +46,7 @@ class SWICFListPDF {
     setPDFProps = ( options = {} ) => {
         
         //generate title
-        let title = 'ICF-Liste (aus BPSM)';
-        
-        if ( !_.isEmpty( options ) ) {
-            title = options.ndlist === true && options.icflist === true ? title + ' und Liste für die Bedarfserhebung' : 
-                    options.ndlist === true && options.icflist === false ? 'Liste für die Bedarfserhebung' : title;
-        }
+        let title = options.icf === true ? 'ICF-Liste (aus BPSM)' : 'Liste (aus BPSM)';
         
         this.doc.setProperties({
                 title: title,
@@ -182,24 +177,36 @@ class SWICFListPDF {
         } 
         
         if ( !_.isEmpty( compICF.b ) ) {   
+            //break page if needed
+            yCoord = this.createPageBreak( yCoord, 0 ).posY;            
+            
             yCoord = this.createIntroBlock( yCoord, 'b - ' + this.parser.icfTitle( 'b', 180 ) );
             yCoord = this.createICFTable( compICF.b, yCoord + 5, options ) + 8;
             
             console.log('yCoord after b: ' + yCoord);           
         }
         if ( !_.isEmpty( compICF.s ) ) { 
+            //break page if needed
+            yCoord = this.createPageBreak( yCoord, 0 ).posY; 
+            
             yCoord = this.createIntroBlock( yCoord, 's - ' + this.parser.icfTitle( 's', 180 ) );
             yCoord = this.createICFTable( compICF.s, yCoord + 5, options ) + 8;
     
             console.log('yCoord after s: ' + yCoord);
         }    
         if ( !_.isEmpty( compICF.d ) ) { 
+            //break page if needed
+            yCoord = this.createPageBreak( yCoord, 0 ).posY; 
+            
             yCoord = this.createIntroBlock( yCoord, 'd - ' + this.parser.icfTitle( 'd', 180 ) );
             yCoord = this.createICFTable( compICF.d, yCoord + 5, options ) + 8;
      
             console.log('yCoord after d: ' + yCoord);
         }     
         if ( !_.isEmpty( compICF.e ) ) { 
+            //break page if needed
+            yCoord = this.createPageBreak( yCoord, 0 ).posY; 
+            
             yCoord = this.createIntroBlock( yCoord, 'e - ' + this.parser.icfTitle( 'e', 180 ) );
             yCoord = this.createICFTable( compICF.e, yCoord + 5, options ) + 8;
      
@@ -617,7 +624,7 @@ class SWICFListPDF {
                                  );                      
         //final line 
         if ( finalLine.display === true ) {
-            const finalLineCoords = { y: yCoord + (geoSetup.boxHeight*3) + (geoSetup.marginY*3), x: this.doc.internal.pageSize.getWidth() / 2 };
+            const finalLineCoords = { y: yCoord + (geoSetup.boxHeight*3) + (geoSetup.marginY*2.5), x: this.doc.internal.pageSize.getWidth() / 2 };
             //draw stuff
             this.doc.setTextColor( 60, 60, 60 ); //text color
             this.doc.setFont( this.docFonts.regular );
@@ -693,6 +700,46 @@ class SWICFListPDF {
         return true;
     }
     
+    //function to generate a PageBreak if needed, adding a new page and continuing there.
+    createPageBreak = ( yCoord, yNoBreakMod = 16, yBreakCoord = this.doc.internal.pageSize.getHeight() - 20, pFormat = { size: "a4", orientation: "p"} ) => {
+            
+            if ( yCoord > yBreakCoord ) { 
+                this.doc.addPage( pFormat.size, pFormat.orientation );  
+                
+                return { posY: 25, pages: this.doc.internal.getNumberOfPages() };
+                
+            } else {
+                
+                return { posY: yCoord + yNoBreakMod, pages: this.doc.internal.getNumberOfPages() };
+            }   
+            
+            return false;
+    }    
+    
+    //function to append copyright stuff
+    createCopyrightPage = ( data, title = 'Hinweise zum Urheberrecht', basics = 'Bitte beachten Sie die untenstehenden rechtlichen Hinweise zu diesem Dokument. Diese Seite ist Bestandteil des Dokuments - dieses sollte nicht ohne diese diese weitergegeben werden. Die PDF-Erzeugung erfolgte unter Nutzung von jsPDF und jsPDF-AutoTable.\nFragen? kontakt@socialwerks.de' ) => {
+        
+        if ( !_.isEmpty( data ) ) {
+            
+            let yCoord = 25;
+            
+            this.doc.addPage("a4", "p");
+            
+            this.doc.setFont( this.docFonts.thin );
+            this.doc.setFontSize( this.docFontSize.display ); 
+            //head
+            this.doc.text(title, 25, yCoord, { maxWidth: 165 });
+            //create blocks
+            this.createIntroBlock( yCoord+16, 'Grundsätzliches', basics ); //head
+            this.createIntroBlock( yCoord*3, 'Socialwerks+ Lizenz', data.txt.swplus ); //swplus
+            this.createIntroBlock( yCoord*4.4, 'WHO und BFARM', data.txt.bfarm + '\n' + data.txt.icf + '\n' + data.txt.icd ); //WHO
+            
+            return true;    
+        }
+        
+        return false;
+    }
+    
     //creates the pdf finally - returns true on success, false on error
     createPDFfromData = ( name = 'sw-list-', options = {}, data = {} ) => {  
         
@@ -702,7 +749,9 @@ class SWICFListPDF {
         
         //just do it if options are set
         if ( !_.isEmpty( options ) ) {
-
+            
+            //START: Wrap this into if for check if icf list is wanted!
+            
             let icddesc = data.icd.length === 0 ?
                             'An dieser Stelle können ICD-10 verschlüsselte Diagnosen notiert werden. Bitte beachten Sie, dass Diagnosen nur von entsprechend geschultem Fachpersonal gestellt werden sollten.' :
                             'Untenstehende Diagnosen sind ICD-10 verschlüsselt. Für weitere Informationen nutzen Sie die ICD-10, beim Bundesamt für Arzneimittel und Medizinprodukte (BfArM) herunterladbar.';
@@ -716,23 +765,32 @@ class SWICFListPDF {
             //build ICD-10 diagnostics block
             posData = options.icd10 === true && this.createICDBlock( data.icd, icddesc );
             
+            //break page if needed
+            posData = this.createPageBreak( posData.posY, 0 );
+            
             console.log( 'Table next Y: ' + Math.round(posData.posY) + ', Pages: ' + posData.pages );
             
-            //title setup
-            this.createIntroBlock( Math.round(posData.posY) + 16, 'ICF Codeauswahl', 'Ausgewählte Codes sortiert und zugeordnet den Komponenten der ICF (b, s, d, e).' ); 
-            
-            //build ICF Code block
-            posData = options.icf === true && this.createICFBlocks( data.icf, Math.round(posData.posY) + 34, options );
-            
-            //build personal factors
-            if ( options.pfactors === true  || options.pfacfields === true ) {
-                posData = this.createPFactorsBlock( data.pfactors, Math.round(posData.posY) + 8, options );
+            //if not wanted, do not build it anyways
+            if ( options.icf === true ) {
+                //title setup
+                this.createIntroBlock( Math.round(posData.posY) + 16, 'ICF Codeauswahl', 'Ausgewählte Codes sortiert und zugeordnet den Komponenten der ICF (b, s, d, e).' ); 
+
+                //build ICF Code block
+                posData = options.icf === true && this.createICFBlocks( data.icf, Math.round(posData.posY) + 34, options );
+                
+                //break page if needed
+                posData = this.createPageBreak( posData.posY, 8 );
+                
+                //build personal factors
+                if ( options.pfactors === true  || options.pfacfields === true ) {
+                    posData = this.createPFactorsBlock( data.pfactors, Math.round(posData.posY), options );
+                }
             }
-            //Build comment fields
-            posData = options.commfields === true && this.createCommentField( Math.round(posData.posY) + 16 );
             
-            //TODO: Include d1-9 field list
-            
+            //Build comment fields, break page if needed
+            posData = this.createPageBreak( posData.posY );
+           
+            posData = options.commfields === true && this.createCommentField( Math.round(posData.posY) );
             
             //Include BPSM if needed
             if ( options.bpsm === true ) {
@@ -743,9 +801,28 @@ class SWICFListPDF {
                 this.doc.setFontSize( this.docFontSize.display );
                 this.doc.text('Biopsychosoziales Modell der ICF', this.doc.internal.pageSize.getWidth() / 2, 25, { maxWidth: 247, align: 'center' });  
                 this.setWordWrappingDefault();
-                //TODO: get the model onto the page
+                //get the model onto the page
                 this.createBPSMforPDF( 40, data );
             }
+            
+            //insert copyright notes
+            this.createCopyrightPage( cpText );
+            
+            //append page nums
+            const pagesTotal = this.doc.internal.getNumberOfPages();
+            
+            for( let i = 0; i < pagesTotal; i++ ) {
+                this.doc.setPage(i);
+                this.setWordWrappingDefault();
+                this.doc.setFontSize( this.docFontSize.default );
+                this.doc.setTextColor( 0, 0, 0 );
+                this.doc.text(
+                                'Seite ' + this.doc.internal.getCurrentPageInfo().pageNumber + ' von ' + pagesTotal, 
+                                this.doc.internal.pageSize.getWidth() - 20, 
+                                this.doc.internal.pageSize.getHeight() - 15, 
+                                { maxWidth: 247, align: 'right' }
+                             );
+            }           
             
             //save doc finally if not already done
             this.doc.save( name + timeStamp + ".pdf" );  

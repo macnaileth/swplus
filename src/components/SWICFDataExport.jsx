@@ -78,13 +78,9 @@ class SWICFDataExport extends React.Component {
             if (checked === true ) {
                 warning.msg = ''; 
                 warning.msglvl = '';
-                icflist.disabled = false;
             }else { 
-                warning.msg = 'Ohne ICF Codes kann keine valide ICF-Liste erzeugt werden. Nur die Erzeugung einer Liste zur Vorbereitung der Bedarfserhebung ist möglich.';
+                warning.msg = 'Ohne ICF Codes kann ggf. keine valide ICF-Liste erzeugt werden.';
                 warning.msglvl = 'warning';
-                //set icflist checked to false
-                icflist.checked = false;
-                icflist.disabled = true;
             }
             
             this.setState({ icf: checked, message: warning.msg, messagelvl: warning.msglvl });
@@ -121,25 +117,7 @@ class SWICFDataExport extends React.Component {
         //comments
         if( strSwitch === 'commfields' ){
             this.setState({ commfields: checked, message: '', messagelvl: '' });
-        }    
-        //icflist
-        if( strSwitch === 'icflist' ){
-            this.setState({ icflist: checked, message: '', messagelvl: '' });
-        }    
-        //ndlist
-        if( strSwitch === 'ndlist' ){
-            this.setState({ ndlist: checked, message: '', messagelvl: '' });
-        }   
-        //if no doc type is selected, produce warning
-        if ( icflist.checked === false && ndlist.checked === false ) {
-            warning.msg = 'Kein Ausgabeformat gewählt. Bitte zumindest ICF-Liste oder Liste Bedarfsermittlung aktivieren, um ein Dokument erzeugen zu können.';
-            warning.msglvl = 'danger';   
-            //disable button
-            createbtn.disabled = true;
-            this.setState({ message: warning.msg, messagelvl: warning.msglvl });
-        } else if ( icflist.checked === true || ndlist.checked === true ) {
-            createbtn.disabled = false;
-        }
+        }     
         
         console.log( 'Switch: ' + strSwitch + ', checked: ' + checked );
     }
@@ -147,7 +125,7 @@ class SWICFDataExport extends React.Component {
     render() {            
             return (
                     <div>
-                        <p className="text-start text-lg-center">Aus den ausgewählten Daten kann ein Export zu einem PDF oder Office-Dokument durchgeführt werden. Dazu können die untenstehenden Optionen ggf. angepasst werden.</p>
+                        <p className="text-start text-lg-center">Aus den ausgewählten Daten kann ein Export zu einem PDF-Dokument durchgeführt werden. Dazu können die untenstehenden Optionen ggf. angepasst werden.</p>
                         {this.state.message !== '' &&
                             <div className="my-3">
                                 <div className={ "alert alert-" + this.state.messagelvl } role="alert">
@@ -225,34 +203,6 @@ class SWICFDataExport extends React.Component {
                                         onChange={ ( event ) => this.verifySwitch( event.target.value, event.target.checked ) }
                                     />
                                 </div>                            
-                            </div>
-                            <div className="d-md-flex d-block mb-3 pb-3 border-bottom justify-content-center gap-2">
-                                <div>
-                                    <h3>Dokumentenart</h3>
-                                    <Form.Check 
-                                        type="switch"
-                                        inline
-                                        id="sw_icf_list_switch"
-                                        label="ICF-Liste"
-                                        defaultChecked={ this.state.icf === true ? true : false } 
-                                        value="icflist"
-                                        onChange={ ( event ) => this.verifySwitch( event.target.value, event.target.checked ) }
-                                    />     
-                                    <Form.Check 
-                                        type="switch"
-                                        inline
-                                        id="sw_needs_switch"
-                                        label="Liste für die Bedarfsermittlung (Neun Lebensbereiche - SGB IX)"
-                                        defaultChecked={ false } 
-                                        value="ndlist"
-                                        onChange={ ( event ) => this.verifySwitch( event.target.value, event.target.checked ) }
-                                    />       
-                                    <Form.Select aria-label="Formatauswahl" className="mt-2">
-                                        <option>Ausgabe im Format:</option>
-                                        <option value="PDF">PDF Dokument</option>
-                                        <option value="DOCX">Word Dokument</option>
-                                    </Form.Select>
-                                </div>                         
                             </div>
                             <div className="d-grid d-md-flex justify-content-md-center gap-2 mb-4">
                                 <Button id="sw_create_doc_btn" 
