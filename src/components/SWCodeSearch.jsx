@@ -59,7 +59,7 @@ export class SWCodeSearch extends React.Component {
         //Float this data further upward to the container and trigger state update rerender - this is just a wrapper
         this.props.handler(strCode, strDesc); 
     }
-    ChildUpdateHandler = () => {
+    ChildUpdateHandler = ( debug = false ) => {
         this.setState({
            cupdate: true
          }, () => {
@@ -69,12 +69,12 @@ export class SWCodeSearch extends React.Component {
                     const segArray = this.pathURL.substring(1).split("/");
                     this.setState({ code: segArray[1] ? segArray[1].toLowerCase() : '' });
                 } else {
-                    console.log('all goood child update!');
+                    debug === true && console.log('all good child update!');
                 }
-                console.log('Updated from Child - state: ' + this.state.cupdate + ', query str icf: ' + this.queryStr.get("icf") + ', query str icd10: ' + this.queryStr.get("icd"));
+                debug === true && console.log('Updated from Child - state: ' + this.state.cupdate + ', query str icf: ' + this.queryStr.get("icf") + ', query str icd10: ' + this.queryStr.get("icd"));
             });     
     }
-    matchQURI(basepath = 'toolbox') {
+    matchQURI( basepath = 'toolbox', debug = false ) {
         //match routes and set codes accordingly
         //get uri segments
         const segArray = this.pathURL.substring(1).split("/");
@@ -98,8 +98,8 @@ export class SWCodeSearch extends React.Component {
                             });
             }
         } 
-        console.log('URL path: ' + this.pathURL, ' Query String: ICF: ' + this.queryStr.get("icf") + ' ICD-10: ' + this.queryStr.get("icd"));
-        console.log('URL segments: ', segArray);
+        debug === true && console.log('URL path: ' + this.pathURL, ' Query String: ICF: ' + this.queryStr.get("icf") + ' ICD-10: ' + this.queryStr.get("icd"));
+        debug === true && console.log('URL segments: ', segArray);
     }   
     matchICDBooks(string) {
         //check regex patterns

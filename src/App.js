@@ -15,16 +15,24 @@ import swLogo from './img/logo/socialwerks_logo.svg'; //-> TODO: Make this work
 //routes
 import Toolbox from "./routes/Toolbox";
 import Updates from "./routes/Updates";
-
+//package json for display version info
+import packageJson from '../package.json';
 class App extends React.Component {
     
     constructor(props) {
-      super(props);
-      this.state =  { 
+        super(props);
+        this.state =  { 
                         mainnav: { updates:'Updates', toolbox: 'Toolbox' },
                         footnav: { about:'Über', legal: 'Impressum', privacy: 'Datenschutz' }
                     };
+        this.statusPostLoad = this.statusPostLoad.bind(this);            
     } 
+    
+    statusPostLoad = () => { console.log( '%c*** social.werks+ App loaded | Version: ' + packageJson.version + ' ***', 'color:green;' ) };
+    
+    componentDidMount() {
+        this.statusPostLoad();
+    }
     
     render() {
         return (

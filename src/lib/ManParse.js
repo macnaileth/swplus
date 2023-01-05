@@ -96,7 +96,7 @@ class ManParse {
                         !_.isEmpty(modBase.five) && digit === 5 ? modBase.five.sub.find(element => element.code === pastDotPart.substring(2,3)) : '' : '';
         return modText ? _.isArray(modText.Rubric) ? modText.Rubric.find(element => element.kind === "preferred").Label['#text'] : modText.Rubric.Label['#text'] : '';    
     }
-    icdTitle = (string, charLimit = 40, icdchapter = false, elipsis = '...') => {
+    icdTitle = (string, charLimit = 40, icdchapter = false, elipsis = '...', debug = false) => {
         
         //optimize string for parsing to allow Zusatzkennzeichen :-)
         let parseStr = icdchapter === false ? this.isICDSpecChar(string.slice(-1)) === true ? string.slice(0, -1) : string : string;
@@ -116,7 +116,7 @@ class ManParse {
                 //reset possible fifth digit
                 pData.modFText = '';
                 pData.modFCode = '';
-                console.log('Viersteller (' + string.length + ' | ' + frontDotPart + ' | ' + pastDotPart + ')', pData.modText);
+                debug === true && console.log('Viersteller (' + string.length + ' | ' + frontDotPart + ' | ' + pastDotPart + ')', pData.modText);
             }
             //also check for additional flags and special chars, like a traling g, v, or so - to prevent code invalidation
             if( string.length === 6 || (string.length === 7 && this.isICDSpecChar(string.substring(6,7))) ) {
@@ -132,7 +132,7 @@ class ManParse {
                 pData.modCode = pModGroup ? SplitPastDotPart.four : ''; 
                 pData.modFText = pModFive ? pModFive : '';
                 pData.modFCode = pModFive ? SplitPastDotPart.five : '';
-                console.log('Fünfsteller (' + string.length + ' | ' + pastDotPart + 
+                debug === true && console.log('Fünfsteller (' + string.length + ' | ' + pastDotPart + 
                         ') , Splitted: Four: ' + SplitPastDotPart.four + ', ' + pData.modText +
                         ', Five: ' + SplitPastDotPart.five + ', ' + pData.modFText );
             }
@@ -167,7 +167,7 @@ class ManParse {
         string.includes('5.') === true ? digits.five = true : digits.five = false;
         return digits;
     }
-    icdModifiers = (string, hiDigit = undefined) => {
+    icdModifiers = (string, hiDigit = undefined, debug = false) => {
         const Modifiers = this.manual.icdMod.Modifier.find( element => element.code.includes(string));
         const ModElement = {};
         
@@ -182,7 +182,7 @@ class ManParse {
             //apply highlight if have to
             ModElement.hilite = !_.isEmpty(hiDigit) ? hiDigit : '';
         }
-        console.log('Prepared String: '+ hiDigit, ModElement);
+        debug === true && console.log('Prepared String: '+ hiDigit, ModElement);
         return ModElement;
     }
     icdGetValidModifierCode = (string, interval = 15) => {
@@ -221,7 +221,7 @@ class ManParse {
         } else { modifierElement.five = {} }
         return modifierElement;
     }
-    icdElement(string) {
+    icdElement( string, debug = false) {
         const Element = {};
         
         //before parsing, prepare string
@@ -267,13 +267,13 @@ class ManParse {
             } else {
                 Element.cmodifiers = {};
                 //crop name to correct length if overtyped - check for chapter
-                console.log('Element Name (no modifiers): ', Element.cname);  
+                debug === true && console.log('Element Name (no modifiers): ', Element.cname);  
                     if (Element.cname !== cData.code) {
                         Element.cname = this.icdCropInvalidDigits( cData.code + Element.cspecChar.char.toUpperCase() );
                     } else {
                         Element.cname = this.icdCropInvalidDigits(Element.cname); 
                     }
-                console.log('Element Name (modifiers): ', Element.cname);             
+                debug === true && console.log('Element Name (modifiers): ', Element.cname);             
             }
             
         } else {
@@ -281,8 +281,8 @@ class ManParse {
             Element.cerror = string ? string + ' ist kein gültiges Element der ICD-10.' : 'Kein Element gefunden.';
         }
         
-        console.log('ICD-10 Data: ', cData);
-        console.log('ICD-10 Element: ', Element);
+        debug === true && console.log('ICD-10 Data: ', cData);
+        debug === true && console.log('ICD-10 Element: ', Element);
         return Element;
     }
     icdCropInvalidDigits = (string) => {
@@ -295,11 +295,11 @@ class ManParse {
         } 
         return string;
     }
-    icfElement(string) {
+    icfElement( string, debug = false ) {
         const Element = {};
         const eData  = string && this.parseicfCode(string) ? this.parseicfCode(string) : '';
         //debug
-        //console.log('Code ' + string + ' data:', eData);
+        debug === true && console.log('Code ' + string + ' data:', eData);
         //collect data
         if(eData) {
             Element.ctype = 'icf';

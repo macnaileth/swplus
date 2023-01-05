@@ -8,7 +8,9 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
 //internal ressources - old school
+import LoadWait from '../components/LoadWait.jsx';
 /*
+ * commented out because these are lazy loaded - will be removed soon
 import SWCodeSearch from '../components/SWCodeSearch.jsx';
 import SWCodeContainer from '../components/SWCodeContainer.jsx';
 import SWBPSModel from '../components/SWBPSModel.jsx';
@@ -24,37 +26,26 @@ export default function Toolbox() {
   
   const [codes, setCodes] = useState({ "icf": [], "icd": [], "pfactors": '' });
   
-  const updateCodesHandler = ( strCode, strType ) => {
+  const updateCodesHandler = ( strCode, strType, debug = false ) => {
       //push data into objects
       strType === 'icf' && !codes.icf.includes( strCode ) && setCodes( codes => ({ icf: [...codes.icf, strCode], icd: [...codes.icd], pfactors: codes.pfactors })); 
       strType === 'icd-10' &&  !codes.icd.includes( strCode ) && setCodes( codes => ({ icd: [...codes.icd, strCode], icf: [...codes.icf], pfactors: codes.pfactors }));
       strType === 'pfactors' && setCodes( codes => ({ icd: [...codes.icd], icf: [...codes.icf], pfactors: strCode })); 
   
-      console.log('Update, Code State: ', codes);
-  }
+      debug === true && console.log('Update, Code State: ', codes);
+  };
   
-  const removeCodesHandler = ( strCode, strType ) => {
+  const removeCodesHandler = ( strCode, strType, debug = false ) => {
     //remove data from objects
     strType === 'icf' && setCodes( codes => ({ icf: codes.icf.filter(function (str) { return str !== strCode; }), icd: [...codes.icd], pfactors: codes.pfactors }));
     strType === 'icd' && setCodes( codes => ({ icd: codes.icd.filter(function (str) { return str !== strCode; }), icf: [...codes.icf], pfactors: codes.pfactors }));
     
-    console.log( 'Remove triggered for: ' + strCode + ', type: ' + strType );
-  }
+    debug === true && console.log( 'Remove triggered for: ' + strCode + ', type: ' + strType );
+  }; 
   
-  const LoadingCircle = () => {
-      return ( 
-                <React.Fragment>
-                    <div className="d-flex justify-content-center">
-                        <div className="spinner-border text-dark me-2" role="status"><span className="visually-hidden">Lade Toolbox...</span></div> 
-                        <div className="text-dark pt-1"><strong>Lade Toolbox - Bitte warten...</strong></div>
-                    </div>
-                </React.Fragment>
-             );
-  }
-    
   return (
     <div className="py-5">  
-        <Suspense fallback={ <LoadingCircle /> }>
+        <Suspense fallback={ <LoadWait accessibilityMSG="Lade Toolbox..." LoadingMSG="Lade Toolbox - Bitte warten..."/> }>
             <Tabs defaultActiveKey="codesearch" id="sw_toolbox_tabs" className="mb-3">
                 <Tab eventKey="codesearch" title="Code">
                     <h1 className="display-6 text-secondary text-center">ICD-10 - ICF Codesuche</h1>

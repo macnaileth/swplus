@@ -144,7 +144,7 @@ class SWICFListPDF {
         return { posY: yCoord, pages: this.doc.lastAutoTable.pageCount };
     }
     
-    createICFBlocks = ( data, topDist = 40, options = {} ) => {
+    createICFBlocks = ( data, topDist = 40, options = {}, debug = false ) => {
 
         let yCoord = topDist;
         
@@ -183,7 +183,7 @@ class SWICFListPDF {
             yCoord = this.createIntroBlock( yCoord, 'b - ' + this.parser.icfTitle( 'b', 180 ) );
             yCoord = this.createICFTable( compICF.b, yCoord + 5, options ) + 8;
             
-            console.log('yCoord after b: ' + yCoord);           
+            debug === true && console.log('yCoord after b: ' + yCoord);           
         }
         if ( !_.isEmpty( compICF.s ) ) { 
             //break page if needed
@@ -192,7 +192,7 @@ class SWICFListPDF {
             yCoord = this.createIntroBlock( yCoord, 's - ' + this.parser.icfTitle( 's', 180 ) );
             yCoord = this.createICFTable( compICF.s, yCoord + 5, options ) + 8;
     
-            console.log('yCoord after s: ' + yCoord);
+            debug === true && console.log('yCoord after s: ' + yCoord);
         }    
         if ( !_.isEmpty( compICF.d ) ) { 
             //break page if needed
@@ -201,7 +201,7 @@ class SWICFListPDF {
             yCoord = this.createIntroBlock( yCoord, 'd - ' + this.parser.icfTitle( 'd', 180 ) );
             yCoord = this.createICFTable( compICF.d, yCoord + 5, options ) + 8;
      
-            console.log('yCoord after d: ' + yCoord);
+            debug === true && console.log('yCoord after d: ' + yCoord);
         }     
         if ( !_.isEmpty( compICF.e ) ) { 
             //break page if needed
@@ -210,20 +210,20 @@ class SWICFListPDF {
             yCoord = this.createIntroBlock( yCoord, 'e - ' + this.parser.icfTitle( 'e', 180 ) );
             yCoord = this.createICFTable( compICF.e, yCoord + 5, options ) + 8;
      
-            console.log('yCoord after e: ' + yCoord);
+            debug === true && console.log('yCoord after e: ' + yCoord);
         }         
         
-        console.log('ICF Data', compICF);
-        console.log('YCord after ICF table:' + yCoord);
+        debug === true && console.log('ICF Data', compICF);
+        debug === true && console.log('YCord after ICF table:' + yCoord);
         
         return { posY: yCoord, pages: this.doc.lastAutoTable.pageCount };
         
     }
     
     //creates an icf table
-    createICFTable = ( tableData, yCoord, options ) => {
+    createICFTable = ( tableData, yCoord, options, debug = false ) => {
         
-        console.log('YCord before ICF table:' + yCoord);
+        debug === true && console.log('YCord before ICF table:' + yCoord);
         
         //create columns array
         const tabCols = [];
@@ -741,7 +741,7 @@ class SWICFListPDF {
     }
     
     //creates the pdf finally - returns true on success, false on error
-    createPDFfromData = ( name = 'sw-list-', options = {}, data = {} ) => {  
+    createPDFfromData = ( name = 'sw-list-', options = {}, data = {}, debug = false ) => {  
         
         //create new doc - overwrite old one if needed
         this.doc = new jsPDF();
@@ -768,7 +768,7 @@ class SWICFListPDF {
             //break page if needed
             posData = this.createPageBreak( posData.posY, 0 );
             
-            console.log( 'Table next Y: ' + Math.round(posData.posY) + ', Pages: ' + posData.pages );
+            debug === true && console.log( 'Table next Y: ' + Math.round(posData.posY) + ', Pages: ' + posData.pages );
             
             //if not wanted, do not build it anyways
             if ( options.icf === true ) {
@@ -827,12 +827,13 @@ class SWICFListPDF {
             //save doc finally if not already done
             this.doc.save( name + timeStamp + ".pdf" );  
 
-            console.log('PDF File "' + name + timeStamp + '" created succesfully');
-            console.log('Received Options: ', options);
-            console.log('Received Data: ', data);
+            console.log('%cPDF File "' + name + timeStamp + '" created succesfully.', 'color: green;');
+            debug === true && console.log('Received Options: ', options);
+            debug === true && console.log('Received Data: ', data);
             
             return true;
         } else {
+            console.log('%cPDF File could not be created. There has been an Error: Option data is required for successful creation.', 'color: red;');
             return false;
         }
     }

@@ -24,7 +24,6 @@ class SWCodeContainer extends React.Component {
         this.state = { open: false, update: 0 };
         this.opencloseHandle = this.opencloseHandle.bind(this);
         this.displayCodes = this.displayCodes.bind(this);
-        this.displayCodeInfo = this.displayCodeInfo.bind(this);
         
         //declare icd/icf parser for use
         this.parser = new ManParse(manualsWHO);
@@ -61,10 +60,6 @@ class SWCodeContainer extends React.Component {
                );
         
     }
-    
-    displayCodeInfo = ( code, type ) => {
-        console.log('Info for code: ' + code + '(' + type + ')' );
-    };
 
     render() {
         return (    <React.Fragment>

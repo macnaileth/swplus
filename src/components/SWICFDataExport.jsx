@@ -39,7 +39,7 @@ class SWICFDataExport extends React.Component {
         this.resetForm = this.resetForm.bind(this);
     }
     
-    resetForm = () => {
+    resetForm = ( debug = false ) => {
         //handle icf list switch extra
         document.getElementById('sw_icf_list_switch').disabled = false;
         document.getElementById('sw_icf_list_switch').checked = true;
@@ -47,18 +47,12 @@ class SWICFDataExport extends React.Component {
         document.getElementById("sw_create_doclist").reset();
         //reset states also!
         this.setState({ initalState });
-        console.log( 'Reseted state:', this.state );
+        debug === true && console.log( 'Reseted state:', this.state );
     }
     
-    verifySwitch = ( strSwitch, checked ) => {
+    verifySwitch = ( strSwitch, checked, debug = false ) => {
         //set state and produce warnings if needed
         const warning = {msg: '', msglvl: ''};
-        //get icf list
-        const icflist = document.getElementById('sw_icf_list_switch');
-        //get ndlist
-        const ndlist = document.getElementById('sw_needs_switch');
-        //get button
-        const createbtn = document.getElementById('sw_create_doc_btn');
         //icd10
         if( strSwitch === 'icd10' ){
             //check if warning is neeeded
@@ -119,7 +113,7 @@ class SWICFDataExport extends React.Component {
             this.setState({ commfields: checked, message: '', messagelvl: '' });
         }     
         
-        console.log( 'Switch: ' + strSwitch + ', checked: ' + checked );
+        debug === true && console.log( 'Switch: ' + strSwitch + ', checked: ' + checked );
     }
     
     render() {            

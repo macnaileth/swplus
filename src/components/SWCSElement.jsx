@@ -23,9 +23,9 @@ class SWCSElement extends React.Component {
         this.isValidAddable = this.isValidAddable.bind(this);
         this.state = { pupdate: false };
     }   
-    handleRefElementClick() {
+    handleRefElementClick( debug = false ) {
         this.setState({ pupdate: true }, () => {
-            console.log('state set! Page udpate is ' + this.state.pupdate);
+            debug === true && console.log('state set! Page udpate is ' + this.state.pupdate);
             //this.props.handler;
         });
     }
@@ -46,16 +46,16 @@ class SWCSElement extends React.Component {
                                             dbase.sub[parseInt(dbase.hilite)].Rubric.Label['#text'] : '' : '';
     }
     
-    isValidAddable = ( code ) => {
+    isValidAddable = ( code, debug = false ) => {
     
         let firstChar = code.charAt(0);
         let secChar = code.charAt(1);
         
         if( code.length >= 3 && code.length <= 7 ){
-            console.log('length match!');
+            debug === true && console.log('length match!');
             
             if( firstChar.toUpperCase() !== firstChar.toLowerCase() ) {
-                console.log('first char letter match!');
+                debug === true && console.log('first char letter match!');
                 
                 if(isNaN(secChar)){
                     return false;
@@ -64,7 +64,7 @@ class SWCSElement extends React.Component {
                   if ( code.includes("-") ) {
                       return false;
                   } else {
-                    console.log('second char num match!');
+                    debug === true && console.log('second char num match!');
                     return true;                       
                   }
                   return false;
