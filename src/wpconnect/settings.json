@@ -1,0 +1,16 @@
+{
+    "about": {
+        "version": "0.1.0",
+        "about": "Settings for connection to WordPress REST API with wpconnect theme."
+    },
+    "routes": {
+        "base": "/wp-json/",
+        "base-v2": "/wp-json/wp/v2/",
+        "pages": "/wp-json/wp/v2/pages/",
+        "posts": "/wp-json/wp/v2/posts/",
+        "users": "/wp-json/wp/v2/users/",
+        "categories": "/wp-json/wp/v2/categories/",
+        "tags": "/wp-json/wp/v2/tags/", 
+        "menus": "/wp-json/tsu-wpconnect/v1/site/structure/"
+    }
+}

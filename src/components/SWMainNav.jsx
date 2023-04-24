@@ -34,10 +34,17 @@ export class SWMainNav extends React.Component {
     
     navlinks() {
         return (
-                <Nav className={ "justify-content-" + this.navJustify }>
-                    { Object.entries(this.props.links).map(([key, value]) => {
-                        return (<Link to={ "/" + key } className="nav-link" key={key.toString()}>{ value }</Link>);
-                    }) }
+                <Nav className={ "justify-content-" + this.navJustify }>               
+                    { 
+                        Object.entries(this.props.links).map(([key, value]) => {
+                            if ( this.props.wpconnect === true ) {
+                                console.log( 'received linkage data: ', this.props.links[key] );
+                                return <a className="nav-link" key={ key.toString() } href={ this.props.links[key].link.uri } >{ this.props.links[key].name }</a>;
+                            } else {
+                                return (<Link to={ "/" + key } className="nav-link" key={key.toString()}>{ value }</Link>); 
+                            }            
+                        })                                            
+                    }
                 </Nav>                
                );
     }

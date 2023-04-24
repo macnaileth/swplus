@@ -148,7 +148,7 @@ class SWICFListPDF {
 
         let yCoord = topDist;
         
-        console.log('YCord at start of ICF table:' + yCoord);
+        debug === true && console.log('YCord at start of ICF table:' + yCoord);
         
         //create table data array
         const compICF = { b: [], s: [], d: [], e: [] };
