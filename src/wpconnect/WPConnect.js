@@ -23,7 +23,7 @@ class WPConnect {
      * @param { string } getBy NAME | KEY set if to get a menu by key (menu-3 or so) or by name ("my Menu")
      * @returns {undefined} returns the menu as a promise on success, empty on fail
      */
-    async createMenu ( menu, getBy = 'NAME' ) {
+    createMenu = async ( menu, getBy = 'NAME' ) => {
         const response = await fetch( this.home + settings.routes.menus );
         
         let retrievedMenu = {};
@@ -101,19 +101,19 @@ class WPConnect {
         switch( parseInt( itemType ) ) {
             //page
             case 0: 
-                return { uri: this.home + settings.routes.pages + itemID, route: 'internal' };
+                return { uri: this.home + settings.routes.pages + itemID, route: 'internal', type: 'pages', id: itemID };
             //post
             case 1:
-                return { uri: this.home + settings.routes.posts + itemID, route: 'internal' };  
+                return { uri: this.home + settings.routes.posts + itemID, route: 'internal', type: 'posts', id: itemID };  
             //category
             case 2:
-                return { uri: this.home + settings.routes.categories + itemID, route: 'internal' };  
+                return { uri: this.home + settings.routes.categories + itemID, route: 'internal', type: 'categories', id: itemID };  
             //tag
             case 3: 
-                return { uri: this.home + settings.routes.tags + itemID, route: 'internal' };  
+                return { uri: this.home + settings.routes.tags + itemID, route: 'internal', type: 'tags', id: itemID };  
             //link
             case 4:
-                return { uri: !itemID.includes('http') ? 'https://' + itemID : itemID, route: 'external' }; 
+                return { uri: !itemID.includes('http') ? 'https://' + itemID : itemID, route: 'external', type: 'link', id: itemID }; 
             //default
             default:
                 return {};

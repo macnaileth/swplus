@@ -17,6 +17,7 @@ import WPConnect from './wpconnect/WPConnect.js';
 //routes
 import Toolbox from "./routes/Toolbox";
 import Updates from "./routes/Updates";
+import Content from "./routes/Content";
 //package json for display version info
 import packageJson from '../package.json';
 
@@ -38,10 +39,10 @@ class App extends React.Component {
                     };       
         
         this.statusPostLoad = this.statusPostLoad.bind(this); 
-        this.createFooter = this.createFooter.bind(this);  
+        this.setMenuData = this.setMenuData.bind(this);  
     } 
     
-    createFooter = async () => {
+    setMenuData = async () => {
         this.setState({ footer: await this.MenuStruct.createMenu( 'Halali', 'NAME' )});
     };
     
@@ -49,7 +50,7 @@ class App extends React.Component {
     
     componentDidMount() {
         this.statusPostLoad();
-        this.createFooter();
+        this.setMenuData();
     };
     
     render() {
@@ -74,7 +75,8 @@ class App extends React.Component {
                                 <Route path="/" element={ < Toolbox / > } />
                                 <Route path="toolbox/*" element={ < Toolbox / > } /> 
                                 <Route path="updates" element={ < Updates / > } />
-                                <Route path="*" element={ < Toolbox / > } />                                 
+                                <Route path="*" element={ < Toolbox / > } /> 
+                                <Route path="content/*" element={ < Content / > } /> 
                             </Routes>                   
                     </div>
                 </main>

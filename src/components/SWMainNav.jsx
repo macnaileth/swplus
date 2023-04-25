@@ -39,7 +39,9 @@ export class SWMainNav extends React.Component {
                         Object.entries(this.props.links).map(([key, value]) => {
                             if ( this.props.wpconnect === true ) {
                                 console.log( 'received linkage data: ', this.props.links[key] );
-                                return <a className="nav-link" key={ key.toString() } href={ this.props.links[key].link.uri } >{ this.props.links[key].name }</a>;
+                                return this.props.links[key].link.route !== 'external' ? 
+                                    <Link to={ '/content/' + this.props.links[key].link.type + '/' + this.props.links[key].link.id }  className="nav-link" key={ key.toString() } href={ this.props.links[key].link.uri } >{ this.props.links[key].name }</Link>: 
+                                    <a className="nav-link" key={ key.toString() } href={ this.props.links[key].link.uri } target="_blank" rel="noopener noreferrer" >{ this.props.links[key].name }</a>;
                             } else {
                                 return (<Link to={ "/" + key } className="nav-link" key={key.toString()}>{ value }</Link>); 
                             }            
