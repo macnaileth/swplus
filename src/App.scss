@@ -170,7 +170,12 @@ h2 .icon:hover {
 .sw-bpsm-arrow-set-lowest .sw-bpsm-arrow-horizontal {
     width: 0px;
 }
-
+.sw-contentarea blockquote {
+    border-left: solid $cyan-600 5px;
+    padding-left: 1rem;
+    margin: 1.5rem 2rem;
+    font-size: 1.25rem;   
+}
 // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
 

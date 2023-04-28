@@ -21,7 +21,7 @@ class WPConnect {
      * 
      * @param { string } menu Menu name or key
      * @param { string } getBy NAME | KEY set if to get a menu by key (menu-3 or so) or by name ("my Menu")
-     * @returns {undefined} returns the menu as a promise on success, empty on fail
+     * @returns { unresolved } returns the menu as a promise on success, empty on fail
      */
     createMenu = async ( menu, getBy = 'NAME' ) => {
         const response = await fetch( this.home + settings.routes.menus );
@@ -47,14 +47,49 @@ class WPConnect {
             return resMenu;
             
         } else {
-            console.log( 'Fetch failed. Response HTTP-Error code: ' + response.status );
+            console.log( 'Fetch failed (createMenu). Response HTTP-Error code: ' + response.status );
         }
     };
-    
-    //TODO: Write content render function
-    renderContent = async () => {
-        
-    };
+
+    /**
+     * getContent( type, id )
+     * 
+     * 
+     * @param { string } type = type of content
+     * @param { string } id = id of the specific content dataset
+     * @returns { unresolved } content json in a promise
+     */
+    getContent = async ( type, id ) => {
+        const response = await fetch( this.home + settings.routes[ type ] + id );
+
+        if (response.ok) {
+            const menuStruct = await response.json();         
+            return await menuStruct;
+            
+        } else {
+            console.log( 'Fetch failed (getContent). Response HTTP-Error code: ' + response.status );
+        }
+  
+    }
+    /**
+     * getUser ( id )
+     * 
+     * 
+     * @param { string } id = the authors/users id
+     * @returns {unresolved} = user json in a promise
+     */
+    getUser = async ( id ) => {
+        const response = await fetch( this.home + settings.routes.users + id );
+
+        if (response.ok) {
+            const user = await response.json();         
+            return await user;
+            
+        } else {
+            console.log( 'Fetch failed (getUser). Response HTTP-Error code: ' + response.status );
+        }
+          
+    }
     
     /**
      * structureMenuFromJSON( menu )
