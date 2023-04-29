@@ -63,8 +63,8 @@ class WPConnect {
         const response = await fetch( this.home + settings.routes[ type ] + id );
 
         if (response.ok) {
-            const menuStruct = await response.json();         
-            return await menuStruct;
+            const content = await response.json();         
+            return await content;
             
         } else {
             console.log( 'Fetch failed (getContent). Response HTTP-Error code: ' + response.status );

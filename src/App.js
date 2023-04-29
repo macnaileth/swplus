@@ -43,7 +43,7 @@ class App extends React.Component {
     } 
     
     setMenuData = async () => {
-        this.setState({ footer: await this.MenuStruct.createMenu( 'Halali', 'NAME' )});
+        this.setState({ footer: await this.MenuStruct.createMenu( 'TollesMenu', 'NAME' )});
     };
     
     statusPostLoad = () => { console.log( '%c*** social.werks+ App loaded | Version: ' + packageJson.version + ' ***', 'color:green;' ); };
@@ -76,7 +76,7 @@ class App extends React.Component {
                                 <Route path="toolbox/*" element={ < Toolbox / > } /> 
                                 <Route path="updates" element={ < Updates / > } />
                                 <Route path="*" element={ < Toolbox / > } /> 
-                                <Route path="content/*" element={ < Content / > } /> 
+                                <Route path="content/:type/:id" element={ < Content / > } /> 
                             </Routes>                   
                     </div>
                 </main>

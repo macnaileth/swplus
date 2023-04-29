@@ -20,29 +20,25 @@ export class SWContent extends React.Component {
         this.apiContent = new WPConnect( 'https://wp.socialwerks.de' );
         this.state = {
             content: {},
-            relSegs: this.getRelURISegs(),
-            user: ''
+            user: '',
+            id: this.props.id,
+            type: this.props.type
         };
         
-        this.setContentData = this.setContentData.bind(this);  
-        this.getRelURISegs = this.getRelURISegs.bind(this);  
+        this.setContentData = this.setContentData.bind(this);   
         this.formatContent = this.formatContent.bind(this);  
         this.toDisplayDate = this.toDisplayDate.bind(this);
         this.userBox = this.userBox.bind(this);
+        this.contentPagePost = this.contentPagePost.bind(this);
     };
-    
-    getRelURISegs = () => {
-        const uriSegs = this.props.url.substring(1).split("/");
-        return uriSegs.splice(-2);        
-    }
     
     toDisplayDate = ( dateStr, splitAt = 'T', joinWith = ', ', separator = '.', revert = true, clockTime = true, clockStr = ' Uhr' ) => {
         
-        const outputDate = revert === true ? dateStr.split( splitAt )[0].split( '-' ).reverse().join( separator ) : dateStr.split( splitAt )[0];
+        const outputDate = dateStr === undefined ? '' : revert === true ? dateStr.split( splitAt )[0].split( '-' ).reverse().join( separator ) : dateStr.split( splitAt )[0];
         
         const dateObj = { 
                             date: outputDate, 
-                            time: dateStr.split( splitAt )[1] 
+                            time: dateStr === undefined ? '' : dateStr.split( splitAt )[1] 
                         };
                 
         
@@ -73,49 +69,78 @@ export class SWContent extends React.Component {
     
     setContentData = async () => {
         
-        const contentData = await this.apiContent.getContent( this.state.relSegs[0], this.state.relSegs[1]);
-        const userData = await this.apiContent.getUser( contentData.author );
-        
-        this.setState({ content: contentData, user: userData });      
+        const contentData = await this.apiContent.getContent( this.props.type, this.props.id );
+        let userData = [];
+        if ( this.props.type === 'pages' || this.props.type === 'posts' ) { 
+            userData = await this.apiContent.getUser( contentData.author ); 
+        }
+        console.log( contentData );
+        this.setState({ content: contentData, user: userData, id: this.props.id, type: this.props.type });      
     }; 
     
-    formatContent = ( useTitle = true, useExcerpt = true, useLead = true, useDate = true, useAuthor = true, useModified = true ) => {
-        
-        console.log( 'user', this.state.user );
-        console.log( 'content', this.state.content );
-        
+    contentPagePost = ( useTitle = true, useExcerpt = true, useLead = true, useDate = true, useAuthor = true, useModified = true ) => {
         const contentObj = {
-            title : this.state.content.title.rendered,
-            excerpt : useExcerpt === true ? 
+            title : this.state.content.title === undefined ? '' : this.state.content.title !== true ? this.state.content.title.rendered : '',
+            excerpt : this.state.content.excerpt === undefined ? '' :
+                        useExcerpt === true ? 
                         useLead === true ? 
                         this.state.content.excerpt.rendered.replace(/<p>/, '<p class="lead">') : 
                                 this.state.content.excerpt.rendered 
                         : '',
             meta: this.userBox(),
-            content : this.state.content.content.rendered
+            content : this.state.content.content === undefined ? '' : this.state.content.content.rendered
         };
-        console.log('date: ' + contentObj.date );
+
         return parse ( 
                         '<h1 class="display-6 text-secondary">' + contentObj.title + '</h1>' 
                         + contentObj.excerpt
                         + contentObj.content 
                         + contentObj.meta
-                     );
+                     );    
+    }
+    
+    formatContent = ( useTitle = true, useExcerpt = true, useLead = true, useDate = true, useAuthor = true, useModified = true ) => {
+        
+        //console.log( 'user', this.state.user );
+        console.log( 'type: ' + this.props.type + ', content:', this.state.content );
+        
+        switch ( this.props.type ) {
+            //pages
+            case 'pages': 
+                return this.state.content.content === undefined ? <LoadWait /> : this.contentPagePost();
+            //pages
+            case 'posts':     
+                return this.state.content.content === undefined ? <LoadWait /> : this.contentPagePost();            
+            //tags         
+            case 'tags':   
+                return this.state.content.description === undefined ? <LoadWait /> : this.state.content.description;
+            //categories         
+            case 'categories':   
+                return this.state.content.name === undefined ? <LoadWait /> : this.state.content.name;                
+            //default catch    
+            default:
+
+                return 'Not Found!';
+        };
     };
 
     componentDidMount() {
         this.setContentData();
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" }); 
     }; 
     
     componentDidUpdate() {
         // Typical usage (don't forget to compare props):
-          console.log( 'changed! ' );
+        if ( this.state.id !== this.props.id || this.state.type !== this.props.type ) { 
+            this.setContentData();
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" }); 
+        }       
+        console.log( 'changed! ID: ' + this.state.id + ', update: ' + this.props.id );
     }    
     
     render() {
         return  (
-                    <div>{ typeof this.state.content.content !== 'undefined' ? this.formatContent( this.state.content ) : <LoadWait /> }</div> 
+                    <div>{ Object.keys( this.state.content ).length === 0 && this.state.content.constructor === Object ? <LoadWait /> : this.formatContent( this.state.content ) }</div> 
                 );
     };
 };
