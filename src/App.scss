@@ -56,6 +56,9 @@ $list-group-active-bg: $dark;
 #sw_icd_icf_button svg, h2 .icon svg, .icon-btn svg {
     height: 26px;
 }
+.sw-termlist-item-info svg {
+    height: 16px;    
+}
 .icon-white {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(177deg) brightness(105%) contrast(102%);
 }
@@ -68,7 +71,7 @@ $list-group-active-bg: $dark;
 .icon-info {
     filter: invert(78%) sepia(44%) saturate(5507%) hue-rotate(135deg) brightness(99%) contrast(84%);
 }
-.icon-dark {
+.icon-dark, .sw-termlist-item-info svg  {
     filter: invert(29%) sepia(3%) saturate(473%) hue-rotate(219deg) brightness(91%) contrast(89%);
 }
 .icon-danger {
@@ -83,7 +86,7 @@ h2 .icon:hover {
     border-radius: .25rem;
     padding: .25rem;
 }
-.navbar-toggler-icon:hover, .sw-code-list-icons .sw-help-icon:hover, .sw-code-list-icons .sw-remove-icon svg:hover  {
+.navbar-toggler-icon:hover, .sw-code-list-icons .sw-help-icon:hover, .sw-code-list-icons .sw-remove-icon svg:hover, .sw-clickbadge:hover  {
     opacity: 0.75;
     background-color: transparent;
 }
@@ -175,6 +178,16 @@ h2 .icon:hover {
     padding-left: 1rem;
     margin: 1.5rem 2rem;
     font-size: 1.25rem;   
+}
+.sw-termlist-item-img {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: scroll;
+    background-size: cover;    
+}
+.sw-clickbadge.white a {
+    color: $light;
+    text-decoration: none;
 }
 // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap

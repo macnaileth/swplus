@@ -8,7 +8,7 @@
  * Normally you do not need to change this.
  */
 
-//icf JSON - claml exported
+//settings
 import settings from "./settings.json";  
 
 class WPConnect { 

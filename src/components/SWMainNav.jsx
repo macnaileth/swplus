@@ -7,6 +7,12 @@ import React from 'react';
 //router links
 import { Link } from "react-router-dom";
 
+//settings from wpconnect
+import settings from "../wpconnect/settings.json";  
+
+//helpers
+import { ResolveTerms } from '../lib/GenericHelpers';
+
 //react classes
 export class SWMainNav extends React.Component {
     
@@ -20,6 +26,11 @@ export class SWMainNav extends React.Component {
         this.navBrandLink = this.props.brandLink === undefined ? '/' : this.props.brandLink;
         this.navExpand = this.props.expand === undefined ? 'lg' : this.props.expand;
         this.navToggleClass = this.props.toggleClass === undefined ? '' : this.props.toggleClass;
+        
+        this.imagebrand = this.imagebrand.bind(this);
+        this.navlinks = this.navlinks.bind(this);     
+        this.navbarCollapse = this.navbarCollapse.bind(this);      
+        this.navbarSimple = this.navbarSimple.bind(this);          
     }
     
     imagebrand(imgpath, alt = '', css = 'd-inline-block align-top') {
@@ -31,7 +42,7 @@ export class SWMainNav extends React.Component {
             />
         );
     }
-    
+
     navlinks() {
         return (
                 <Nav className={ "justify-content-" + this.navJustify }>               
@@ -40,7 +51,7 @@ export class SWMainNav extends React.Component {
                             if ( this.props.wpconnect === true ) {
                                 console.log( 'received linkage data: ', this.props.links[key] );
                                 return this.props.links[key].link.route !== 'external' ? 
-                                    <Link to={ '/content/' + this.props.links[key].link.type + '/' + this.props.links[key].link.id }  className="nav-link" key={ key.toString() } href={ this.props.links[key].link.uri } >{ this.props.links[key].name }</Link>: 
+                                    <Link to={ '/content/' + ResolveTerms ( this.props.links[key].link.type, this.props.taglist, this.props.catlist ) + '/' + this.props.links[key].link.id }  className="nav-link" key={ key.toString() } href={ this.props.links[key].link.uri } >{ this.props.links[key].name }</Link>: 
                                     <a className="nav-link" key={ key.toString() } href={ this.props.links[key].link.uri } target="_blank" rel="noopener noreferrer" >{ this.props.links[key].name }</a>;
                             } else {
                                 return (<Link to={ "/" + key } className="nav-link" key={key.toString()}>{ value }</Link>); 

@@ -89,6 +89,8 @@ class App extends React.Component {
                       background="dark"
                       collapse={ false }
                       wpconnect={ true }
+                      catlist={ true }
+                      taglist={ true }                      
                     />  
                 </footer>
                 <SWMainNav 

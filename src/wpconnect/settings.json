@@ -10,7 +10,9 @@
         "posts": "/wp-json/wp/v2/posts/",
         "users": "/wp-json/wp/v2/users/",
         "categories": "/wp-json/wp/v2/categories/",
+        "catwise": "/wp-json/tsu-wpconnect/v1/site/catwise/",        
         "tags": "/wp-json/wp/v2/tags/", 
+        "tagwise": "/wp-json/tsu-wpconnect/v1/site/tagwise/",
         "menus": "/wp-json/tsu-wpconnect/v1/site/structure/"
     }
 }

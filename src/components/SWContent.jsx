@@ -3,14 +3,26 @@
  */
 import React from 'react';
 
+//router links
+import { Link } from "react-router-dom";
+
+
 //WordPress Connector
 import WPConnect from '../wpconnect/WPConnect.js';
 
 //html-react-parser for html string conversion
 import parse from 'html-react-parser';
 
+//react boostrap stuff
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
+
  //internal ressources - old school
 import LoadWait from '../components/LoadWait';
+import Icons from '../lib/Icons';
+import { ResolveContentLink, ResolveTerms } from '../lib/GenericHelpers';
 
 //react classes
 export class SWContent extends React.Component {
@@ -30,6 +42,8 @@ export class SWContent extends React.Component {
         this.toDisplayDate = this.toDisplayDate.bind(this);
         this.userBox = this.userBox.bind(this);
         this.contentPagePost = this.contentPagePost.bind(this);
+        this.contentCatTagPostList = this.contentCatTagPostList.bind(this);
+
     };
     
     toDisplayDate = ( dateStr, splitAt = 'T', joinWith = ', ', separator = '.', revert = true, clockTime = true, clockStr = ' Uhr' ) => {
@@ -47,7 +61,7 @@ export class SWContent extends React.Component {
     }    
     
     userBox = () => {
-        return `<div class="card border-bottom-0 border-start-0 border-end-0">
+        return `<div class="sw-user-info card border-bottom-0 border-start-0 border-end-0">
                     <div class="card-body">
                         <div class="small d-block d-sm-flex justify-content-center">
                             <div class="text-center text-md-start">
@@ -99,6 +113,73 @@ export class SWContent extends React.Component {
                      );    
     }
     
+    //TODO: Work this out!
+    contentCatTagPostList = ( useFeatMedia = true, useExcerpt = true, useDate = true, useAuthor = true, useModified = true  ) => {
+        
+        const posts = this.state.content.posts;
+        const postList = [];     
+        
+        const catTag = this.state.content.tag === undefined ? this.state.content.category : this.state.content.tag; 
+        
+        Object.entries( posts ).map(( item ) => {
+                postList.push(  
+                                <React.Fragment>  
+                                      <Card className="sw-termlist-item px-0 rounded-end h-100" key={ item[1].id } id={ item[1].slug + '-' + item[1].id }> 
+                                        <Row className="g-0">
+                                            { item[1].featured_media.medium === false || useFeatMedia === false ? '' : <div className="sw-termlist-item-img col-2 border-end border-4 border-info" style={{ backgroundImage: `url( ${item[1].featured_media.medium} )`  }}></div> }
+                                            <Col>
+                                                <Card.Body className="shadow-sm">
+                                                    <div className="h2">{ item[1].title.rendered }</div> 
+                                                    <Card.Text>{ parse ( useExcerpt === true && item[1].excerpt.rendered ) }</Card.Text>  
+                                                    <Card.Text>{ item[1].full }</Card.Text> 
+                                                </Card.Body>
+                                                <Card.Footer className="text-muted sw-termlist-item-info">
+                                                    <Row className="align-items-center">
+                                                        <Col className="pb-1 sw-termlist-item-cats">
+                                                            { item[1].categories.map((element, index, array) => ( <Badge className="sw-clickbadge white" key={ element.id } pill bg="dark">
+                                                                                                                    <Link to={ '/content/' + ResolveTerms ( ResolveContentLink( element.apilink ).type, true, true ) + '/' + ResolveContentLink( element.apilink ).id }>
+                                                                                                                        { element.name }
+                                                                                                                    </Link>
+                                                                                                                  </Badge> )) } 
+                                                        </Col>
+                                                        { useDate === false && useAuthor === false && useModified === false ? '' :
+                                                            <Col className="text-end">
+                                                                <div className="d-inline me-2">
+                                                                    { Icons.user }
+                                                                    { useAuthor === true && item[1].author.name } 
+                                                                </div>
+                                                                <div className="d-inline me-2">
+                                                                { Icons.clock }
+                                                                { useDate === true && this.toDisplayDate( item[1].date_gmt, ' ' )  + ' ' }
+                                                                </div>
+                                                                <div className="d-inline">
+                                                                { Icons.cycle }
+                                                                { useModified === true && this.toDisplayDate( item[1].modified_gmt, ' ' ) }
+                                                                </div>
+                                                            </Col> 
+                                                        }
+                                                    </Row>
+                                                </Card.Footer>                                                
+                                            </Col>
+                                        </Row>
+                                      </Card>           
+                                </React.Fragment>                                         
+                            );       
+        });    
+        
+        return ( 
+                    <div id={ 'sw-term-' + catTag.term_id + '-' + catTag.slug }> 
+                        <h1 class="display-6 text-secondary">{ catTag.name }</h1>
+                        <Row className="mb-2">
+                            <Col>{ catTag.description }</Col>
+                            <Col className="text-end"><Badge pill bg="light" className="border border-info ms-2" text="info">{ catTag.count } Beiträge</Badge></Col>
+                        </Row>
+                        <Row className="sw-termlist g-4">{ postList }</Row> 
+                    </div> 
+               );      
+        
+    }
+    
     formatContent = ( useTitle = true, useExcerpt = true, useLead = true, useDate = true, useAuthor = true, useModified = true ) => {
         
         //console.log( 'user', this.state.user );
@@ -114,9 +195,15 @@ export class SWContent extends React.Component {
             //tags         
             case 'tags':   
                 return this.state.content.description === undefined ? <LoadWait /> : this.state.content.description;
+            //taglist         
+            case 'tagwise':      
+                return this.state.content.posts === undefined ? <LoadWait /> : this.contentCatTagPostList();  
             //categories         
             case 'categories':   
-                return this.state.content.name === undefined ? <LoadWait /> : this.state.content.name;                
+                return this.state.content.name === undefined ? <LoadWait /> : this.state.content.description;      
+            //catlist         
+            case 'catwise':      
+                return this.state.content.posts === undefined ? <LoadWait /> : this.contentCatTagPostList();          
             //default catch    
             default:
 
