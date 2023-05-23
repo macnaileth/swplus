@@ -56,7 +56,7 @@ $list-group-active-bg: $dark;
 #sw_icd_icf_button svg, h2 .icon svg, .icon-btn svg {
     height: 26px;
 }
-.sw-termlist-item-info svg {
+.sw-termlist-item-info svg, .sw-termlist-item-linkto svg {
     height: 16px;    
 }
 .icon-white {
@@ -76,6 +76,9 @@ $list-group-active-bg: $dark;
 }
 .icon-danger {
     filter: invert(42%) sepia(26%) saturate(5355%) hue-rotate(328deg) brightness(83%) contrast(110%);
+}
+.icon-primary {
+    filter: invert(55%) sepia(99%) saturate(676%) hue-rotate(16deg) brightness(98%) contrast(103%);    
 }
 h2 .icon:hover {
     cursor: pointer;
@@ -184,6 +187,8 @@ h2 .icon:hover {
     background-position: center;
     background-attachment: scroll;
     background-size: cover;    
+    border-bottom: 4px solid $info;
+        height: 250px;    
 }
 .sw-clickbadge.white a {
     color: $light;
@@ -194,7 +199,7 @@ h2 .icon:hover {
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {  
-
+    
 }
 
 // Medium devices (tablets, 768px and up)
@@ -210,6 +215,11 @@ h2 .icon:hover {
     .sw-bpsm-card {
         width: 300px;
     }
+    .sw-termlist-item-img {
+        height: auto;
+        border-bottom: none;
+        border-right: 4px solid $info;
+    }    
 }
 
 // Large devices (desktops, 992px and up)

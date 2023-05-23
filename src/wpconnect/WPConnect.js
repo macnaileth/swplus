@@ -91,6 +91,19 @@ class WPConnect {
           
     }
     
+    getTermList = async ( type = 'categories') => {
+        let resolveType = type === 'categories' ? settings.routes.categories : type === 'tags' ? settings.routes.tags : '';
+        const response = await fetch( this.home + resolveType );
+
+        if (response.ok) {
+            const TermList = await response.json();         
+            return await TermList;
+            
+        } else {
+            console.log( 'Fetch failed (getTermList). Response HTTP-Error code: ' + response.status );
+        } 
+        
+    }
     /**
      * structureMenuFromJSON( menu )
      * 

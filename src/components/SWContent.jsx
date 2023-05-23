@@ -34,7 +34,8 @@ export class SWContent extends React.Component {
             content: {},
             user: '',
             id: this.props.id,
-            type: this.props.type
+            type: this.props.type, 
+            metadata: { tags: {}, cats: {} }
         };
         
         this.setContentData = this.setContentData.bind(this);   
@@ -43,6 +44,7 @@ export class SWContent extends React.Component {
         this.userBox = this.userBox.bind(this);
         this.contentPagePost = this.contentPagePost.bind(this);
         this.contentCatTagPostList = this.contentCatTagPostList.bind(this);
+        this.setMetaData = this.setMetaData.bind(this);
 
     };
     
@@ -58,27 +60,58 @@ export class SWContent extends React.Component {
         
         return dateObj.date + joinWith + dateObj.time + clockStr;
         
-    }    
+    }  
     
-    userBox = () => {
-        return `<div class="sw-user-info card border-bottom-0 border-start-0 border-end-0">
-                    <div class="card-body">
-                        <div class="small d-block d-sm-flex justify-content-center">
-                            <div class="text-center text-md-start">
-                                <span class="text-secondary">Autor: </span>
-                                <a href="${ this.state.user.url }" target="_blank" rel="noopener noreferrer">${ this.state.user.name }</a>
+    userBox = ( useCats = true, useTags = true ) => {
+
+        return (    <div className="sw-user-info border-top">
+                        <div className="small d-block d-sm-flex justify-content-between mt-3">
+                            { useCats === true && this.state.content.categories !== undefined &&
+                                <div className="text-center text-md-start sw-termlist-item-info">
+                                    <span className="pe-2">{ Icons.folder }</span>
+                                    { this.state.content.categories.map(( element, index ) => ( 
+                                        <Badge className="sw-clickbadge white" key={ index } pill bg="dark">
+                                            <Link to={ '/content/catwise/' + element }>
+                                                { 
+                                                    this.state.metadata.cats === undefined ? 
+                                                        <LoadWait /> : 
+                                                            this.state.metadata.cats.map( ( cat ) => ( cat.id === element && <React.Fragment>{ cat.name }</React.Fragment> ) )
+                                                }
+                                            </Link>
+                                        </Badge> 
+                                    )) }  
+                                </div>
+                            }
+                            { useTags === true && this.state.content.tags !== undefined &&
+                                <div className="text-center text-md-start sw-termlist-item-info mx-md-4 mx-0 mx-sm-2">
+                                    <span className="pe-2">{ Icons.colours }</span>
+                                    { this.state.content.tags.map(( element, index ) => ( 
+                                        <Badge className="sw-clickbadge white" key={ index } pill bg="dark">
+                                            <Link to={ '/content/tagwise/' + element }>
+                                                { 
+                                                    this.state.metadata.tags === undefined ? 
+                                                        <LoadWait /> : 
+                                                            this.state.metadata.tags.map( ( tag ) => ( tag.id === element && <React.Fragment>{ tag.name }</React.Fragment> ) )
+                                                }
+                                            </Link>
+                                        </Badge> 
+                                    )) }  
+                                </div>
+                            }                            
+                            <div className="text-center text-md-start">
+                                <span className="text-secondary">Autor: </span>
+                                <a href={ this.state.user.url } target="_blank" rel="noopener noreferrer">{ this.state.user.name }</a>
                             </div>
-                            <div class="mx-md-4 mx-0 mx-sm-2 text-center text-md-start">
-                                <span class="text-secondary"> verfasst am: </span>
-                                <span class="text-info">${ this.toDisplayDate( this.state.content.date ) }</span>
+                            <div className="mx-md-4 mx-0 mx-sm-2 text-center text-md-start">
+                                <span className="text-secondary"> verfasst am: </span>
+                                <span className="text-info">{ this.toDisplayDate( this.state.content.date ) }</span>
                             </div>
-                            <div class="">
-                                <span class="text-secondary d-none d-md-inline"> zuletzt geändert: </span>
-                                <span class="text-info d-none d-md-inline">${ this.toDisplayDate( this.state.content.modified ) }</span>
+                            <div className="">
+                                <span className="text-secondary d-none d-md-inline"> zuletzt geändert: </span>
+                                <span className="text-info d-none d-md-inline">{ this.toDisplayDate( this.state.content.modified ) }</span>
                             </div>
                         </div>
-                    </div>
-                </div>`;
+                    </div> );
     }
     
     setContentData = async () => {
@@ -90,6 +123,14 @@ export class SWContent extends React.Component {
         }
         console.log( contentData );
         this.setState({ content: contentData, user: userData, id: this.props.id, type: this.props.type });      
+    }; 
+    
+    setMetaData = async () => {
+        
+        const metaData = { cats: await this.apiContent.getTermList(), tags: await this.apiContent.getTermList( 'tags' ) };
+
+        console.log( 'METADATA FETCHED:', metaData );
+        this.setState({ metadata: { tags: metaData.tags, cats: metaData.cats } });      
     }; 
     
     contentPagePost = ( useTitle = true, useExcerpt = true, useLead = true, useDate = true, useAuthor = true, useModified = true ) => {
@@ -105,12 +146,14 @@ export class SWContent extends React.Component {
             content : this.state.content.content === undefined ? '' : this.state.content.content.rendered
         };
 
-        return parse ( 
-                        '<h1 class="display-6 text-secondary">' + contentObj.title + '</h1>' 
-                        + contentObj.excerpt
-                        + contentObj.content 
-                        + contentObj.meta
-                     );    
+        return  (   
+                    <React.Fragment>
+                        <h1 className="display-6 text-secondary"> { contentObj.title } </h1> 
+                        { parse ( contentObj.excerpt ) }
+                        { parse ( contentObj.content ) }
+                        { contentObj.meta }
+                    </React.Fragment>
+                );    
     }
     
     //TODO: Work this out!
@@ -123,55 +166,72 @@ export class SWContent extends React.Component {
         
         Object.entries( posts ).map(( item ) => {
                 postList.push(  
-                                <React.Fragment>  
-                                      <Card className="sw-termlist-item px-0 rounded-end h-100" key={ item[1].id } id={ item[1].slug + '-' + item[1].id }> 
-                                        <Row className="g-0">
-                                            { item[1].featured_media.medium === false || useFeatMedia === false ? '' : <div className="sw-termlist-item-img col-2 border-end border-4 border-info" style={{ backgroundImage: `url( ${item[1].featured_media.medium} )`  }}></div> }
-                                            <Col>
-                                                <Card.Body className="shadow-sm">
-                                                    <div className="h2">{ item[1].title.rendered }</div> 
-                                                    <Card.Text>{ parse ( useExcerpt === true && item[1].excerpt.rendered ) }</Card.Text>  
-                                                    <Card.Text>{ item[1].full }</Card.Text> 
-                                                </Card.Body>
-                                                <Card.Footer className="text-muted sw-termlist-item-info">
-                                                    <Row className="align-items-center">
-                                                        <Col className="pb-1 sw-termlist-item-cats">
-                                                            { item[1].categories.map((element, index, array) => ( <Badge className="sw-clickbadge white" key={ element.id } pill bg="dark">
-                                                                                                                    <Link to={ '/content/' + ResolveTerms ( ResolveContentLink( element.apilink ).type, true, true ) + '/' + ResolveContentLink( element.apilink ).id }>
-                                                                                                                        { element.name }
-                                                                                                                    </Link>
-                                                                                                                  </Badge> )) } 
-                                                        </Col>
-                                                        { useDate === false && useAuthor === false && useModified === false ? '' :
-                                                            <Col className="text-end">
-                                                                <div className="d-inline me-2">
+                              <Card className="sw-termlist-item px-0 h-100" key={ item[1].id } id={ item[1].slug + '-' + item[1].id }> 
+                                <Row className="g-0">
+                                    { item[1].featured_media.medium === false || useFeatMedia === false ? '' : <div className="sw-termlist-item-img col-sm-12 col-md-4 col-lg-2" style={{ backgroundImage: `url( ${item[1].featured_media.medium} )`  }}></div> }
+                                    <Col>
+                                        <Card.Body className="shadow-sm">
+                                            <div className="h2">{ item[1].title.rendered }</div> 
+                                            <Card.Text>{ parse ( useExcerpt === true && item[1].excerpt.rendered ) }</Card.Text>  
+                                            <Card.Text className="sw-termlist-item-linkto">
+                                                <Link to={ '/content/' + ResolveContentLink( item[1].full ).type + '/' + ResolveContentLink( item[1].full ).id }>
+                                                    <span className="icon-primary">{ Icons.forward }</span>Vollständigen Beitrag lesen
+                                                </Link>
+                                            </Card.Text> 
+                                        </Card.Body>
+                                        <Card.Footer className="text-muted sw-termlist-item-info">
+                                            <Row className="align-items-center">
+                                                <Col className="pb-1 sw-termlist-item-cats sw-termlist-item-tags">
+                                                    <span className="ps-1 pe-2">{ Icons.folder }</span>
+                                                    { item[1].categories.map((element, index, array) => ( <Badge className="sw-clickbadge white" key={ element.id } pill bg="dark">
+                                                                                                            <Link to={ '/content/' + ResolveTerms ( ResolveContentLink( element.apilink ).type, true, true ) + '/' + ResolveContentLink( element.apilink ).id }>
+                                                                                                                { element.name }
+                                                                                                            </Link>
+                                                                                                          </Badge> )) } 
+                                                    <span className="ps-2 pe-2">{ Icons.colours }</span>
+                                                    { item[1].tags.map((element, index, array) => ( <Badge className="sw-clickbadge white" key={ element.id } pill bg="dark">
+                                                                                                            <Link to={ '/content/' + ResolveTerms ( ResolveContentLink( element.apilink ).type, true, true ) + '/' + ResolveContentLink( element.apilink ).id }>
+                                                                                                                { element.name }
+                                                                                                            </Link>
+                                                                                                          </Badge> )) } 
+                                                </Col>                                                        
+                                                { useDate === false && useAuthor === false && useModified === false ? '' :
+                                                    <Col md={ 12 } lg={ 6 }>
+                                                        <Row> 
+                                                            { useAuthor === true && 
+                                                                <Col xs={ 6 } md={ 2 } lg={ 4 } xl={ 2 } className="text-lg-end text-md-start text-start">
                                                                     { Icons.user }
-                                                                    { useAuthor === true && item[1].author.name } 
-                                                                </div>
-                                                                <div className="d-inline me-2">
-                                                                { Icons.clock }
-                                                                { useDate === true && this.toDisplayDate( item[1].date_gmt, ' ' )  + ' ' }
-                                                                </div>
-                                                                <div className="d-inline">
-                                                                { Icons.cycle }
-                                                                { useModified === true && this.toDisplayDate( item[1].modified_gmt, ' ' ) }
-                                                                </div>
-                                                            </Col> 
-                                                        }
-                                                    </Row>
-                                                </Card.Footer>                                                
-                                            </Col>
-                                        </Row>
-                                      </Card>           
-                                </React.Fragment>                                         
+                                                                            <a target="_blank" rel="noopener noreferrer" href={ item[1].author.url }>{ item[1].author.name }</a>  
+                                                                </Col> 
+                                                            }
+                                                            { useDate === true &&                                                             
+                                                                <Col xs={ 6 } md={ 10 } lg={ 8 } xl={ 5 } className="text-end">
+                                                                    { Icons.clock }
+                                                                    { this.toDisplayDate( item[1].date_gmt, ' ' )  + ' ' }
+                                                                </Col> 
+                                                            }
+                                                            { useModified === true && 
+                                                                <Col className="d-xl-block d-none text-end" xl={ 5 }>
+                                                                    { Icons.cycle }
+                                                                    { this.toDisplayDate( item[1].modified_gmt, ' ' ) }
+                                                                </Col>
+                                                            }
+                                                        </Row>
+                                                    </Col> 
+                                                }
+                                            </Row>
+                                        </Card.Footer>                                                
+                                    </Col>
+                                </Row>
+                              </Card>                                                   
                             );       
         });    
         
         return ( 
                     <div id={ 'sw-term-' + catTag.term_id + '-' + catTag.slug }> 
-                        <h1 class="display-6 text-secondary">{ catTag.name }</h1>
-                        <Row className="mb-2">
-                            <Col>{ catTag.description }</Col>
+                        <h1 className="display-6 text-secondary">{ catTag.name }</h1>
+                        <Row className="mb-2 py-2 shadow-sm rounded-bottom border-bottom bg-light">
+                            <Col xs={ 12 } lg={ 10 } className="text-dark">{ catTag.description }</Col>
                             <Col className="text-end"><Badge pill bg="light" className="border border-info ms-2" text="info">{ catTag.count } Beiträge</Badge></Col>
                         </Row>
                         <Row className="sw-termlist g-4">{ postList }</Row> 
@@ -213,6 +273,7 @@ export class SWContent extends React.Component {
 
     componentDidMount() {
         this.setContentData();
+        if ( this.props.type === 'posts' || this.props.type === 'pages' ) { this.setMetaData(); };
         window.scrollTo({ top: 0, left: 0, behavior: "instant" }); 
     }; 
     
@@ -220,6 +281,7 @@ export class SWContent extends React.Component {
         // Typical usage (don't forget to compare props):
         if ( this.state.id !== this.props.id || this.state.type !== this.props.type ) { 
             this.setContentData();
+            if ( this.props.type === 'posts' || this.props.type === 'pages' ) { this.setMetaData(); };
             window.scrollTo({ top: 0, left: 0, behavior: "instant" }); 
         }       
         console.log( 'changed! ID: ' + this.state.id + ', update: ' + this.props.id );
