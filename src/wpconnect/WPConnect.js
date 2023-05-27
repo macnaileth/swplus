@@ -76,7 +76,7 @@ class WPConnect {
      * 
      * 
      * @param { string } id = the authors/users id
-     * @returns {unresolved} = user json in a promise
+     * @returns { unresolved } = user json in a promise
      */
     getUser = async ( id ) => {
         const response = await fetch( this.home + settings.routes.users + id );
@@ -90,8 +90,13 @@ class WPConnect {
         }
           
     }
-    
-    getTermList = async ( type = 'categories') => {
+    /**
+     * getTermList( type = 'categories' )
+     * 
+     * @param { string } type: could be set to categories [default] or tags
+     * @returns { promise } returns a list of all terms of type categories or tags
+     */
+    getTermList = async ( type = 'categories' ) => {
         let resolveType = type === 'categories' ? settings.routes.categories : type === 'tags' ? settings.routes.tags : '';
         const response = await fetch( this.home + resolveType );
 
@@ -109,7 +114,7 @@ class WPConnect {
      * 
      * @param { object } menu a menu object
      * @param { string } sortBy property to sort the menu array by. Default: order
-     * @returns { object } returns the restructured and ordered menu object
+     * @returns { promise } returns the restructured and ordered menu object
      */   
      structureMenuFromJSON = ( menu, sortBy = 'order' ) => {
         

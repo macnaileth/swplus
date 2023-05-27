@@ -1,5 +1,14 @@
 [ 
     {
+        "id": 8,
+        "category": "Update",
+        "date": "2023-05-24",
+        "title": "Verbindung zu WordPress hergestellt",
+        "content": "Um Content einzubinden, wurde eine Verbindung zu WordPress über die REST API hergestellt.",
+        "author": "Marco",
+        "img": ""
+    },     
+    {
         "id": 7,
         "category": "Update",
         "date": "2022-12-13",

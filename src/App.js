@@ -34,7 +34,6 @@ class App extends React.Component {
         
         this.nav =  { 
                         mainnav: { updates:'Updates', toolbox: 'Toolbox' },
-                        footnav: { about:'Über', legal: 'Impressum', privacy: 'Datenschutz' },
                         footer: []
                     };       
         
@@ -43,7 +42,7 @@ class App extends React.Component {
     } 
     
     setMenuData = async () => {
-        this.setState({ footer: await this.MenuStruct.createMenu( 'TollesMenu', 'NAME' )});
+        this.setState({ footer: await this.MenuStruct.createMenu( 'FooterMenu', 'NAME' )});
     };
     
     statusPostLoad = () => { console.log( '%c*** social.werks+ App loaded | Version: ' + packageJson.version + ' ***', 'color:green;' ); };
@@ -93,14 +92,6 @@ class App extends React.Component {
                       taglist={ true }                      
                     />  
                 </footer>
-                <SWMainNav 
-                  id="sw_foot_navigation"
-                  className="sw-footer"
-                  justify='center'
-                  links={ this.nav.footnav }
-                  background="dark"
-                  collapse={ false }
-                />    
             </BrowserRouter>
           </div>        
         );

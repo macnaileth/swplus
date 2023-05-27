@@ -11,7 +11,7 @@ import Spinner from 'react-bootstrap/Spinner';
 class LoadWait extends React.Component {   
     render() {
         return (
-                    <div className="d-flex justify-content-center">
+                    <div className="d-flex justify-content-center align-items-center" style={{ height: ( window.innerHeight - ( window.innerHeight / 4 ) ) + "px" }}>
                         <Spinner animation={ _.isEmpty( this.props.animation ) ? "border" : this.props.animation } variant={ _.isEmpty( this.props.variant ) ? "dark" : this.props.variant } className="me-2" role="status">
                             <span className="visually-hidden">{ _.isEmpty( this.props.accessibilityMSG)  ? 'Loading...' : this.props.accessibilityMSG }</span>
                         </Spinner> 

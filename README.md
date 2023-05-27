@@ -18,6 +18,9 @@ Bundesinstituts für Arzneimittel und Medizinprodukte (BfArM).
 ICF-Kodes, -Begriffe und -Texte © Weltgesundheitsorganisation,
 übersetzt und herausgegeben durch das Deutsche Institut für Medizinische Dokumentation und Information von der International classification of functioning, disability and health – ICF, herausgegeben durch die Weltgesundheitsorganisation
 
+### Versioning
+
+ 27.05.2023 - Version 0.1.0 finished including niow also WordPress connection built in.
 
 ### Create React App
 

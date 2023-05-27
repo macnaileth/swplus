@@ -1,7 +1,7 @@
 {
     "about": {
         "version": "0.1.0",
-        "about": "Settings for connection to WordPress REST API with wpconnect theme."
+        "about": "Settings for connecting to WordPress REST API with wpconnect theme."
     },
     "routes": {
         "base": "/wp-json/",

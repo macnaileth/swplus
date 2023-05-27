@@ -16,8 +16,6 @@ export default function Content() {
     const { type, id } = useParams();
     const [update, setUpdate] = useState(0);
 
-    console.log( 'ID: ' + id + ', Type: ' + type );
-
     return (
         <div className="py-3 sw-contentarea">
             <SWContent url={ window.location.href } type = { type } id={ id } />

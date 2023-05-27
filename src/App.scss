@@ -84,6 +84,10 @@ h2 .icon:hover {
     cursor: pointer;
     opacity: 0.6;
 }
+.navbar-toggler:active, .navbar-toggler:focus, .navbar-toggler, .navbar-toggler:hover {
+    border: none !important;
+    box-shadow: none !important;
+}
 .navbar-toggler-icon:hover, .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
     background-color: var(--bs-primary);
     border-radius: .25rem;

@@ -45,6 +45,7 @@ export class SWContent extends React.Component {
         this.contentPagePost = this.contentPagePost.bind(this);
         this.contentCatTagPostList = this.contentCatTagPostList.bind(this);
         this.setMetaData = this.setMetaData.bind(this);
+        this.metaBox = this.metaBox.bind(this);
 
     };
     
@@ -61,43 +62,54 @@ export class SWContent extends React.Component {
         return dateObj.date + joinWith + dateObj.time + clockStr;
         
     }  
+    metaBox = ( useCats = true, useTags = true ) => {
+        
+        return (
+                    <React.Fragment>
+                        { this.state.content.categories === undefined && this.state.content.tags === undefined ? '' :
+                            <div className="d-flex justify-content-between sw-metabox mb-3 small">
+                                { useCats === true && this.state.content.categories !== undefined &&
+                                    <div className="sw-termlist-item-info sw-post">
+                                        <span className="pe-2">{ Icons.folder }</span>
+                                        { this.state.content.categories.map(( element, index ) => ( 
+                                            <Badge className="sw-clickbadge white" key={ index } pill bg="dark">
+                                                <Link to={ '/content/catwise/' + element }>
+                                                    { 
+                                                        this.state.metadata.cats === undefined ? 
+                                                            <LoadWait /> : 
+                                                                this.state.metadata.cats.map( ( cat ) => ( cat.id === element && <React.Fragment>{ cat.name }</React.Fragment> ) )
+                                                    }
+                                                </Link>
+                                            </Badge> 
+                                        )) }  
+                                    </div>
+                                }
+                                { useTags === true && this.state.content.tags !== undefined &&
+                                    <div className="sw-termlist-item-info sw-post">
+                                        <span className="pe-2">{ Icons.colours }</span>
+                                        { this.state.content.tags.map(( element, index ) => ( 
+                                            <Badge className="sw-clickbadge white" key={ index } pill bg="dark">
+                                                <Link to={ '/content/tagwise/' + element }>
+                                                    { 
+                                                        this.state.metadata.tags === undefined ? 
+                                                            <LoadWait /> : 
+                                                                this.state.metadata.tags.map( ( tag ) => ( tag.id === element && <React.Fragment>{ tag.name }</React.Fragment> ) )
+                                                    }
+                                                </Link>
+                                            </Badge> 
+                                        )) }  
+                                    </div>
+                                }  
+                            </div>
+                        }
+                    </React.Fragment>
+                );
+    }
     
-    userBox = ( useCats = true, useTags = true ) => {
+    userBox = () => {
 
         return (    <div className="sw-user-info border-top">
-                        <div className="small d-block d-sm-flex justify-content-between mt-3">
-                            { useCats === true && this.state.content.categories !== undefined &&
-                                <div className="text-center text-md-start sw-termlist-item-info">
-                                    <span className="pe-2">{ Icons.folder }</span>
-                                    { this.state.content.categories.map(( element, index ) => ( 
-                                        <Badge className="sw-clickbadge white" key={ index } pill bg="dark">
-                                            <Link to={ '/content/catwise/' + element }>
-                                                { 
-                                                    this.state.metadata.cats === undefined ? 
-                                                        <LoadWait /> : 
-                                                            this.state.metadata.cats.map( ( cat ) => ( cat.id === element && <React.Fragment>{ cat.name }</React.Fragment> ) )
-                                                }
-                                            </Link>
-                                        </Badge> 
-                                    )) }  
-                                </div>
-                            }
-                            { useTags === true && this.state.content.tags !== undefined &&
-                                <div className="text-center text-md-start sw-termlist-item-info mx-md-4 mx-0 mx-sm-2">
-                                    <span className="pe-2">{ Icons.colours }</span>
-                                    { this.state.content.tags.map(( element, index ) => ( 
-                                        <Badge className="sw-clickbadge white" key={ index } pill bg="dark">
-                                            <Link to={ '/content/tagwise/' + element }>
-                                                { 
-                                                    this.state.metadata.tags === undefined ? 
-                                                        <LoadWait /> : 
-                                                            this.state.metadata.tags.map( ( tag ) => ( tag.id === element && <React.Fragment>{ tag.name }</React.Fragment> ) )
-                                                }
-                                            </Link>
-                                        </Badge> 
-                                    )) }  
-                                </div>
-                            }                            
+                        <div className="small d-block d-sm-flex justify-content-between mt-3">                          
                             <div className="text-center text-md-start">
                                 <span className="text-secondary">Autor: </span>
                                 <a href={ this.state.user.url } target="_blank" rel="noopener noreferrer">{ this.state.user.name }</a>
@@ -106,9 +118,9 @@ export class SWContent extends React.Component {
                                 <span className="text-secondary"> verfasst am: </span>
                                 <span className="text-info">{ this.toDisplayDate( this.state.content.date ) }</span>
                             </div>
-                            <div className="">
-                                <span className="text-secondary d-none d-md-inline"> zuletzt geändert: </span>
-                                <span className="text-info d-none d-md-inline">{ this.toDisplayDate( this.state.content.modified ) }</span>
+                            <div className="d-none d-md-block">
+                                <span className="text-secondary"> zuletzt geändert: </span>
+                                <span className="text-info">{ this.toDisplayDate( this.state.content.modified ) }</span>
                             </div>
                         </div>
                     </div> );
@@ -121,7 +133,6 @@ export class SWContent extends React.Component {
         if ( this.props.type === 'pages' || this.props.type === 'posts' ) { 
             userData = await this.apiContent.getUser( contentData.author ); 
         }
-        console.log( contentData );
         this.setState({ content: contentData, user: userData, id: this.props.id, type: this.props.type });      
     }; 
     
@@ -129,34 +140,35 @@ export class SWContent extends React.Component {
         
         const metaData = { cats: await this.apiContent.getTermList(), tags: await this.apiContent.getTermList( 'tags' ) };
 
-        console.log( 'METADATA FETCHED:', metaData );
         this.setState({ metadata: { tags: metaData.tags, cats: metaData.cats } });      
     }; 
     
     contentPagePost = ( useTitle = true, useExcerpt = true, useLead = true, useDate = true, useAuthor = true, useModified = true ) => {
         const contentObj = {
+            meta: this.metaBox(),
             title : this.state.content.title === undefined ? '' : this.state.content.title !== true ? this.state.content.title.rendered : '',
             excerpt : this.state.content.excerpt === undefined ? '' :
+                        this.props.type === 'pages' ? '' :
                         useExcerpt === true ? 
                         useLead === true ? 
                         this.state.content.excerpt.rendered.replace(/<p>/, '<p class="lead">') : 
                                 this.state.content.excerpt.rendered 
                         : '',
-            meta: this.userBox(),
+            userinfo: this.userBox(),
             content : this.state.content.content === undefined ? '' : this.state.content.content.rendered
         };
 
         return  (   
                     <React.Fragment>
+                        { contentObj.meta }
                         <h1 className="display-6 text-secondary"> { contentObj.title } </h1> 
                         { parse ( contentObj.excerpt ) }
                         { parse ( contentObj.content ) }
-                        { contentObj.meta }
+                        { contentObj.userinfo }
                     </React.Fragment>
                 );    
     }
     
-    //TODO: Work this out!
     contentCatTagPostList = ( useFeatMedia = true, useExcerpt = true, useDate = true, useAuthor = true, useModified = true  ) => {
         
         const posts = this.state.content.posts;
@@ -242,8 +254,7 @@ export class SWContent extends React.Component {
     
     formatContent = ( useTitle = true, useExcerpt = true, useLead = true, useDate = true, useAuthor = true, useModified = true ) => {
         
-        //console.log( 'user', this.state.user );
-        console.log( 'type: ' + this.props.type + ', content:', this.state.content );
+        console.log( '%c*** Content succesfully loaded (' + this.props.type + ') ***', 'color:green;' );
         
         switch ( this.props.type ) {
             //pages
@@ -284,7 +295,6 @@ export class SWContent extends React.Component {
             if ( this.props.type === 'posts' || this.props.type === 'pages' ) { this.setMetaData(); };
             window.scrollTo({ top: 0, left: 0, behavior: "instant" }); 
         }       
-        console.log( 'changed! ID: ' + this.state.id + ', update: ' + this.props.id );
     }    
     
     render() {
