@@ -252,9 +252,7 @@ export class SWContent extends React.Component {
         
     }
     
-    formatContent = ( useTitle = true, useExcerpt = true, useLead = true, useDate = true, useAuthor = true, useModified = true ) => {
-        
-        console.log( '%c*** Content succesfully loaded (' + this.props.type + ') ***', 'color:green;' );
+    formatContent = ( useTitle = true, useExcerpt = true, useLead = true, useDate = true, useAuthor = true, useModified = true ) => {     
         
         switch ( this.props.type ) {
             //pages

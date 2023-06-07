@@ -31,10 +31,8 @@ export const ResolveTerms = ( type, taglist = true, catlist = true ) => {
     return resolvedTerm;
 };
 
-export const ResolveContentLink = ( link ) => {
-    
+export const ResolveContentLink = ( link ) => {    
         const linkArr = link.split('/');
-        console.log( 'Linkage: ' + linkArr[ linkArr.length - 2 ] + '/' + linkArr[ linkArr.length - 1 ] );
         return { type: linkArr[ linkArr.length - 2 ], id: linkArr[ linkArr.length - 1 ] };         
 };
 /**
