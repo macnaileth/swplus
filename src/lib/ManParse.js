@@ -91,10 +91,19 @@ class ManParse {
      */
     icdModifierText = ( data, pastDotPart, digit = 4 ) => {
         const digitStr = digit === 4 ? '4.' : digit === 5 ? '5.' : '4.';
-        const modBase = this.icdModGroup(digitStr, _.find(data.property, ['code', 'parent']).valueCode);
-        const modText = modBase ? !_.isEmpty(modBase.four) && digit === 4 ? modBase.four.sub.find(element => element.code === pastDotPart.substring(0,2)) : 
-                        !_.isEmpty(modBase.five) && digit === 5 ? modBase.five.sub.find(element => element.code === pastDotPart.substring(2,3)) : '' : '';
-        return modText ? _.isArray(modText.Rubric) ? modText.Rubric.find(element => element.kind === "preferred").Label['#text'] : modText.Rubric.Label['#text'] : '';    
+        
+        if ( typeof data === "undefined" ) {
+            
+            return '';   
+            
+        } else {
+        
+            const modBase = this.icdModGroup(digitStr, _.find(data.property, ['code', 'parent']).valueCode);
+            const modText = modBase ? !_.isEmpty(modBase.four) && digit === 4 ? modBase.four.sub.find(element => element.code === pastDotPart.substring(0,2)) : 
+                            !_.isEmpty(modBase.five) && digit === 5 ? modBase.five.sub.find(element => element.code === pastDotPart.substring(2,3)) : '' : '';
+            return modText ? _.isArray(modText.Rubric) ? modText.Rubric.find(element => element.kind === "preferred").Label['#text'] : modText.Rubric.Label['#text'] : '';  
+            
+        }
     }
     icdTitle = (string, charLimit = 40, icdchapter = false, elipsis = '...', debug = false) => {
         
@@ -111,30 +120,51 @@ class ManParse {
                 //get modifier group text
                 const pModGroup = this.icdModifierText(pData, pastDotPart, 4);
 
-                pData.modText = pModGroup ? pModGroup : '';
-                pData.modCode = pModGroup ? pastDotPart.substring(0,2) : '';
-                //reset possible fifth digit
-                pData.modFText = '';
-                pData.modFCode = '';
-                debug === true && console.log('Viersteller (' + string.length + ' | ' + frontDotPart + ' | ' + pastDotPart + ')', pData.modText);
+                //check if undefined and catch error
+                if ( typeof pData === "undefined" ) {
+                   
+                    debug === true && console.log('Warning: No Parse data for ICD-Title received');
+                    
+                } else {
+                
+                    pData.modText = pModGroup ? pModGroup : '';
+                    pData.modCode = pModGroup ? pastDotPart.substring(0,2) : '';
+                    //reset possible fifth digit
+                    pData.modFText = '';
+                    pData.modFCode = '';
+                    debug === true && console.log('Viersteller (' + string.length + ' | ' + frontDotPart + ' | ' + pastDotPart + ')', pData.modText);
+                
+                }
+                
+                
             }
             //also check for additional flags and special chars, like a traling g, v, or so - to prevent code invalidation
             if( string.length === 6 || (string.length === 7 && this.isICDSpecChar(string.substring(6,7))) ) {
                 const SplitPastDotPart = { four: pastDotPart.substring(0,2), five: pastDotPart.substring(2,3) };
                 //first, check if we find digit 4 - if not, code is invalid anyway
                 pData = this.parseicdCode(frontDotPart);
-                //get modifier group text
-                const pModGroup = this.icdModifierText(pData, pastDotPart, 4);                
-                //second, check for digit 5
-                const pModFive = this.icdModifierText(pData, pastDotPart, 5); 
+                
+                
+                //check if undefined and catch error
+                if ( typeof pData === "undefined" ) {
+                   
+                    debug === true && console.log('Warning: No Parse data for ICD-Title received');
+                    
+                } else {
+                
+                    //get modifier group text
+                    const pModGroup = this.icdModifierText(pData, pastDotPart, 4);                
+                    //second, check for digit 5
+                    const pModFive = this.icdModifierText(pData, pastDotPart, 5); 
 
-                pData.modText = pModGroup ? pModGroup : '';
-                pData.modCode = pModGroup ? SplitPastDotPart.four : ''; 
-                pData.modFText = pModFive ? pModFive : '';
-                pData.modFCode = pModFive ? SplitPastDotPart.five : '';
-                debug === true && console.log('Fünfsteller (' + string.length + ' | ' + pastDotPart + 
-                        ') , Splitted: Four: ' + SplitPastDotPart.four + ', ' + pData.modText +
-                        ', Five: ' + SplitPastDotPart.five + ', ' + pData.modFText );
+                    pData.modText = pModGroup ? pModGroup : '';
+                    pData.modCode = pModGroup ? SplitPastDotPart.four : ''; 
+                    pData.modFText = pModFive ? pModFive : '';
+                    pData.modFCode = pModFive ? SplitPastDotPart.five : '';
+                    debug === true && console.log('Fünfsteller (' + string.length + ' | ' + pastDotPart + 
+                            ') , Splitted: Four: ' + SplitPastDotPart.four + ', ' + pData.modText +
+                            ', Five: ' + SplitPastDotPart.five + ', ' + pData.modFText );
+                }
             }
         }      
         return pData ? pData.display.length > charLimit ?
@@ -269,7 +299,7 @@ class ManParse {
                 //crop name to correct length if overtyped - check for chapter
                 debug === true && console.log('Element Name (no modifiers): ', Element.cname);  
                     if (Element.cname !== cData.code) {
-                        Element.cname = this.icdCropInvalidDigits( cData.code + Element.cspecChar.char.toUpperCase() );
+                        Element.cname = this.icdCropInvalidDigits( cData.code + ( typeof Element.cspecChar === "undefined" ? '' : Element.cspecChar.char.toUpperCase() ) );
                     } else {
                         Element.cname = this.icdCropInvalidDigits(Element.cname); 
                     }

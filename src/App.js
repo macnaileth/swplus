@@ -33,8 +33,7 @@ class App extends React.Component {
         };
         
         this.nav =  { 
-                        mainnav: { updates:'Updates', toolbox: 'Toolbox' },
-                        footer: []
+                        mainnav: { blog: { title: 'Blog', link: 'content/catwise/6' }, updates:'Updates', toolbox: 'Toolbox' }
                     };       
         
         this.statusPostLoad = this.statusPostLoad.bind(this); 

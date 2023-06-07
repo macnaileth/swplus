@@ -260,7 +260,11 @@ export class SWCodeSearch extends React.Component {
                                                 <StatusBadge className={ !_.isEmpty(this.modobj.text) ? 'rounded-end-0' : '' } BadgeData={ "info:" + this.state.codetitle }/>
                                             </span> 
                                             <span className="d-inline d-md-none ms-2">
-                                                <StatusBadge BadgeData={ "info:" + ( this.state.icd10 === true ? this.state.code.substring(0,3).toUpperCase() : this.state.code ) }/>
+                                                <StatusBadge BadgeData={ "info:" + ( this.state.icd10 === true ? 
+                                                                                        this.state.code.length > 3 && this.state.code.includes( '.' ) ?
+                                                                                            this.state.code.substring(0,3).toUpperCase() : 
+                                                                                            this.state.code : 
+                                                                                        this.state.code ) }/>
                                             </span>    
                                         </React.Fragment>
                                     }

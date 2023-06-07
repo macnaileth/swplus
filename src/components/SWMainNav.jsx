@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import settings from "../wpconnect/settings.json";  
 
 //helpers
-import { ResolveTerms } from '../lib/GenericHelpers';
+import { ResolveTerms, IsObject } from '../lib/GenericHelpers';
 
 //react classes
 export class SWMainNav extends React.Component {
@@ -53,7 +53,7 @@ export class SWMainNav extends React.Component {
                                     <Link to={ '/content/' + ResolveTerms ( this.props.links[key].link.type, this.props.taglist, this.props.catlist ) + '/' + this.props.links[key].link.id }  className="nav-link" key={ key.toString() } href={ this.props.links[key].link.uri } >{ this.props.links[key].name }</Link>: 
                                     <a className="nav-link" key={ key.toString() } href={ this.props.links[key].link.uri } target="_blank" rel="noopener noreferrer" >{ this.props.links[key].name }</a>;
                             } else {
-                                return (<Link to={ "/" + key } className="nav-link" key={key.toString()}>{ value }</Link>); 
+                                return (<Link to={ "/" + ( IsObject( value ) === true ? value.link : key ) } className="nav-link" key={key.toString()}>{ IsObject( value ) === true ? value.title : value }</Link>); 
                             }            
                         })                                            
                     }
