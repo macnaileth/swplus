@@ -1,5 +1,14 @@
 [ 
     {
+        "id": 9,
+        "category": "Update",
+        "date": "2023-11-07",
+        "title": "Bugfix für WordPress Verbindung",
+        "content": "Fehler gefixt, der die App unter bestimmten Bedingungen zum Absturz gebracht hat, wenn Blogitems geladen wurde.",
+        "author": "Marco",
+        "img": ""
+    },    
+    {
         "id": 8,
         "category": "Update",
         "date": "2023-05-24",

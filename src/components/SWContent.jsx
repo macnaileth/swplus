@@ -75,9 +75,9 @@ export class SWContent extends React.Component {
                                             <Badge className="sw-clickbadge white" key={ index } pill bg="dark">
                                                 <Link to={ '/content/catwise/' + element }>
                                                     { 
-                                                        this.state.metadata.cats === undefined ? 
+                                                        this.state.metadata.cats === undefined || Object.keys( this.state.metadata.cats ).length === 0 ? 
                                                             <LoadWait /> : 
-                                                                this.state.metadata.cats.map( ( cat ) => ( cat.id === element && <React.Fragment>{ cat.name }</React.Fragment> ) )
+                                                                this.state.metadata.cats.map( ( cat ) => ( cat.id === undefined ? console.log('*** Still waiting for data ***') : cat.id === element && <React.Fragment>{ cat.name }</React.Fragment> ) )
                                                     }
                                                 </Link>
                                             </Badge> 
@@ -91,9 +91,9 @@ export class SWContent extends React.Component {
                                             <Badge className="sw-clickbadge white" key={ index } pill bg="dark">
                                                 <Link to={ '/content/tagwise/' + element }>
                                                     { 
-                                                        this.state.metadata.tags === undefined ? 
+                                                        this.state.metadata.tags === undefined || Object.keys( this.state.metadata.tags ).length === 0 ? 
                                                             <LoadWait /> : 
-                                                                this.state.metadata.tags.map( ( tag ) => ( tag.id === element && <React.Fragment>{ tag.name }</React.Fragment> ) )
+                                                                this.state.metadata.tags.map( ( tag ) => ( tag.id === undefined ? console.log('*** Still waiting for data ***') : tag.id === element && <React.Fragment>{ tag.name }</React.Fragment> ) )
                                                     }
                                                 </Link>
                                             </Badge> 

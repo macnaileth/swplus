@@ -21,6 +21,7 @@ ICF-Kodes, -Begriffe und -Texte © Weltgesundheitsorganisation,
 
 ### Version / Changelog
 
+07.11.2023 - Fixed a bug which blew up the whole thing when fetching data went a bit wrong for blog items. Version set to 0.1.2
 07.06.2023 - Updated some small stuff and added some fixes. Version set to 0.1.1
 05.06.2023 - Catched some errors.
 27.05.2023 - Version 0.1.0 finished including niow also WordPress connection built in.
