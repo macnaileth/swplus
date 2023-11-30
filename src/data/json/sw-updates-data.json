@@ -1,5 +1,14 @@
 [ 
     {
+        "id": 10,
+        "category": "Update",
+        "date": "2023-11-30",
+        "title": "Basis ICD-10 GM 2024 hinzugefügt",
+        "content": "Alte ICD-10 FHIR-Version von 2020 gegen 2024er Version getauscht. TODO: Neue Komplettversion bauen.",
+        "author": "Marco",
+        "img": ""
+    },  
+    {
         "id": 9,
         "category": "Update",
         "date": "2023-11-07",

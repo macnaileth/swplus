@@ -4,8 +4,8 @@
 
 //icf JSON - claml exported
 import icfJSON from "../data/json/icf.json";
-//icd10 JSON - HL7 FHIR version of ICD-10-GM 2020 DE
-import icdJSON from "../data/json/icd.json";
+//icd10 JSON - HL7 FHIR version of ICD-10-GM 2024 DE
+import icdJSON from "../data/json/icd_2024.json";
 //modifiers for ICD-10 as separate file from ICD-10-GM 2022 DE ClaML version
 import icdModJSON from "../data/json/icd_modifiers.json";
 
